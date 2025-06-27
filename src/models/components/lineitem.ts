@@ -38,15 +38,9 @@ export type LineItemScoreScale = {
   sourcedId: string;
 };
 
-export type LineItemLearningObjectiveId = {
-  learningObjectiveId: string;
-  score?: number | undefined;
-  textScore?: string | undefined;
-};
-
 export type LineItemLearningObjectiveSet = {
   source: string;
-  learningObjectiveIds: Array<LineItemLearningObjectiveId>;
+  learningObjectiveIds: Array<string>;
 };
 
 /**
@@ -54,7 +48,7 @@ export type LineItemLearningObjectiveSet = {
  */
 export type LineItem = {
   sourcedId?: string | undefined;
-  status: LineItemStatus;
+  status?: LineItemStatus | undefined;
   dateLastModified?: Date | undefined;
   metadata?: { [k: string]: any } | null | undefined;
   title: string;
@@ -406,83 +400,19 @@ export function lineItemScoreScaleFromJSON(
 }
 
 /** @internal */
-export const LineItemLearningObjectiveId$inboundSchema: z.ZodType<
-  LineItemLearningObjectiveId,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  learningObjectiveId: z.string(),
-  score: z.number().optional(),
-  textScore: z.string().optional(),
-});
-
-/** @internal */
-export type LineItemLearningObjectiveId$Outbound = {
-  learningObjectiveId: string;
-  score?: number | undefined;
-  textScore?: string | undefined;
-};
-
-/** @internal */
-export const LineItemLearningObjectiveId$outboundSchema: z.ZodType<
-  LineItemLearningObjectiveId$Outbound,
-  z.ZodTypeDef,
-  LineItemLearningObjectiveId
-> = z.object({
-  learningObjectiveId: z.string(),
-  score: z.number().optional(),
-  textScore: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LineItemLearningObjectiveId$ {
-  /** @deprecated use `LineItemLearningObjectiveId$inboundSchema` instead. */
-  export const inboundSchema = LineItemLearningObjectiveId$inboundSchema;
-  /** @deprecated use `LineItemLearningObjectiveId$outboundSchema` instead. */
-  export const outboundSchema = LineItemLearningObjectiveId$outboundSchema;
-  /** @deprecated use `LineItemLearningObjectiveId$Outbound` instead. */
-  export type Outbound = LineItemLearningObjectiveId$Outbound;
-}
-
-export function lineItemLearningObjectiveIdToJSON(
-  lineItemLearningObjectiveId: LineItemLearningObjectiveId,
-): string {
-  return JSON.stringify(
-    LineItemLearningObjectiveId$outboundSchema.parse(
-      lineItemLearningObjectiveId,
-    ),
-  );
-}
-
-export function lineItemLearningObjectiveIdFromJSON(
-  jsonString: string,
-): SafeParseResult<LineItemLearningObjectiveId, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LineItemLearningObjectiveId$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LineItemLearningObjectiveId' from JSON`,
-  );
-}
-
-/** @internal */
 export const LineItemLearningObjectiveSet$inboundSchema: z.ZodType<
   LineItemLearningObjectiveSet,
   z.ZodTypeDef,
   unknown
 > = z.object({
   source: z.string(),
-  learningObjectiveIds: z.array(
-    z.lazy(() => LineItemLearningObjectiveId$inboundSchema),
-  ),
+  learningObjectiveIds: z.array(z.string()),
 });
 
 /** @internal */
 export type LineItemLearningObjectiveSet$Outbound = {
   source: string;
-  learningObjectiveIds: Array<LineItemLearningObjectiveId$Outbound>;
+  learningObjectiveIds: Array<string>;
 };
 
 /** @internal */
@@ -492,9 +422,7 @@ export const LineItemLearningObjectiveSet$outboundSchema: z.ZodType<
   LineItemLearningObjectiveSet
 > = z.object({
   source: z.string(),
-  learningObjectiveIds: z.array(
-    z.lazy(() => LineItemLearningObjectiveId$outboundSchema),
-  ),
+  learningObjectiveIds: z.array(z.string()),
 });
 
 /**
@@ -537,7 +465,7 @@ export const LineItem$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   sourcedId: z.string().optional(),
-  status: LineItemStatus$inboundSchema,
+  status: LineItemStatus$inboundSchema.default("active"),
   dateLastModified: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
@@ -594,7 +522,7 @@ export const LineItem$outboundSchema: z.ZodType<
   LineItem
 > = z.object({
   sourcedId: z.string().optional(),
-  status: LineItemStatus$outboundSchema,
+  status: LineItemStatus$outboundSchema.default("active"),
   dateLastModified: z.date().transform(v => v.toISOString()).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),

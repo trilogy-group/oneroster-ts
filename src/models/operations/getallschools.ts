@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -53,11 +52,54 @@ export type GetAllSchoolsRequest = {
   search?: string | undefined;
 };
 
+export const GetAllSchoolsStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllSchoolsStatus = ClosedEnum<typeof GetAllSchoolsStatus>;
+
+export const GetAllSchoolsType = {
+  Department: "department",
+  School: "school",
+  District: "district",
+  Local: "local",
+  State: "state",
+  National: "national",
+} as const;
+export type GetAllSchoolsType = ClosedEnum<typeof GetAllSchoolsType>;
+
+export type GetAllSchoolsParent = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+export type GetAllSchoolsChild = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/**
+ * Represents an organization.
+ */
+export type GetAllSchoolsOrg = {
+  sourcedId: string;
+  status: GetAllSchoolsStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  name: string;
+  type: GetAllSchoolsType;
+  identifier: string;
+  parent?: GetAllSchoolsParent | null | undefined;
+  children: Array<GetAllSchoolsChild> | null;
+};
+
 /**
  * Collection of schools successfully retrieved
  */
 export type GetAllSchoolsResponseBody = {
-  orgs: Array<components.Org>;
+  orgs: Array<GetAllSchoolsOrg>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -163,12 +205,258 @@ export function getAllSchoolsRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllSchoolsStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllSchoolsStatus
+> = z.nativeEnum(GetAllSchoolsStatus);
+
+/** @internal */
+export const GetAllSchoolsStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllSchoolsStatus
+> = GetAllSchoolsStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllSchoolsStatus$ {
+  /** @deprecated use `GetAllSchoolsStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllSchoolsStatus$inboundSchema;
+  /** @deprecated use `GetAllSchoolsStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllSchoolsStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllSchoolsType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllSchoolsType
+> = z.nativeEnum(GetAllSchoolsType);
+
+/** @internal */
+export const GetAllSchoolsType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllSchoolsType
+> = GetAllSchoolsType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllSchoolsType$ {
+  /** @deprecated use `GetAllSchoolsType$inboundSchema` instead. */
+  export const inboundSchema = GetAllSchoolsType$inboundSchema;
+  /** @deprecated use `GetAllSchoolsType$outboundSchema` instead. */
+  export const outboundSchema = GetAllSchoolsType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllSchoolsParent$inboundSchema: z.ZodType<
+  GetAllSchoolsParent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetAllSchoolsParent$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllSchoolsParent$outboundSchema: z.ZodType<
+  GetAllSchoolsParent$Outbound,
+  z.ZodTypeDef,
+  GetAllSchoolsParent
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllSchoolsParent$ {
+  /** @deprecated use `GetAllSchoolsParent$inboundSchema` instead. */
+  export const inboundSchema = GetAllSchoolsParent$inboundSchema;
+  /** @deprecated use `GetAllSchoolsParent$outboundSchema` instead. */
+  export const outboundSchema = GetAllSchoolsParent$outboundSchema;
+  /** @deprecated use `GetAllSchoolsParent$Outbound` instead. */
+  export type Outbound = GetAllSchoolsParent$Outbound;
+}
+
+export function getAllSchoolsParentToJSON(
+  getAllSchoolsParent: GetAllSchoolsParent,
+): string {
+  return JSON.stringify(
+    GetAllSchoolsParent$outboundSchema.parse(getAllSchoolsParent),
+  );
+}
+
+export function getAllSchoolsParentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllSchoolsParent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllSchoolsParent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllSchoolsParent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllSchoolsChild$inboundSchema: z.ZodType<
+  GetAllSchoolsChild,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetAllSchoolsChild$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllSchoolsChild$outboundSchema: z.ZodType<
+  GetAllSchoolsChild$Outbound,
+  z.ZodTypeDef,
+  GetAllSchoolsChild
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllSchoolsChild$ {
+  /** @deprecated use `GetAllSchoolsChild$inboundSchema` instead. */
+  export const inboundSchema = GetAllSchoolsChild$inboundSchema;
+  /** @deprecated use `GetAllSchoolsChild$outboundSchema` instead. */
+  export const outboundSchema = GetAllSchoolsChild$outboundSchema;
+  /** @deprecated use `GetAllSchoolsChild$Outbound` instead. */
+  export type Outbound = GetAllSchoolsChild$Outbound;
+}
+
+export function getAllSchoolsChildToJSON(
+  getAllSchoolsChild: GetAllSchoolsChild,
+): string {
+  return JSON.stringify(
+    GetAllSchoolsChild$outboundSchema.parse(getAllSchoolsChild),
+  );
+}
+
+export function getAllSchoolsChildFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllSchoolsChild, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllSchoolsChild$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllSchoolsChild' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllSchoolsOrg$inboundSchema: z.ZodType<
+  GetAllSchoolsOrg,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllSchoolsStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  name: z.string(),
+  type: GetAllSchoolsType$inboundSchema,
+  identifier: z.string(),
+  parent: z.nullable(z.lazy(() => GetAllSchoolsParent$inboundSchema))
+    .optional(),
+  children: z.nullable(z.array(z.lazy(() => GetAllSchoolsChild$inboundSchema))),
+});
+
+/** @internal */
+export type GetAllSchoolsOrg$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  name: string;
+  type: string;
+  identifier: string;
+  parent?: GetAllSchoolsParent$Outbound | null | undefined;
+  children: Array<GetAllSchoolsChild$Outbound> | null;
+};
+
+/** @internal */
+export const GetAllSchoolsOrg$outboundSchema: z.ZodType<
+  GetAllSchoolsOrg$Outbound,
+  z.ZodTypeDef,
+  GetAllSchoolsOrg
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllSchoolsStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  name: z.string(),
+  type: GetAllSchoolsType$outboundSchema,
+  identifier: z.string(),
+  parent: z.nullable(z.lazy(() => GetAllSchoolsParent$outboundSchema))
+    .optional(),
+  children: z.nullable(
+    z.array(z.lazy(() => GetAllSchoolsChild$outboundSchema)),
+  ),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllSchoolsOrg$ {
+  /** @deprecated use `GetAllSchoolsOrg$inboundSchema` instead. */
+  export const inboundSchema = GetAllSchoolsOrg$inboundSchema;
+  /** @deprecated use `GetAllSchoolsOrg$outboundSchema` instead. */
+  export const outboundSchema = GetAllSchoolsOrg$outboundSchema;
+  /** @deprecated use `GetAllSchoolsOrg$Outbound` instead. */
+  export type Outbound = GetAllSchoolsOrg$Outbound;
+}
+
+export function getAllSchoolsOrgToJSON(
+  getAllSchoolsOrg: GetAllSchoolsOrg,
+): string {
+  return JSON.stringify(
+    GetAllSchoolsOrg$outboundSchema.parse(getAllSchoolsOrg),
+  );
+}
+
+export function getAllSchoolsOrgFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllSchoolsOrg, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllSchoolsOrg$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllSchoolsOrg' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllSchoolsResponseBody$inboundSchema: z.ZodType<
   GetAllSchoolsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  orgs: z.array(components.Org$inboundSchema),
+  orgs: z.array(z.lazy(() => GetAllSchoolsOrg$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -178,7 +466,7 @@ export const GetAllSchoolsResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllSchoolsResponseBody$Outbound = {
-  orgs: Array<components.Org$Outbound>;
+  orgs: Array<GetAllSchoolsOrg$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -192,7 +480,7 @@ export const GetAllSchoolsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllSchoolsResponseBody
 > = z.object({
-  orgs: z.array(components.Org$outboundSchema),
+  orgs: z.array(z.lazy(() => GetAllSchoolsOrg$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

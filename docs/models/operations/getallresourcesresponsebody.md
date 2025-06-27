@@ -16,21 +16,21 @@ let value: GetAllResourcesResponseBody = {
       vendorResourceId: "<id>",
     },
   ],
-  totalCount: 6893.92,
-  pageCount: 7499.78,
-  pageNumber: 4595.28,
-  offset: 3589.94,
-  limit: 1257.24,
+  totalCount: 7499.78,
+  pageCount: 4595.28,
+  pageNumber: 3589.94,
+  offset: 1257.24,
+  limit: 2873.23,
 };
 ```
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `resources`                                                  | [components.Resource](../../models/components/resource.md)[] | :heavy_check_mark:                                           | N/A                                                          |
-| `totalCount`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageCount`                                                  | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageNumber`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `offset`                                                     | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `limit`                                                      | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `resources`                                                                                | [operations.GetAllResourcesResource](../../models/operations/getallresourcesresource.md)[] | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `totalCount`                                                                               | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `pageCount`                                                                                | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `pageNumber`                                                                               | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `offset`                                                                                   | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `limit`                                                                                    | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |

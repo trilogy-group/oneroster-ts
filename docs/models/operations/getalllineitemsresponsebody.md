@@ -10,7 +10,6 @@ import { GetAllLineItemsResponseBody } from "@superbuilders/oneroster/models/ope
 let value: GetAllLineItemsResponseBody = {
   lineItems: [
     {
-      status: "tobedeleted",
       title: "<value>",
       assignDate: new Date("2025-10-07T19:05:28.488Z"),
       dueDate: new Date("2023-08-10T23:32:56.493Z"),
@@ -35,11 +34,11 @@ let value: GetAllLineItemsResponseBody = {
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `lineItems`                                                  | [components.LineItem](../../models/components/lineitem.md)[] | :heavy_check_mark:                                           | N/A                                                          |
-| `totalCount`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageCount`                                                  | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageNumber`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `offset`                                                     | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `limit`                                                      | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `lineItems`                                                                                | [operations.GetAllLineItemsLineItem](../../models/operations/getalllineitemslineitem.md)[] | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `totalCount`                                                                               | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `pageCount`                                                                                | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `pageNumber`                                                                               | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `offset`                                                                                   | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `limit`                                                                                    | *number*                                                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |

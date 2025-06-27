@@ -15,7 +15,7 @@ export const ServerList = [
   /**
    * OneRoster API
    */
-  "https://api.staging.alpha-1edtech.com",
+  "https://api.alpha-1edtech.com",
 ] as const;
 
 export type SDKOptions = {
@@ -36,6 +36,10 @@ export type SDKOptions = {
    * Allows overriding the default server URL used by the SDK
    */
   serverURL?: string | undefined;
+  /**
+   * Allows overriding the default user agent used by the SDK
+   */
+  userAgent?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -64,8 +68,8 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.0.0",
-  sdkVersion: "0.6.3",
-  genVersion: "2.595.4",
+  sdkVersion: "0.7.0",
+  genVersion: "2.640.2",
   userAgent:
-    "speakeasy-sdk/typescript 0.6.3 2.595.4 1.0.0 @superbuilders/oneroster",
+    "speakeasy-sdk/typescript 0.7.0 2.640.2 1.0.0 @superbuilders/oneroster",
 } as const;

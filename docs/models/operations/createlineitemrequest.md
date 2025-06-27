@@ -7,10 +7,9 @@ import { CreateLineItemRequest } from "@superbuilders/oneroster/models/operation
 
 let value: CreateLineItemRequest = {
   lineItem: {
-    status: "active",
     title: "<value>",
-    assignDate: new Date("2023-07-28T04:26:11.874Z"),
-    dueDate: new Date("2024-12-05T08:59:50.487Z"),
+    assignDate: new Date("2024-03-20T23:18:56.025Z"),
+    dueDate: new Date("2023-07-28T04:26:11.874Z"),
     class: {
       sourcedId: "<id>",
     },

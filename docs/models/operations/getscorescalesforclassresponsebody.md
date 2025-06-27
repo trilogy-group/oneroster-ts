@@ -10,35 +10,30 @@ import { GetScoreScalesForClassResponseBody } from "@superbuilders/oneroster/mod
 let value: GetScoreScalesForClassResponseBody = {
   scoreScales: [
     {
-      status: "tobedeleted",
+      status: "active",
       title: "<value>",
       type: "<value>",
       class: {
         sourcedId: "<id>",
       },
-      scoreScaleValue: [
-        {
-          itemValueLHS: "<value>",
-          itemValueRHS: "<value>",
-        },
-      ],
+      scoreScaleValue: [],
     },
   ],
-  totalCount: 3529.82,
-  pageCount: 2967.86,
-  pageNumber: 1992.42,
-  offset: 3619.38,
-  limit: 3846.36,
+  totalCount: 1992.42,
+  pageCount: 3619.38,
+  pageNumber: 3846.36,
+  offset: 3549.51,
+  limit: 6668.49,
 };
 ```
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `scoreScales`                                                    | [components.ScoreScale](../../models/components/scorescale.md)[] | :heavy_check_mark:                                               | N/A                                                              |
-| `totalCount`                                                     | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `pageCount`                                                      | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `pageNumber`                                                     | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `offset`                                                         | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `limit`                                                          | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `scoreScales`                                                                                                | [operations.GetScoreScalesForClassScoreScale](../../models/operations/getscorescalesforclassscorescale.md)[] | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `totalCount`                                                                                                 | *number*                                                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `pageCount`                                                                                                  | *number*                                                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `pageNumber`                                                                                                 | *number*                                                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `offset`                                                                                                     | *number*                                                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `limit`                                                                                                      | *number*                                                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |

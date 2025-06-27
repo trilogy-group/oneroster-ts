@@ -39,7 +39,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -69,16 +68,13 @@ async function run() {
     fields: "sourcedId,name",
     filter: "status='active'",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("lineItemsManagementGetAllLineItems failed:", res.error);
   }
 }
 
@@ -100,16 +96,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError2 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse2      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## createLineItem
 
@@ -130,10 +126,9 @@ const oneRoster = new OneRoster({
 async function run() {
   const result = await oneRoster.lineItemsManagement.createLineItem({
     lineItem: {
-      status: "active",
       title: "<value>",
-      assignDate: new Date("2025-07-17T09:24:39.378Z"),
-      dueDate: new Date("2024-12-24T04:46:32.360Z"),
+      assignDate: new Date("2025-03-27T05:45:31.907Z"),
+      dueDate: new Date("2025-01-04T15:42:48.821Z"),
       class: {
         sourcedId: "<id>",
       },
@@ -146,7 +141,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -173,10 +167,9 @@ const oneRoster = new OneRosterCore({
 async function run() {
   const res = await lineItemsManagementCreateLineItem(oneRoster, {
     lineItem: {
-      status: "active",
       title: "<value>",
-      assignDate: new Date("2025-07-17T09:24:39.378Z"),
-      dueDate: new Date("2024-12-24T04:46:32.360Z"),
+      assignDate: new Date("2025-03-27T05:45:31.907Z"),
+      dueDate: new Date("2025-01-04T15:42:48.821Z"),
       class: {
         sourcedId: "<id>",
       },
@@ -188,15 +181,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("lineItemsManagementCreateLineItem failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -217,16 +207,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError2 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError2     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse1      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## getLineItem
 
@@ -249,7 +239,6 @@ async function run() {
     sourcedId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -277,15 +266,12 @@ async function run() {
   const res = await lineItemsManagementGetLineItem(oneRoster, {
     sourcedId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("lineItemsManagementGetLineItem failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -306,16 +292,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError1 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError2            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse1      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## updateLineItem
 
@@ -338,10 +324,9 @@ async function run() {
     sourcedId: "<id>",
     requestBody: {
       lineItem: {
-        status: "active",
         title: "<value>",
-        assignDate: new Date("2023-11-10T16:59:53.285Z"),
-        dueDate: new Date("2025-11-10T15:40:07.696Z"),
+        assignDate: new Date("2024-01-03T19:53:44.676Z"),
+        dueDate: new Date("2025-06-09T00:40:05.369Z"),
         class: {
           sourcedId: "<id>",
         },
@@ -383,10 +368,9 @@ async function run() {
     sourcedId: "<id>",
     requestBody: {
       lineItem: {
-        status: "active",
         title: "<value>",
-        assignDate: new Date("2023-11-10T16:59:53.285Z"),
-        dueDate: new Date("2025-11-10T15:40:07.696Z"),
+        assignDate: new Date("2024-01-03T19:53:44.676Z"),
+        dueDate: new Date("2025-06-09T00:40:05.369Z"),
         class: {
           sourcedId: "<id>",
         },
@@ -399,14 +383,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("lineItemsManagementUpdateLineItem failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -427,16 +409,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError2 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse2      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## deleteLineItem
 
@@ -486,14 +468,12 @@ async function run() {
   const res = await lineItemsManagementDeleteLineItem(oneRoster, {
     sourcedId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("lineItemsManagementDeleteLineItem failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -514,16 +494,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError1 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError1 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse1      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## createResultForLineItem
 
@@ -545,34 +525,10 @@ async function run() {
   const result = await oneRoster.lineItemsManagement.createResultForLineItem({
     sourcedId: "<id>",
     requestBody: {
-      results: [
-        {
-          status: "active",
-          lineItem: {
-            sourcedId: "<id>",
-          },
-          student: {
-            sourcedId: "<id>",
-          },
-          scoreStatus: "exempt",
-          scoreDate: new Date("2023-11-27T22:04:15.473Z"),
-        },
-        {
-          status: "active",
-          lineItem: {
-            sourcedId: "<id>",
-          },
-          student: {
-            sourcedId: "<id>",
-          },
-          scoreStatus: "exempt",
-          scoreDate: new Date("2024-07-25T14:20:57.830Z"),
-        },
-      ],
+      results: [],
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -600,41 +556,15 @@ async function run() {
   const res = await lineItemsManagementCreateResultForLineItem(oneRoster, {
     sourcedId: "<id>",
     requestBody: {
-      results: [
-        {
-          status: "active",
-          lineItem: {
-            sourcedId: "<id>",
-          },
-          student: {
-            sourcedId: "<id>",
-          },
-          scoreStatus: "exempt",
-          scoreDate: new Date("2023-11-27T22:04:15.473Z"),
-        },
-        {
-          status: "active",
-          lineItem: {
-            sourcedId: "<id>",
-          },
-          student: {
-            sourcedId: "<id>",
-          },
-          scoreStatus: "exempt",
-          scoreDate: new Date("2024-07-25T14:20:57.830Z"),
-        },
-      ],
+      results: [],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("lineItemsManagementCreateResultForLineItem failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -655,16 +585,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError1 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse1      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## getLineItemsForSchool
 
@@ -690,7 +620,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -704,7 +633,7 @@ The standalone function version of this method:
 
 ```typescript
 import { OneRosterCore } from "@superbuilders/oneroster/core.js";
-import { lineItemsManagementGetLineItemsForSchool } from "@superbuilders/oneroster/funcs/lineItemsManagementGetLineItemsForSchool.js";
+import { schoolsManagementGetLineItemsForSchool } from "@superbuilders/oneroster/funcs/schoolsManagementGetLineItemsForSchool.js";
 
 // Use `OneRosterCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -716,21 +645,18 @@ const oneRoster = new OneRosterCore({
 });
 
 async function run() {
-  const res = await lineItemsManagementGetLineItemsForSchool(oneRoster, {
+  const res = await schoolsManagementGetLineItemsForSchool(oneRoster, {
     sourcedId: "<id>",
     fields: "sourcedId,name",
     filter: "status='active'",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("schoolsManagementGetLineItemsForSchool failed:", res.error);
   }
 }
 
@@ -752,16 +678,16 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError1 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse1      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## createLineItemsForSchool
 
@@ -785,40 +711,9 @@ async function run() {
     requestBody: {
       lineItems: [
         {
-          status: "active",
           title: "<value>",
-          assignDate: new Date("2023-04-27T10:18:47.158Z"),
-          dueDate: new Date("2024-08-01T01:20:45.518Z"),
-          class: {
-            sourcedId: "<id>",
-          },
-          school: {
-            sourcedId: "<id>",
-          },
-          category: {
-            sourcedId: "<id>",
-          },
-        },
-        {
-          status: "tobedeleted",
-          title: "<value>",
-          assignDate: new Date("2025-10-22T11:43:49.772Z"),
-          dueDate: new Date("2025-04-13T11:50:54.034Z"),
-          class: {
-            sourcedId: "<id>",
-          },
-          school: {
-            sourcedId: "<id>",
-          },
-          category: {
-            sourcedId: "<id>",
-          },
-        },
-        {
-          status: "tobedeleted",
-          title: "<value>",
-          assignDate: new Date("2024-03-10T22:36:23.472Z"),
-          dueDate: new Date("2024-02-06T22:38:06.551Z"),
+          assignDate: new Date("2024-09-10T07:55:46.630Z"),
+          dueDate: new Date("2023-11-01T01:31:28.141Z"),
           class: {
             sourcedId: "<id>",
           },
@@ -833,7 +728,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -846,7 +740,7 @@ The standalone function version of this method:
 
 ```typescript
 import { OneRosterCore } from "@superbuilders/oneroster/core.js";
-import { lineItemsManagementCreateLineItemsForSchool } from "@superbuilders/oneroster/funcs/lineItemsManagementCreateLineItemsForSchool.js";
+import { schoolsManagementCreateLineItemsForSchool } from "@superbuilders/oneroster/funcs/schoolsManagementCreateLineItemsForSchool.js";
 
 // Use `OneRosterCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -858,45 +752,14 @@ const oneRoster = new OneRosterCore({
 });
 
 async function run() {
-  const res = await lineItemsManagementCreateLineItemsForSchool(oneRoster, {
+  const res = await schoolsManagementCreateLineItemsForSchool(oneRoster, {
     sourcedId: "<id>",
     requestBody: {
       lineItems: [
         {
-          status: "active",
           title: "<value>",
-          assignDate: new Date("2023-04-27T10:18:47.158Z"),
-          dueDate: new Date("2024-08-01T01:20:45.518Z"),
-          class: {
-            sourcedId: "<id>",
-          },
-          school: {
-            sourcedId: "<id>",
-          },
-          category: {
-            sourcedId: "<id>",
-          },
-        },
-        {
-          status: "tobedeleted",
-          title: "<value>",
-          assignDate: new Date("2025-10-22T11:43:49.772Z"),
-          dueDate: new Date("2025-04-13T11:50:54.034Z"),
-          class: {
-            sourcedId: "<id>",
-          },
-          school: {
-            sourcedId: "<id>",
-          },
-          category: {
-            sourcedId: "<id>",
-          },
-        },
-        {
-          status: "tobedeleted",
-          title: "<value>",
-          assignDate: new Date("2024-03-10T22:36:23.472Z"),
-          dueDate: new Date("2024-02-06T22:38:06.551Z"),
+          assignDate: new Date("2024-09-10T07:55:46.630Z"),
+          dueDate: new Date("2023-11-01T01:31:28.141Z"),
           class: {
             sourcedId: "<id>",
           },
@@ -910,15 +773,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("schoolsManagementCreateLineItemsForSchool failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -939,13 +799,13 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.BadRequestResponseError1          | 400                                      | application/json                         |
-| errors.UnauthorizedRequestResponseError1 | 401                                      | application/json                         |
-| errors.ForbiddenResponseError1           | 403                                      | application/json                         |
-| errors.NotFoundResponseError1            | 404                                      | application/json                         |
-| errors.UnprocessableEntityResponseError2 | 422                                      | application/json                         |
-| errors.TooManyRequestsResponseError1     | 429                                      | application/json                         |
-| errors.InternalServerErrorResponse1      | 500                                      | application/json                         |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.BadRequestResponseError          | 400                                     | application/json                        |
+| errors.UnauthorizedRequestResponseError | 401                                     | application/json                        |
+| errors.ForbiddenResponseError           | 403                                     | application/json                        |
+| errors.NotFoundResponseError            | 404                                     | application/json                        |
+| errors.UnprocessableEntityResponseError | 422                                     | application/json                        |
+| errors.TooManyRequestsResponseError     | 429                                     | application/json                        |
+| errors.InternalServerErrorResponse      | 500                                     | application/json                        |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |

@@ -8,22 +8,7 @@ Successful response containing a collection of score scales
 import { GetAllScoreScalesResponseBody } from "@superbuilders/oneroster/models/operations";
 
 let value: GetAllScoreScalesResponseBody = {
-  scoreScales: [
-    {
-      status: "active",
-      title: "<value>",
-      type: "<value>",
-      class: {
-        sourcedId: "<id>",
-      },
-      scoreScaleValue: [
-        {
-          itemValueLHS: "<value>",
-          itemValueRHS: "<value>",
-        },
-      ],
-    },
-  ],
+  scoreScales: [],
   totalCount: 9305.18,
   pageCount: 7507.61,
   pageNumber: 225.99,
@@ -34,11 +19,11 @@ let value: GetAllScoreScalesResponseBody = {
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `scoreScales`                                                    | [components.ScoreScale](../../models/components/scorescale.md)[] | :heavy_check_mark:                                               | N/A                                                              |
-| `totalCount`                                                     | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `pageCount`                                                      | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `pageNumber`                                                     | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `offset`                                                         | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `limit`                                                          | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `scoreScales`                                                                                      | [operations.GetAllScoreScalesScoreScale](../../models/operations/getallscorescalesscorescale.md)[] | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `totalCount`                                                                                       | *number*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `pageCount`                                                                                        | *number*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `pageNumber`                                                                                       | *number*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `offset`                                                                                           | *number*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `limit`                                                                                            | *number*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |

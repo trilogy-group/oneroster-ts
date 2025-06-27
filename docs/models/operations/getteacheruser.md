@@ -13,10 +13,10 @@ let value: GetTeacherUser = {
   familyName: "<value>",
   roles: [
     {
-      roleType: "secondary",
-      role: "student",
+      roleType: "primary",
+      role: "proctor",
       org: {
-        href: "https://nimble-captain.name/",
+        href: "https://these-reboot.net",
         sourcedId: "<id>",
         type: "<value>",
       },
@@ -26,9 +26,9 @@ let value: GetTeacherUser = {
   ],
   agents: [
     {
-      href: "https://nimble-space.biz",
+      href: "https://tangible-cow.biz",
       sourcedId: "<id>",
-      type: "class",
+      type: "course",
     },
   ],
 };
@@ -61,3 +61,4 @@ let value: GetTeacherUser = {
 | `password`                                                                                    | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `sms`                                                                                         | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `phone`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `demographics`                                                                                | [components.Demographics](../../models/components/demographics.md)                            | :heavy_minus_sign:                                                                            | N/A                                                                                           |

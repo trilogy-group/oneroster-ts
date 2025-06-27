@@ -7,10 +7,12 @@ import { PostAcademicSessionRequest } from "@superbuilders/oneroster/models/oper
 
 let value: PostAcademicSessionRequest = {
   academicSession: {
+    sourcedId: "<id>",
+    status: "active",
     title: "<value>",
     startDate: "<value>",
     endDate: "<value>",
-    type: "gradingPeriod",
+    type: "semester",
     schoolYear: "<value>",
     org: {
       sourcedId: "<id>",

@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -55,11 +54,50 @@ export type GetAllDemographicsRequest = {
   search?: string | undefined;
 };
 
+export const GetAllDemographicsStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllDemographicsStatus = ClosedEnum<
+  typeof GetAllDemographicsStatus
+>;
+
+export const GetAllDemographicsSex = {
+  Male: "male",
+  Female: "female",
+  Other: "other",
+  Unspecified: "unspecified",
+} as const;
+export type GetAllDemographicsSex = ClosedEnum<typeof GetAllDemographicsSex>;
+
+/**
+ * Represents a student's demographics information.
+ */
+export type Demographic = {
+  sourcedId: string;
+  status: GetAllDemographicsStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  birthDate: string | null;
+  sex: GetAllDemographicsSex | null;
+  americanIndianOrAlaskaNative: string | null;
+  asian: string | null;
+  blackOrAfricanAmerican: string | null;
+  nativeHawaiianOrOtherPacificIslander: string | null;
+  white: string | null;
+  demographicRaceTwoOrMoreRaces: string | null;
+  hispanicOrLatinoEthnicity: string | null;
+  countryOfBirthCode: string | null;
+  stateOfBirthAbbreviation: string | null;
+  cityOfBirth: string | null;
+  publicSchoolResidenceStatus: string | null;
+};
+
 /**
  * Demographics collection retrieved successfully
  */
 export type GetAllDemographicsResponseBody = {
-  demographics: Array<components.Demographics>;
+  demographics: Array<Demographic>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -165,12 +203,154 @@ export function getAllDemographicsRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllDemographicsStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllDemographicsStatus
+> = z.nativeEnum(GetAllDemographicsStatus);
+
+/** @internal */
+export const GetAllDemographicsStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllDemographicsStatus
+> = GetAllDemographicsStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllDemographicsStatus$ {
+  /** @deprecated use `GetAllDemographicsStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllDemographicsStatus$inboundSchema;
+  /** @deprecated use `GetAllDemographicsStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllDemographicsStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllDemographicsSex$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllDemographicsSex
+> = z.nativeEnum(GetAllDemographicsSex);
+
+/** @internal */
+export const GetAllDemographicsSex$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllDemographicsSex
+> = GetAllDemographicsSex$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllDemographicsSex$ {
+  /** @deprecated use `GetAllDemographicsSex$inboundSchema` instead. */
+  export const inboundSchema = GetAllDemographicsSex$inboundSchema;
+  /** @deprecated use `GetAllDemographicsSex$outboundSchema` instead. */
+  export const outboundSchema = GetAllDemographicsSex$outboundSchema;
+}
+
+/** @internal */
+export const Demographic$inboundSchema: z.ZodType<
+  Demographic,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllDemographicsStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  birthDate: z.nullable(z.string()),
+  sex: z.nullable(GetAllDemographicsSex$inboundSchema),
+  americanIndianOrAlaskaNative: z.nullable(z.string()),
+  asian: z.nullable(z.string()),
+  blackOrAfricanAmerican: z.nullable(z.string()),
+  nativeHawaiianOrOtherPacificIslander: z.nullable(z.string()),
+  white: z.nullable(z.string()),
+  demographicRaceTwoOrMoreRaces: z.nullable(z.string()),
+  hispanicOrLatinoEthnicity: z.nullable(z.string()),
+  countryOfBirthCode: z.nullable(z.string()),
+  stateOfBirthAbbreviation: z.nullable(z.string()),
+  cityOfBirth: z.nullable(z.string()),
+  publicSchoolResidenceStatus: z.nullable(z.string()),
+});
+
+/** @internal */
+export type Demographic$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  birthDate: string | null;
+  sex: string | null;
+  americanIndianOrAlaskaNative: string | null;
+  asian: string | null;
+  blackOrAfricanAmerican: string | null;
+  nativeHawaiianOrOtherPacificIslander: string | null;
+  white: string | null;
+  demographicRaceTwoOrMoreRaces: string | null;
+  hispanicOrLatinoEthnicity: string | null;
+  countryOfBirthCode: string | null;
+  stateOfBirthAbbreviation: string | null;
+  cityOfBirth: string | null;
+  publicSchoolResidenceStatus: string | null;
+};
+
+/** @internal */
+export const Demographic$outboundSchema: z.ZodType<
+  Demographic$Outbound,
+  z.ZodTypeDef,
+  Demographic
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllDemographicsStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  birthDate: z.nullable(z.string()),
+  sex: z.nullable(GetAllDemographicsSex$outboundSchema),
+  americanIndianOrAlaskaNative: z.nullable(z.string()),
+  asian: z.nullable(z.string()),
+  blackOrAfricanAmerican: z.nullable(z.string()),
+  nativeHawaiianOrOtherPacificIslander: z.nullable(z.string()),
+  white: z.nullable(z.string()),
+  demographicRaceTwoOrMoreRaces: z.nullable(z.string()),
+  hispanicOrLatinoEthnicity: z.nullable(z.string()),
+  countryOfBirthCode: z.nullable(z.string()),
+  stateOfBirthAbbreviation: z.nullable(z.string()),
+  cityOfBirth: z.nullable(z.string()),
+  publicSchoolResidenceStatus: z.nullable(z.string()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Demographic$ {
+  /** @deprecated use `Demographic$inboundSchema` instead. */
+  export const inboundSchema = Demographic$inboundSchema;
+  /** @deprecated use `Demographic$outboundSchema` instead. */
+  export const outboundSchema = Demographic$outboundSchema;
+  /** @deprecated use `Demographic$Outbound` instead. */
+  export type Outbound = Demographic$Outbound;
+}
+
+export function demographicToJSON(demographic: Demographic): string {
+  return JSON.stringify(Demographic$outboundSchema.parse(demographic));
+}
+
+export function demographicFromJSON(
+  jsonString: string,
+): SafeParseResult<Demographic, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Demographic$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Demographic' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllDemographicsResponseBody$inboundSchema: z.ZodType<
   GetAllDemographicsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  demographics: z.array(components.Demographics$inboundSchema),
+  demographics: z.array(z.lazy(() => Demographic$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -180,7 +360,7 @@ export const GetAllDemographicsResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllDemographicsResponseBody$Outbound = {
-  demographics: Array<components.Demographics$Outbound>;
+  demographics: Array<Demographic$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -194,7 +374,7 @@ export const GetAllDemographicsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllDemographicsResponseBody
 > = z.object({
-  demographics: z.array(components.Demographics$outboundSchema),
+  demographics: z.array(z.lazy(() => Demographic$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

@@ -16,9 +16,9 @@ let value: AcademicSession = {
   type: "term",
   schoolYear: 840.71,
   org: {
-    href: "https://wrathful-birdcage.net/",
+    href: "https://cumbersome-outset.net",
     sourcedId: "<id>",
-    type: "org",
+    type: "scoreScale",
   },
 };
 ```

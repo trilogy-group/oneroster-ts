@@ -32,8 +32,7 @@ export type UpdateEnrollmentClass = {
 };
 
 export type UpdateEnrollmentEnrollment = {
-  sourcedId: string;
-  status: UpdateEnrollmentStatus;
+  status?: UpdateEnrollmentStatus | undefined;
   metadata?: { [k: string]: any } | undefined;
   role: UpdateEnrollmentRole;
   primary?: boolean | undefined;
@@ -211,8 +210,7 @@ export const UpdateEnrollmentEnrollment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sourcedId: z.string(),
-  status: UpdateEnrollmentStatus$inboundSchema,
+  status: UpdateEnrollmentStatus$inboundSchema.optional(),
   metadata: z.record(z.any()).optional(),
   role: UpdateEnrollmentRole$inboundSchema,
   primary: z.boolean().default(false),
@@ -224,8 +222,7 @@ export const UpdateEnrollmentEnrollment$inboundSchema: z.ZodType<
 
 /** @internal */
 export type UpdateEnrollmentEnrollment$Outbound = {
-  sourcedId: string;
-  status: string;
+  status?: string | undefined;
   metadata?: { [k: string]: any } | undefined;
   role: string;
   primary: boolean;
@@ -241,8 +238,7 @@ export const UpdateEnrollmentEnrollment$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateEnrollmentEnrollment
 > = z.object({
-  sourcedId: z.string(),
-  status: UpdateEnrollmentStatus$outboundSchema,
+  status: UpdateEnrollmentStatus$outboundSchema.optional(),
   metadata: z.record(z.any()).optional(),
   role: UpdateEnrollmentRole$outboundSchema,
   primary: z.boolean().default(false),

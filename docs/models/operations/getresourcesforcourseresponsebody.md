@@ -8,14 +8,7 @@ Successful response containing a collection of resources for the course
 import { GetResourcesForCourseResponseBody } from "@superbuilders/oneroster/models/operations";
 
 let value: GetResourcesForCourseResponseBody = {
-  resources: [
-    {
-      sourcedId: "<id>",
-      status: "active",
-      title: "<value>",
-      vendorResourceId: "<id>",
-    },
-  ],
+  resources: [],
   totalCount: 1995.41,
   pageCount: 3834.42,
   pageNumber: 2096.65,
@@ -26,11 +19,11 @@ let value: GetResourcesForCourseResponseBody = {
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `resources`                                                  | [components.Resource](../../models/components/resource.md)[] | :heavy_check_mark:                                           | N/A                                                          |
-| `totalCount`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageCount`                                                  | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageNumber`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `offset`                                                     | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `limit`                                                      | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `resources`                                                                                            | [operations.GetResourcesForCourseResource](../../models/operations/getresourcesforcourseresource.md)[] | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `totalCount`                                                                                           | *number*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `pageCount`                                                                                            | *number*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `pageNumber`                                                                                           | *number*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `offset`                                                                                               | *number*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `limit`                                                                                                | *number*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |

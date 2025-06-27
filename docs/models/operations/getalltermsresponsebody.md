@@ -15,20 +15,20 @@ let value: GetAllTermsResponseBody = {
       title: "<value>",
       startDate: "<value>",
       endDate: "<value>",
-      type: "term",
-      schoolYear: 6340.64,
+      type: "schoolYear",
+      schoolYear: 1784.96,
       org: {
-        href: "https://dreary-bourgeoisie.info/",
+        href: "https://crowded-sanity.com",
         sourcedId: "<id>",
-        type: "componentResource",
+        type: "student",
       },
     },
   ],
-  totalCount: 4900.33,
-  pageCount: 450.55,
-  pageNumber: 4037.55,
-  offset: 9099.24,
-  limit: 464.3,
+  totalCount: 2079.98,
+  pageCount: 930.57,
+  pageNumber: 3677.24,
+  offset: 9384.34,
+  limit: 4900.33,
 };
 ```
 
@@ -36,7 +36,7 @@ let value: GetAllTermsResponseBody = {
 
 | Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `terms`                                                                    | [components.AcademicSession](../../models/components/academicsession.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |
+| `terms`                                                                    | [operations.GetAllTermsTerm](../../models/operations/getalltermsterm.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |
 | `totalCount`                                                               | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
 | `pageCount`                                                                | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
 | `pageNumber`                                                               | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |

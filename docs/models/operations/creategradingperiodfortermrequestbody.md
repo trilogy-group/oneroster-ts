@@ -7,6 +7,8 @@ import { CreateGradingPeriodForTermRequestBody } from "@superbuilders/oneroster/
 
 let value: CreateGradingPeriodForTermRequestBody = {
   academicSession: {
+    sourcedId: "<id>",
+    status: "active",
     title: "<value>",
     startDate: "<value>",
     endDate: "<value>",
@@ -14,6 +16,8 @@ let value: CreateGradingPeriodForTermRequestBody = {
     org: {
       sourcedId: "<id>",
     },
+    tenantId: "<id>",
+    clientAppId: "<id>",
   },
 };
 ```

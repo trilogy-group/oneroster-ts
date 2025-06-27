@@ -6,6 +6,7 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetStudentRequest = {
@@ -118,6 +119,7 @@ export type GetStudentUser = {
   password?: string | null | undefined;
   sms?: string | null | undefined;
   phone?: string | null | undefined;
+  demographics?: components.Demographics | null | undefined;
 };
 
 /**
@@ -592,6 +594,7 @@ export const GetStudentUser$inboundSchema: z.ZodType<
   password: z.nullable(z.string()).optional(),
   sms: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
+  demographics: z.nullable(components.Demographics$inboundSchema).optional(),
 });
 
 /** @internal */
@@ -619,6 +622,7 @@ export type GetStudentUser$Outbound = {
   password?: string | null | undefined;
   sms?: string | null | undefined;
   phone?: string | null | undefined;
+  demographics?: components.Demographics$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -650,6 +654,7 @@ export const GetStudentUser$outboundSchema: z.ZodType<
   password: z.nullable(z.string()).optional(),
   sms: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
+  demographics: z.nullable(components.Demographics$outboundSchema).optional(),
 });
 
 /**

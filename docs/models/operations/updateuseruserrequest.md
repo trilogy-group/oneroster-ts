@@ -9,15 +9,7 @@ let value: UpdateUserUserRequest = {
   enabledUser: false,
   givenName: "<value>",
   familyName: "<value>",
-  roles: [
-    {
-      roleType: "secondary",
-      role: "guardian",
-      org: {
-        sourcedId: "<id>",
-      },
-    },
-  ],
+  roles: [],
 };
 ```
 
@@ -26,7 +18,7 @@ let value: UpdateUserUserRequest = {
 | Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `sourcedId`                                                                                      | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
-| `metadata`                                                                                       | Record<string, *any*>                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `metadata`                                                                                       | [operations.UpdateUserMetadata](../../models/operations/updateusermetadata.md)                   | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `status`                                                                                         | [operations.UpdateUserStatusRequest](../../models/operations/updateuserstatusrequest.md)         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `userMasterIdentifier`                                                                           | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `username`                                                                                       | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |

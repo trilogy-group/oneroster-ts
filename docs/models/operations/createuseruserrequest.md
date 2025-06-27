@@ -12,7 +12,7 @@ let value: CreateUserUserRequest = {
   roles: [
     {
       roleType: "secondary",
-      role: "teacher",
+      role: "aide",
       org: {
         sourcedId: "<id>",
       },
@@ -26,7 +26,7 @@ let value: CreateUserUserRequest = {
 | Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `sourcedId`                                                                                      | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
-| `metadata`                                                                                       | Record<string, *any*>                                                                            | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `metadata`                                                                                       | [operations.CreateUserMetadata](../../models/operations/createusermetadata.md)                   | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `status`                                                                                         | [operations.CreateUserStatusRequest](../../models/operations/createuserstatusrequest.md)         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `userMasterIdentifier`                                                                           | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |
 | `username`                                                                                       | *string*                                                                                         | :heavy_minus_sign:                                                                               | N/A                                                                                              |

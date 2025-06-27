@@ -7,7 +7,7 @@ import { ResultLearningObjectiveSet } from "@superbuilders/oneroster/models/comp
 
 let value: ResultLearningObjectiveSet = {
   source: "<value>",
-  learningObjectiveIds: [
+  learningObjectiveResults: [
     {
       learningObjectiveId: "<id>",
     },
@@ -17,7 +17,7 @@ let value: ResultLearningObjectiveSet = {
 
 ## Fields
 
-| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `source`                                                                                       | *string*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
-| `learningObjectiveIds`                                                                         | [components.ResultLearningObjectiveId](../../models/components/resultlearningobjectiveid.md)[] | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `source`                                                                                               | *string*                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `learningObjectiveResults`                                                                             | [components.ResultLearningObjectiveResult](../../models/components/resultlearningobjectiveresult.md)[] | :heavy_check_mark:                                                                                     | N/A                                                                                                    |

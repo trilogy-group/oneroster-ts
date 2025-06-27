@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,51 @@ export type GetResourcesForUserRequest = {
   search?: string | undefined;
 };
 
+export const GetResourcesForUserStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetResourcesForUserStatus = ClosedEnum<
+  typeof GetResourcesForUserStatus
+>;
+
+export const GetResourcesForUserRole = {
+  Primary: "primary",
+  Secondary: "secondary",
+} as const;
+export type GetResourcesForUserRole = ClosedEnum<
+  typeof GetResourcesForUserRole
+>;
+
+export const GetResourcesForUserImportance = {
+  Primary: "primary",
+  Secondary: "secondary",
+} as const;
+export type GetResourcesForUserImportance = ClosedEnum<
+  typeof GetResourcesForUserImportance
+>;
+
+/**
+ * Represents a digital resource of some kind.
+ */
+export type GetResourcesForUserResource = {
+  sourcedId: string;
+  status: GetResourcesForUserStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  roles?: Array<GetResourcesForUserRole> | undefined;
+  importance?: GetResourcesForUserImportance | undefined;
+  vendorResourceId: string;
+  vendorId?: string | null | undefined;
+  applicationId?: string | null | undefined;
+};
+
 /**
  * Successful response containing a collection of resources for the user
  */
 export type GetResourcesForUserResponseBody = {
-  resources: Array<components.Resource>;
+  resources: Array<GetResourcesForUserResource>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -172,12 +211,160 @@ export function getResourcesForUserRequestFromJSON(
 }
 
 /** @internal */
+export const GetResourcesForUserStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForUserStatus
+> = z.nativeEnum(GetResourcesForUserStatus);
+
+/** @internal */
+export const GetResourcesForUserStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForUserStatus
+> = GetResourcesForUserStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForUserStatus$ {
+  /** @deprecated use `GetResourcesForUserStatus$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForUserStatus$inboundSchema;
+  /** @deprecated use `GetResourcesForUserStatus$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForUserStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetResourcesForUserRole$inboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForUserRole
+> = z.nativeEnum(GetResourcesForUserRole);
+
+/** @internal */
+export const GetResourcesForUserRole$outboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForUserRole
+> = GetResourcesForUserRole$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForUserRole$ {
+  /** @deprecated use `GetResourcesForUserRole$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForUserRole$inboundSchema;
+  /** @deprecated use `GetResourcesForUserRole$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForUserRole$outboundSchema;
+}
+
+/** @internal */
+export const GetResourcesForUserImportance$inboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForUserImportance
+> = z.nativeEnum(GetResourcesForUserImportance);
+
+/** @internal */
+export const GetResourcesForUserImportance$outboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForUserImportance
+> = GetResourcesForUserImportance$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForUserImportance$ {
+  /** @deprecated use `GetResourcesForUserImportance$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForUserImportance$inboundSchema;
+  /** @deprecated use `GetResourcesForUserImportance$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForUserImportance$outboundSchema;
+}
+
+/** @internal */
+export const GetResourcesForUserResource$inboundSchema: z.ZodType<
+  GetResourcesForUserResource,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetResourcesForUserStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  roles: z.array(GetResourcesForUserRole$inboundSchema).optional(),
+  importance: GetResourcesForUserImportance$inboundSchema.optional(),
+  vendorResourceId: z.string(),
+  vendorId: z.nullable(z.string()).optional(),
+  applicationId: z.nullable(z.string()).optional(),
+});
+
+/** @internal */
+export type GetResourcesForUserResource$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  roles?: Array<string> | undefined;
+  importance?: string | undefined;
+  vendorResourceId: string;
+  vendorId?: string | null | undefined;
+  applicationId?: string | null | undefined;
+};
+
+/** @internal */
+export const GetResourcesForUserResource$outboundSchema: z.ZodType<
+  GetResourcesForUserResource$Outbound,
+  z.ZodTypeDef,
+  GetResourcesForUserResource
+> = z.object({
+  sourcedId: z.string(),
+  status: GetResourcesForUserStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  roles: z.array(GetResourcesForUserRole$outboundSchema).optional(),
+  importance: GetResourcesForUserImportance$outboundSchema.optional(),
+  vendorResourceId: z.string(),
+  vendorId: z.nullable(z.string()).optional(),
+  applicationId: z.nullable(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForUserResource$ {
+  /** @deprecated use `GetResourcesForUserResource$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForUserResource$inboundSchema;
+  /** @deprecated use `GetResourcesForUserResource$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForUserResource$outboundSchema;
+  /** @deprecated use `GetResourcesForUserResource$Outbound` instead. */
+  export type Outbound = GetResourcesForUserResource$Outbound;
+}
+
+export function getResourcesForUserResourceToJSON(
+  getResourcesForUserResource: GetResourcesForUserResource,
+): string {
+  return JSON.stringify(
+    GetResourcesForUserResource$outboundSchema.parse(
+      getResourcesForUserResource,
+    ),
+  );
+}
+
+export function getResourcesForUserResourceFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesForUserResource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResourcesForUserResource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesForUserResource' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetResourcesForUserResponseBody$inboundSchema: z.ZodType<
   GetResourcesForUserResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  resources: z.array(components.Resource$inboundSchema),
+  resources: z.array(z.lazy(() => GetResourcesForUserResource$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -187,7 +374,7 @@ export const GetResourcesForUserResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetResourcesForUserResponseBody$Outbound = {
-  resources: Array<components.Resource$Outbound>;
+  resources: Array<GetResourcesForUserResource$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -201,7 +388,7 @@ export const GetResourcesForUserResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetResourcesForUserResponseBody
 > = z.object({
-  resources: z.array(components.Resource$outboundSchema),
+  resources: z.array(z.lazy(() => GetResourcesForUserResource$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

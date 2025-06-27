@@ -17,25 +17,25 @@ let value: GetResultsForClassResponseBody = {
       student: {
         sourcedId: "<id>",
       },
-      scoreStatus: "submitted",
-      scoreDate: new Date("2023-12-07T02:02:07.681Z"),
+      scoreStatus: "fully graded",
+      scoreDate: new Date("2024-03-06T09:46:38.738Z"),
     },
   ],
-  totalCount: 3927.07,
-  pageCount: 3022.78,
-  pageNumber: 796.65,
-  offset: 3811.7,
-  limit: 6072.01,
+  totalCount: 3022.78,
+  pageCount: 796.65,
+  pageNumber: 3811.7,
+  offset: 6072.01,
+  limit: 8770.73,
 };
 ```
 
 ## Fields
 
-| Field                                                    | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `results`                                                | [components.Result](../../models/components/result.md)[] | :heavy_check_mark:                                       | N/A                                                      |
-| `totalCount`                                             | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `pageCount`                                              | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `pageNumber`                                             | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `offset`                                                 | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `limit`                                                  | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `results`                                                                                    | [operations.GetResultsForClassResult](../../models/operations/getresultsforclassresult.md)[] | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `totalCount`                                                                                 | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `pageCount`                                                                                  | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `pageNumber`                                                                                 | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `offset`                                                                                     | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `limit`                                                                                      | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |

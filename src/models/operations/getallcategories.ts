@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -55,11 +54,29 @@ export type GetAllCategoriesRequest = {
   search?: string | undefined;
 };
 
+export const GetAllCategoriesStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllCategoriesStatus = ClosedEnum<typeof GetAllCategoriesStatus>;
+
+/**
+ * Represents a category.
+ */
+export type GetAllCategoriesCategory = {
+  sourcedId?: string | undefined;
+  status: GetAllCategoriesStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  weight?: number | null | undefined;
+};
+
 /**
  * Successful response containing a collection of categories
  */
 export type GetAllCategoriesResponseBody = {
-  categories: Array<components.Category>;
+  categories: Array<GetAllCategoriesCategory>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -165,12 +182,104 @@ export function getAllCategoriesRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllCategoriesStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllCategoriesStatus
+> = z.nativeEnum(GetAllCategoriesStatus);
+
+/** @internal */
+export const GetAllCategoriesStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllCategoriesStatus
+> = GetAllCategoriesStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllCategoriesStatus$ {
+  /** @deprecated use `GetAllCategoriesStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllCategoriesStatus$inboundSchema;
+  /** @deprecated use `GetAllCategoriesStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllCategoriesStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllCategoriesCategory$inboundSchema: z.ZodType<
+  GetAllCategoriesCategory,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetAllCategoriesStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  weight: z.nullable(z.number()).optional(),
+});
+
+/** @internal */
+export type GetAllCategoriesCategory$Outbound = {
+  sourcedId?: string | undefined;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  weight?: number | null | undefined;
+};
+
+/** @internal */
+export const GetAllCategoriesCategory$outboundSchema: z.ZodType<
+  GetAllCategoriesCategory$Outbound,
+  z.ZodTypeDef,
+  GetAllCategoriesCategory
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetAllCategoriesStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  weight: z.nullable(z.number()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllCategoriesCategory$ {
+  /** @deprecated use `GetAllCategoriesCategory$inboundSchema` instead. */
+  export const inboundSchema = GetAllCategoriesCategory$inboundSchema;
+  /** @deprecated use `GetAllCategoriesCategory$outboundSchema` instead. */
+  export const outboundSchema = GetAllCategoriesCategory$outboundSchema;
+  /** @deprecated use `GetAllCategoriesCategory$Outbound` instead. */
+  export type Outbound = GetAllCategoriesCategory$Outbound;
+}
+
+export function getAllCategoriesCategoryToJSON(
+  getAllCategoriesCategory: GetAllCategoriesCategory,
+): string {
+  return JSON.stringify(
+    GetAllCategoriesCategory$outboundSchema.parse(getAllCategoriesCategory),
+  );
+}
+
+export function getAllCategoriesCategoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllCategoriesCategory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllCategoriesCategory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllCategoriesCategory' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllCategoriesResponseBody$inboundSchema: z.ZodType<
   GetAllCategoriesResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  categories: z.array(components.Category$inboundSchema),
+  categories: z.array(z.lazy(() => GetAllCategoriesCategory$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -180,7 +289,7 @@ export const GetAllCategoriesResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllCategoriesResponseBody$Outbound = {
-  categories: Array<components.Category$Outbound>;
+  categories: Array<GetAllCategoriesCategory$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -194,7 +303,7 @@ export const GetAllCategoriesResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllCategoriesResponseBody
 > = z.object({
-  categories: z.array(components.Category$outboundSchema),
+  categories: z.array(z.lazy(() => GetAllCategoriesCategory$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

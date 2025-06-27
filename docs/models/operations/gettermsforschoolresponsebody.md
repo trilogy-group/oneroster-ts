@@ -11,34 +11,34 @@ let value: GetTermsForSchoolResponseBody = {
   terms: [
     {
       sourcedId: "<id>",
-      status: "tobedeleted",
+      status: "active",
       title: "<value>",
       startDate: "<value>",
       endDate: "<value>",
-      type: "semester",
-      schoolYear: 9450.81,
+      type: "term",
+      schoolYear: 9932.39,
       org: {
-        href: "https://wealthy-vestment.info",
+        href: "https://secondary-crocodile.biz",
         sourcedId: "<id>",
-        type: "class",
+        type: "lineItem",
       },
     },
   ],
-  totalCount: 4635.61,
-  pageCount: 3974.74,
-  pageNumber: 4500.26,
-  offset: 2716.95,
-  limit: 4014.31,
+  totalCount: 9446.72,
+  pageCount: 9625.88,
+  pageNumber: 3627.1,
+  offset: 1672.48,
+  limit: 4635.61,
 };
 ```
 
 ## Fields
 
-| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `terms`                                                                    | [components.AcademicSession](../../models/components/academicsession.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |
-| `totalCount`                                                               | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `pageCount`                                                                | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `pageNumber`                                                               | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `offset`                                                                   | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `limit`                                                                    | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `terms`                                                                                | [operations.GetTermsForSchoolTerm](../../models/operations/gettermsforschoolterm.md)[] | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `totalCount`                                                                           | *number*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `pageCount`                                                                            | *number*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `pageNumber`                                                                           | *number*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `offset`                                                                               | *number*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `limit`                                                                                | *number*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |

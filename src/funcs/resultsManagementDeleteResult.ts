@@ -11,7 +11,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -20,6 +19,8 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
+import { OneRosterError } from "../models/errors/onerostererror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
@@ -38,20 +39,21 @@ export function resultsManagementDeleteResult(
 ): APIPromise<
   Result<
     void,
-    | errors.BadRequestResponseError1
-    | errors.UnauthorizedRequestResponseError1
-    | errors.ForbiddenResponseError1
-    | errors.NotFoundResponseError1
-    | errors.UnprocessableEntityResponseError2
-    | errors.TooManyRequestsResponseError1
-    | errors.InternalServerErrorResponse1
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | errors.BadRequestResponseError
+    | errors.UnauthorizedRequestResponseError
+    | errors.ForbiddenResponseError
+    | errors.NotFoundResponseError
+    | errors.UnprocessableEntityResponseError
+    | errors.TooManyRequestsResponseError
+    | errors.InternalServerErrorResponse
+    | OneRosterError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -69,20 +71,21 @@ async function $do(
   [
     Result<
       void,
-      | errors.BadRequestResponseError1
-      | errors.UnauthorizedRequestResponseError1
-      | errors.ForbiddenResponseError1
-      | errors.NotFoundResponseError1
-      | errors.UnprocessableEntityResponseError2
-      | errors.TooManyRequestsResponseError1
-      | errors.InternalServerErrorResponse1
-      | APIError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | errors.BadRequestResponseError
+      | errors.UnauthorizedRequestResponseError
+      | errors.ForbiddenResponseError
+      | errors.NotFoundResponseError
+      | errors.UnprocessableEntityResponseError
+      | errors.TooManyRequestsResponseError
+      | errors.InternalServerErrorResponse
+      | OneRosterError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -117,6 +120,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "deleteResult",
     oAuth2Scopes: [],
@@ -137,6 +141,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -161,32 +166,33 @@ async function $do(
 
   const [result] = await M.match<
     void,
-    | errors.BadRequestResponseError1
-    | errors.UnauthorizedRequestResponseError1
-    | errors.ForbiddenResponseError1
-    | errors.NotFoundResponseError1
-    | errors.UnprocessableEntityResponseError2
-    | errors.TooManyRequestsResponseError1
-    | errors.InternalServerErrorResponse1
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | errors.BadRequestResponseError
+    | errors.UnauthorizedRequestResponseError
+    | errors.ForbiddenResponseError
+    | errors.NotFoundResponseError
+    | errors.UnprocessableEntityResponseError
+    | errors.TooManyRequestsResponseError
+    | errors.InternalServerErrorResponse
+    | OneRosterError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.nil(204, z.void()),
-    M.jsonErr(400, errors.BadRequestResponseError1$inboundSchema),
-    M.jsonErr(401, errors.UnauthorizedRequestResponseError1$inboundSchema),
-    M.jsonErr(403, errors.ForbiddenResponseError1$inboundSchema),
-    M.jsonErr(404, errors.NotFoundResponseError1$inboundSchema),
-    M.jsonErr(422, errors.UnprocessableEntityResponseError2$inboundSchema),
-    M.jsonErr(429, errors.TooManyRequestsResponseError1$inboundSchema),
-    M.jsonErr(500, errors.InternalServerErrorResponse1$inboundSchema),
+    M.jsonErr(400, errors.BadRequestResponseError$inboundSchema),
+    M.jsonErr(401, errors.UnauthorizedRequestResponseError$inboundSchema),
+    M.jsonErr(403, errors.ForbiddenResponseError$inboundSchema),
+    M.jsonErr(404, errors.NotFoundResponseError$inboundSchema),
+    M.jsonErr(422, errors.UnprocessableEntityResponseError$inboundSchema),
+    M.jsonErr(429, errors.TooManyRequestsResponseError$inboundSchema),
+    M.jsonErr(500, errors.InternalServerErrorResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

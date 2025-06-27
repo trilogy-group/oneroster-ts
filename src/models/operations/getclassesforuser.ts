@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,73 @@ export type GetClassesForUserRequest = {
   search?: string | undefined;
 };
 
+export const GetClassesForUserStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetClassesForUserStatus = ClosedEnum<
+  typeof GetClassesForUserStatus
+>;
+
+export const GetClassesForUserClassType = {
+  Homeroom: "homeroom",
+  Scheduled: "scheduled",
+} as const;
+export type GetClassesForUserClassType = ClosedEnum<
+  typeof GetClassesForUserClassType
+>;
+
+export type GetClassesForUserCourse = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+export type GetClassesForUserSchool = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+export type GetClassesForUserTerm = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+export type GetClassesForUserResource = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/**
+ * Represents a class.
+ */
+export type GetClassesForUserClass = {
+  sourcedId: string;
+  status: GetClassesForUserStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  classCode: string | null;
+  classType: GetClassesForUserClassType;
+  location: string | null;
+  grades?: Array<string> | undefined;
+  subjects?: Array<string> | undefined;
+  course: GetClassesForUserCourse | null;
+  school: GetClassesForUserSchool | null;
+  terms: Array<GetClassesForUserTerm>;
+  subjectCodes?: Array<string> | undefined;
+  periods?: Array<string> | undefined;
+  resources?: Array<GetClassesForUserResource> | undefined;
+};
+
 /**
  * Successful response containing a collection of classes for the user
  */
 export type GetClassesForUserResponseBody = {
-  classes: Array<components.Class>;
+  classes: Array<GetClassesForUserClass>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -172,12 +233,397 @@ export function getClassesForUserRequestFromJSON(
 }
 
 /** @internal */
+export const GetClassesForUserStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetClassesForUserStatus
+> = z.nativeEnum(GetClassesForUserStatus);
+
+/** @internal */
+export const GetClassesForUserStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetClassesForUserStatus
+> = GetClassesForUserStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserStatus$ {
+  /** @deprecated use `GetClassesForUserStatus$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserStatus$inboundSchema;
+  /** @deprecated use `GetClassesForUserStatus$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetClassesForUserClassType$inboundSchema: z.ZodNativeEnum<
+  typeof GetClassesForUserClassType
+> = z.nativeEnum(GetClassesForUserClassType);
+
+/** @internal */
+export const GetClassesForUserClassType$outboundSchema: z.ZodNativeEnum<
+  typeof GetClassesForUserClassType
+> = GetClassesForUserClassType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserClassType$ {
+  /** @deprecated use `GetClassesForUserClassType$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserClassType$inboundSchema;
+  /** @deprecated use `GetClassesForUserClassType$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserClassType$outboundSchema;
+}
+
+/** @internal */
+export const GetClassesForUserCourse$inboundSchema: z.ZodType<
+  GetClassesForUserCourse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetClassesForUserCourse$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetClassesForUserCourse$outboundSchema: z.ZodType<
+  GetClassesForUserCourse$Outbound,
+  z.ZodTypeDef,
+  GetClassesForUserCourse
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserCourse$ {
+  /** @deprecated use `GetClassesForUserCourse$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserCourse$inboundSchema;
+  /** @deprecated use `GetClassesForUserCourse$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserCourse$outboundSchema;
+  /** @deprecated use `GetClassesForUserCourse$Outbound` instead. */
+  export type Outbound = GetClassesForUserCourse$Outbound;
+}
+
+export function getClassesForUserCourseToJSON(
+  getClassesForUserCourse: GetClassesForUserCourse,
+): string {
+  return JSON.stringify(
+    GetClassesForUserCourse$outboundSchema.parse(getClassesForUserCourse),
+  );
+}
+
+export function getClassesForUserCourseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetClassesForUserCourse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetClassesForUserCourse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetClassesForUserCourse' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetClassesForUserSchool$inboundSchema: z.ZodType<
+  GetClassesForUserSchool,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetClassesForUserSchool$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetClassesForUserSchool$outboundSchema: z.ZodType<
+  GetClassesForUserSchool$Outbound,
+  z.ZodTypeDef,
+  GetClassesForUserSchool
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserSchool$ {
+  /** @deprecated use `GetClassesForUserSchool$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserSchool$inboundSchema;
+  /** @deprecated use `GetClassesForUserSchool$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserSchool$outboundSchema;
+  /** @deprecated use `GetClassesForUserSchool$Outbound` instead. */
+  export type Outbound = GetClassesForUserSchool$Outbound;
+}
+
+export function getClassesForUserSchoolToJSON(
+  getClassesForUserSchool: GetClassesForUserSchool,
+): string {
+  return JSON.stringify(
+    GetClassesForUserSchool$outboundSchema.parse(getClassesForUserSchool),
+  );
+}
+
+export function getClassesForUserSchoolFromJSON(
+  jsonString: string,
+): SafeParseResult<GetClassesForUserSchool, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetClassesForUserSchool$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetClassesForUserSchool' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetClassesForUserTerm$inboundSchema: z.ZodType<
+  GetClassesForUserTerm,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetClassesForUserTerm$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetClassesForUserTerm$outboundSchema: z.ZodType<
+  GetClassesForUserTerm$Outbound,
+  z.ZodTypeDef,
+  GetClassesForUserTerm
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserTerm$ {
+  /** @deprecated use `GetClassesForUserTerm$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserTerm$inboundSchema;
+  /** @deprecated use `GetClassesForUserTerm$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserTerm$outboundSchema;
+  /** @deprecated use `GetClassesForUserTerm$Outbound` instead. */
+  export type Outbound = GetClassesForUserTerm$Outbound;
+}
+
+export function getClassesForUserTermToJSON(
+  getClassesForUserTerm: GetClassesForUserTerm,
+): string {
+  return JSON.stringify(
+    GetClassesForUserTerm$outboundSchema.parse(getClassesForUserTerm),
+  );
+}
+
+export function getClassesForUserTermFromJSON(
+  jsonString: string,
+): SafeParseResult<GetClassesForUserTerm, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetClassesForUserTerm$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetClassesForUserTerm' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetClassesForUserResource$inboundSchema: z.ZodType<
+  GetClassesForUserResource,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetClassesForUserResource$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetClassesForUserResource$outboundSchema: z.ZodType<
+  GetClassesForUserResource$Outbound,
+  z.ZodTypeDef,
+  GetClassesForUserResource
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserResource$ {
+  /** @deprecated use `GetClassesForUserResource$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserResource$inboundSchema;
+  /** @deprecated use `GetClassesForUserResource$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserResource$outboundSchema;
+  /** @deprecated use `GetClassesForUserResource$Outbound` instead. */
+  export type Outbound = GetClassesForUserResource$Outbound;
+}
+
+export function getClassesForUserResourceToJSON(
+  getClassesForUserResource: GetClassesForUserResource,
+): string {
+  return JSON.stringify(
+    GetClassesForUserResource$outboundSchema.parse(getClassesForUserResource),
+  );
+}
+
+export function getClassesForUserResourceFromJSON(
+  jsonString: string,
+): SafeParseResult<GetClassesForUserResource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetClassesForUserResource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetClassesForUserResource' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetClassesForUserClass$inboundSchema: z.ZodType<
+  GetClassesForUserClass,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetClassesForUserStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  classCode: z.nullable(z.string()),
+  classType: GetClassesForUserClassType$inboundSchema,
+  location: z.nullable(z.string()),
+  grades: z.array(z.string()).optional(),
+  subjects: z.array(z.string()).optional(),
+  course: z.nullable(z.lazy(() => GetClassesForUserCourse$inboundSchema)),
+  school: z.nullable(z.lazy(() => GetClassesForUserSchool$inboundSchema)),
+  terms: z.array(z.lazy(() => GetClassesForUserTerm$inboundSchema)),
+  subjectCodes: z.array(z.string()).optional(),
+  periods: z.array(z.string()).optional(),
+  resources: z.array(z.lazy(() => GetClassesForUserResource$inboundSchema))
+    .optional(),
+});
+
+/** @internal */
+export type GetClassesForUserClass$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  classCode: string | null;
+  classType: string;
+  location: string | null;
+  grades?: Array<string> | undefined;
+  subjects?: Array<string> | undefined;
+  course: GetClassesForUserCourse$Outbound | null;
+  school: GetClassesForUserSchool$Outbound | null;
+  terms: Array<GetClassesForUserTerm$Outbound>;
+  subjectCodes?: Array<string> | undefined;
+  periods?: Array<string> | undefined;
+  resources?: Array<GetClassesForUserResource$Outbound> | undefined;
+};
+
+/** @internal */
+export const GetClassesForUserClass$outboundSchema: z.ZodType<
+  GetClassesForUserClass$Outbound,
+  z.ZodTypeDef,
+  GetClassesForUserClass
+> = z.object({
+  sourcedId: z.string(),
+  status: GetClassesForUserStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  classCode: z.nullable(z.string()),
+  classType: GetClassesForUserClassType$outboundSchema,
+  location: z.nullable(z.string()),
+  grades: z.array(z.string()).optional(),
+  subjects: z.array(z.string()).optional(),
+  course: z.nullable(z.lazy(() => GetClassesForUserCourse$outboundSchema)),
+  school: z.nullable(z.lazy(() => GetClassesForUserSchool$outboundSchema)),
+  terms: z.array(z.lazy(() => GetClassesForUserTerm$outboundSchema)),
+  subjectCodes: z.array(z.string()).optional(),
+  periods: z.array(z.string()).optional(),
+  resources: z.array(z.lazy(() => GetClassesForUserResource$outboundSchema))
+    .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassesForUserClass$ {
+  /** @deprecated use `GetClassesForUserClass$inboundSchema` instead. */
+  export const inboundSchema = GetClassesForUserClass$inboundSchema;
+  /** @deprecated use `GetClassesForUserClass$outboundSchema` instead. */
+  export const outboundSchema = GetClassesForUserClass$outboundSchema;
+  /** @deprecated use `GetClassesForUserClass$Outbound` instead. */
+  export type Outbound = GetClassesForUserClass$Outbound;
+}
+
+export function getClassesForUserClassToJSON(
+  getClassesForUserClass: GetClassesForUserClass,
+): string {
+  return JSON.stringify(
+    GetClassesForUserClass$outboundSchema.parse(getClassesForUserClass),
+  );
+}
+
+export function getClassesForUserClassFromJSON(
+  jsonString: string,
+): SafeParseResult<GetClassesForUserClass, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetClassesForUserClass$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetClassesForUserClass' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetClassesForUserResponseBody$inboundSchema: z.ZodType<
   GetClassesForUserResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  classes: z.array(components.Class$inboundSchema),
+  classes: z.array(z.lazy(() => GetClassesForUserClass$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -187,7 +633,7 @@ export const GetClassesForUserResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetClassesForUserResponseBody$Outbound = {
-  classes: Array<components.Class$Outbound>;
+  classes: Array<GetClassesForUserClass$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -201,7 +647,7 @@ export const GetClassesForUserResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetClassesForUserResponseBody
 > = z.object({
-  classes: z.array(components.Class$outboundSchema),
+  classes: z.array(z.lazy(() => GetClassesForUserClass$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

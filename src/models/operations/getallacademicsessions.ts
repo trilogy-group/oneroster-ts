@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -55,11 +54,108 @@ export type GetAllAcademicSessionsRequest = {
   search?: string | undefined;
 };
 
+export const GetAllAcademicSessionsStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllAcademicSessionsStatus = ClosedEnum<
+  typeof GetAllAcademicSessionsStatus
+>;
+
+export const GetAllAcademicSessionsType = {
+  GradingPeriod: "gradingPeriod",
+  Semester: "semester",
+  SchoolYear: "schoolYear",
+  Term: "term",
+} as const;
+export type GetAllAcademicSessionsType = ClosedEnum<
+  typeof GetAllAcademicSessionsType
+>;
+
+export const GetAllAcademicSessionsParentType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetAllAcademicSessionsParentType = ClosedEnum<
+  typeof GetAllAcademicSessionsParentType
+>;
+
+export type GetAllAcademicSessionsParent = {
+  href: string;
+  sourcedId: string;
+  type: GetAllAcademicSessionsParentType;
+};
+
+export const GetAllAcademicSessionsOrgType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetAllAcademicSessionsOrgType = ClosedEnum<
+  typeof GetAllAcademicSessionsOrgType
+>;
+
+export type GetAllAcademicSessionsOrg = {
+  href: string;
+  sourcedId: string;
+  type: GetAllAcademicSessionsOrgType;
+};
+
+/**
+ * Represents an academic session.
+ */
+export type GetAllAcademicSessionsAcademicSession = {
+  sourcedId: string;
+  status: GetAllAcademicSessionsStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: GetAllAcademicSessionsType;
+  parent?: GetAllAcademicSessionsParent | null | undefined;
+  schoolYear: number;
+  org: GetAllAcademicSessionsOrg;
+};
+
 /**
  * Success
  */
 export type GetAllAcademicSessionsResponseBody = {
-  academicSessions: Array<components.AcademicSession>;
+  academicSessions: Array<GetAllAcademicSessionsAcademicSession>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -167,12 +263,313 @@ export function getAllAcademicSessionsRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllAcademicSessionsStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsStatus
+> = z.nativeEnum(GetAllAcademicSessionsStatus);
+
+/** @internal */
+export const GetAllAcademicSessionsStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsStatus
+> = GetAllAcademicSessionsStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsStatus$ {
+  /** @deprecated use `GetAllAcademicSessionsStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllAcademicSessionsStatus$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllAcademicSessionsStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllAcademicSessionsType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsType
+> = z.nativeEnum(GetAllAcademicSessionsType);
+
+/** @internal */
+export const GetAllAcademicSessionsType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsType
+> = GetAllAcademicSessionsType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsType$ {
+  /** @deprecated use `GetAllAcademicSessionsType$inboundSchema` instead. */
+  export const inboundSchema = GetAllAcademicSessionsType$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsType$outboundSchema` instead. */
+  export const outboundSchema = GetAllAcademicSessionsType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllAcademicSessionsParentType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsParentType
+> = z.nativeEnum(GetAllAcademicSessionsParentType);
+
+/** @internal */
+export const GetAllAcademicSessionsParentType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsParentType
+> = GetAllAcademicSessionsParentType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsParentType$ {
+  /** @deprecated use `GetAllAcademicSessionsParentType$inboundSchema` instead. */
+  export const inboundSchema = GetAllAcademicSessionsParentType$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsParentType$outboundSchema` instead. */
+  export const outboundSchema = GetAllAcademicSessionsParentType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllAcademicSessionsParent$inboundSchema: z.ZodType<
+  GetAllAcademicSessionsParent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllAcademicSessionsParentType$inboundSchema,
+});
+
+/** @internal */
+export type GetAllAcademicSessionsParent$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllAcademicSessionsParent$outboundSchema: z.ZodType<
+  GetAllAcademicSessionsParent$Outbound,
+  z.ZodTypeDef,
+  GetAllAcademicSessionsParent
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllAcademicSessionsParentType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsParent$ {
+  /** @deprecated use `GetAllAcademicSessionsParent$inboundSchema` instead. */
+  export const inboundSchema = GetAllAcademicSessionsParent$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsParent$outboundSchema` instead. */
+  export const outboundSchema = GetAllAcademicSessionsParent$outboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsParent$Outbound` instead. */
+  export type Outbound = GetAllAcademicSessionsParent$Outbound;
+}
+
+export function getAllAcademicSessionsParentToJSON(
+  getAllAcademicSessionsParent: GetAllAcademicSessionsParent,
+): string {
+  return JSON.stringify(
+    GetAllAcademicSessionsParent$outboundSchema.parse(
+      getAllAcademicSessionsParent,
+    ),
+  );
+}
+
+export function getAllAcademicSessionsParentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllAcademicSessionsParent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllAcademicSessionsParent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllAcademicSessionsParent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllAcademicSessionsOrgType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsOrgType
+> = z.nativeEnum(GetAllAcademicSessionsOrgType);
+
+/** @internal */
+export const GetAllAcademicSessionsOrgType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllAcademicSessionsOrgType
+> = GetAllAcademicSessionsOrgType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsOrgType$ {
+  /** @deprecated use `GetAllAcademicSessionsOrgType$inboundSchema` instead. */
+  export const inboundSchema = GetAllAcademicSessionsOrgType$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsOrgType$outboundSchema` instead. */
+  export const outboundSchema = GetAllAcademicSessionsOrgType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllAcademicSessionsOrg$inboundSchema: z.ZodType<
+  GetAllAcademicSessionsOrg,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllAcademicSessionsOrgType$inboundSchema,
+});
+
+/** @internal */
+export type GetAllAcademicSessionsOrg$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllAcademicSessionsOrg$outboundSchema: z.ZodType<
+  GetAllAcademicSessionsOrg$Outbound,
+  z.ZodTypeDef,
+  GetAllAcademicSessionsOrg
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllAcademicSessionsOrgType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsOrg$ {
+  /** @deprecated use `GetAllAcademicSessionsOrg$inboundSchema` instead. */
+  export const inboundSchema = GetAllAcademicSessionsOrg$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsOrg$outboundSchema` instead. */
+  export const outboundSchema = GetAllAcademicSessionsOrg$outboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsOrg$Outbound` instead. */
+  export type Outbound = GetAllAcademicSessionsOrg$Outbound;
+}
+
+export function getAllAcademicSessionsOrgToJSON(
+  getAllAcademicSessionsOrg: GetAllAcademicSessionsOrg,
+): string {
+  return JSON.stringify(
+    GetAllAcademicSessionsOrg$outboundSchema.parse(getAllAcademicSessionsOrg),
+  );
+}
+
+export function getAllAcademicSessionsOrgFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllAcademicSessionsOrg, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllAcademicSessionsOrg$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllAcademicSessionsOrg' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllAcademicSessionsAcademicSession$inboundSchema: z.ZodType<
+  GetAllAcademicSessionsAcademicSession,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllAcademicSessionsStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetAllAcademicSessionsType$inboundSchema,
+  parent: z.nullable(z.lazy(() => GetAllAcademicSessionsParent$inboundSchema))
+    .optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetAllAcademicSessionsOrg$inboundSchema),
+});
+
+/** @internal */
+export type GetAllAcademicSessionsAcademicSession$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: string;
+  parent?: GetAllAcademicSessionsParent$Outbound | null | undefined;
+  schoolYear: number;
+  org: GetAllAcademicSessionsOrg$Outbound;
+};
+
+/** @internal */
+export const GetAllAcademicSessionsAcademicSession$outboundSchema: z.ZodType<
+  GetAllAcademicSessionsAcademicSession$Outbound,
+  z.ZodTypeDef,
+  GetAllAcademicSessionsAcademicSession
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllAcademicSessionsStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetAllAcademicSessionsType$outboundSchema,
+  parent: z.nullable(z.lazy(() => GetAllAcademicSessionsParent$outboundSchema))
+    .optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetAllAcademicSessionsOrg$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllAcademicSessionsAcademicSession$ {
+  /** @deprecated use `GetAllAcademicSessionsAcademicSession$inboundSchema` instead. */
+  export const inboundSchema =
+    GetAllAcademicSessionsAcademicSession$inboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsAcademicSession$outboundSchema` instead. */
+  export const outboundSchema =
+    GetAllAcademicSessionsAcademicSession$outboundSchema;
+  /** @deprecated use `GetAllAcademicSessionsAcademicSession$Outbound` instead. */
+  export type Outbound = GetAllAcademicSessionsAcademicSession$Outbound;
+}
+
+export function getAllAcademicSessionsAcademicSessionToJSON(
+  getAllAcademicSessionsAcademicSession: GetAllAcademicSessionsAcademicSession,
+): string {
+  return JSON.stringify(
+    GetAllAcademicSessionsAcademicSession$outboundSchema.parse(
+      getAllAcademicSessionsAcademicSession,
+    ),
+  );
+}
+
+export function getAllAcademicSessionsAcademicSessionFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllAcademicSessionsAcademicSession, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetAllAcademicSessionsAcademicSession$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllAcademicSessionsAcademicSession' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllAcademicSessionsResponseBody$inboundSchema: z.ZodType<
   GetAllAcademicSessionsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  academicSessions: z.array(components.AcademicSession$inboundSchema),
+  academicSessions: z.array(
+    z.lazy(() => GetAllAcademicSessionsAcademicSession$inboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -182,7 +579,7 @@ export const GetAllAcademicSessionsResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllAcademicSessionsResponseBody$Outbound = {
-  academicSessions: Array<components.AcademicSession$Outbound>;
+  academicSessions: Array<GetAllAcademicSessionsAcademicSession$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -196,7 +593,9 @@ export const GetAllAcademicSessionsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllAcademicSessionsResponseBody
 > = z.object({
-  academicSessions: z.array(components.AcademicSession$outboundSchema),
+  academicSessions: z.array(
+    z.lazy(() => GetAllAcademicSessionsAcademicSession$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

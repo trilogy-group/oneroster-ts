@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -55,11 +54,49 @@ export type GetAllScoreScalesRequest = {
   search?: string | undefined;
 };
 
+export const GetAllScoreScalesStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllScoreScalesStatus = ClosedEnum<
+  typeof GetAllScoreScalesStatus
+>;
+
+export type GetAllScoreScalesClass = {
+  sourcedId: string;
+};
+
+export type GetAllScoreScalesCourse = {
+  sourcedId: string;
+};
+
+export type GetAllScoreScalesScoreScaleValue = {
+  itemValueLHS: string;
+  itemValueRHS: string;
+  value?: string | undefined;
+  description?: string | undefined;
+};
+
+/**
+ * Represents a score scale.
+ */
+export type GetAllScoreScalesScoreScale = {
+  sourcedId?: string | undefined;
+  status: GetAllScoreScalesStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  type: string;
+  class: GetAllScoreScalesClass;
+  course?: GetAllScoreScalesCourse | null | undefined;
+  scoreScaleValue: Array<GetAllScoreScalesScoreScaleValue>;
+};
+
 /**
  * Successful response containing a collection of score scales
  */
 export type GetAllScoreScalesResponseBody = {
-  scoreScales: Array<components.ScoreScale>;
+  scoreScales: Array<GetAllScoreScalesScoreScale>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -165,12 +202,294 @@ export function getAllScoreScalesRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllScoreScalesStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllScoreScalesStatus
+> = z.nativeEnum(GetAllScoreScalesStatus);
+
+/** @internal */
+export const GetAllScoreScalesStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllScoreScalesStatus
+> = GetAllScoreScalesStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllScoreScalesStatus$ {
+  /** @deprecated use `GetAllScoreScalesStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllScoreScalesStatus$inboundSchema;
+  /** @deprecated use `GetAllScoreScalesStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllScoreScalesStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllScoreScalesClass$inboundSchema: z.ZodType<
+  GetAllScoreScalesClass,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetAllScoreScalesClass$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetAllScoreScalesClass$outboundSchema: z.ZodType<
+  GetAllScoreScalesClass$Outbound,
+  z.ZodTypeDef,
+  GetAllScoreScalesClass
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllScoreScalesClass$ {
+  /** @deprecated use `GetAllScoreScalesClass$inboundSchema` instead. */
+  export const inboundSchema = GetAllScoreScalesClass$inboundSchema;
+  /** @deprecated use `GetAllScoreScalesClass$outboundSchema` instead. */
+  export const outboundSchema = GetAllScoreScalesClass$outboundSchema;
+  /** @deprecated use `GetAllScoreScalesClass$Outbound` instead. */
+  export type Outbound = GetAllScoreScalesClass$Outbound;
+}
+
+export function getAllScoreScalesClassToJSON(
+  getAllScoreScalesClass: GetAllScoreScalesClass,
+): string {
+  return JSON.stringify(
+    GetAllScoreScalesClass$outboundSchema.parse(getAllScoreScalesClass),
+  );
+}
+
+export function getAllScoreScalesClassFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllScoreScalesClass, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllScoreScalesClass$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllScoreScalesClass' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllScoreScalesCourse$inboundSchema: z.ZodType<
+  GetAllScoreScalesCourse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetAllScoreScalesCourse$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetAllScoreScalesCourse$outboundSchema: z.ZodType<
+  GetAllScoreScalesCourse$Outbound,
+  z.ZodTypeDef,
+  GetAllScoreScalesCourse
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllScoreScalesCourse$ {
+  /** @deprecated use `GetAllScoreScalesCourse$inboundSchema` instead. */
+  export const inboundSchema = GetAllScoreScalesCourse$inboundSchema;
+  /** @deprecated use `GetAllScoreScalesCourse$outboundSchema` instead. */
+  export const outboundSchema = GetAllScoreScalesCourse$outboundSchema;
+  /** @deprecated use `GetAllScoreScalesCourse$Outbound` instead. */
+  export type Outbound = GetAllScoreScalesCourse$Outbound;
+}
+
+export function getAllScoreScalesCourseToJSON(
+  getAllScoreScalesCourse: GetAllScoreScalesCourse,
+): string {
+  return JSON.stringify(
+    GetAllScoreScalesCourse$outboundSchema.parse(getAllScoreScalesCourse),
+  );
+}
+
+export function getAllScoreScalesCourseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllScoreScalesCourse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllScoreScalesCourse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllScoreScalesCourse' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllScoreScalesScoreScaleValue$inboundSchema: z.ZodType<
+  GetAllScoreScalesScoreScaleValue,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  itemValueLHS: z.string(),
+  itemValueRHS: z.string(),
+  value: z.string().optional(),
+  description: z.string().optional(),
+});
+
+/** @internal */
+export type GetAllScoreScalesScoreScaleValue$Outbound = {
+  itemValueLHS: string;
+  itemValueRHS: string;
+  value?: string | undefined;
+  description?: string | undefined;
+};
+
+/** @internal */
+export const GetAllScoreScalesScoreScaleValue$outboundSchema: z.ZodType<
+  GetAllScoreScalesScoreScaleValue$Outbound,
+  z.ZodTypeDef,
+  GetAllScoreScalesScoreScaleValue
+> = z.object({
+  itemValueLHS: z.string(),
+  itemValueRHS: z.string(),
+  value: z.string().optional(),
+  description: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllScoreScalesScoreScaleValue$ {
+  /** @deprecated use `GetAllScoreScalesScoreScaleValue$inboundSchema` instead. */
+  export const inboundSchema = GetAllScoreScalesScoreScaleValue$inboundSchema;
+  /** @deprecated use `GetAllScoreScalesScoreScaleValue$outboundSchema` instead. */
+  export const outboundSchema = GetAllScoreScalesScoreScaleValue$outboundSchema;
+  /** @deprecated use `GetAllScoreScalesScoreScaleValue$Outbound` instead. */
+  export type Outbound = GetAllScoreScalesScoreScaleValue$Outbound;
+}
+
+export function getAllScoreScalesScoreScaleValueToJSON(
+  getAllScoreScalesScoreScaleValue: GetAllScoreScalesScoreScaleValue,
+): string {
+  return JSON.stringify(
+    GetAllScoreScalesScoreScaleValue$outboundSchema.parse(
+      getAllScoreScalesScoreScaleValue,
+    ),
+  );
+}
+
+export function getAllScoreScalesScoreScaleValueFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllScoreScalesScoreScaleValue, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllScoreScalesScoreScaleValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllScoreScalesScoreScaleValue' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllScoreScalesScoreScale$inboundSchema: z.ZodType<
+  GetAllScoreScalesScoreScale,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetAllScoreScalesStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  type: z.string(),
+  class: z.lazy(() => GetAllScoreScalesClass$inboundSchema),
+  course: z.nullable(z.lazy(() => GetAllScoreScalesCourse$inboundSchema))
+    .optional(),
+  scoreScaleValue: z.array(
+    z.lazy(() => GetAllScoreScalesScoreScaleValue$inboundSchema),
+  ),
+});
+
+/** @internal */
+export type GetAllScoreScalesScoreScale$Outbound = {
+  sourcedId?: string | undefined;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  type: string;
+  class: GetAllScoreScalesClass$Outbound;
+  course?: GetAllScoreScalesCourse$Outbound | null | undefined;
+  scoreScaleValue: Array<GetAllScoreScalesScoreScaleValue$Outbound>;
+};
+
+/** @internal */
+export const GetAllScoreScalesScoreScale$outboundSchema: z.ZodType<
+  GetAllScoreScalesScoreScale$Outbound,
+  z.ZodTypeDef,
+  GetAllScoreScalesScoreScale
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetAllScoreScalesStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  type: z.string(),
+  class: z.lazy(() => GetAllScoreScalesClass$outboundSchema),
+  course: z.nullable(z.lazy(() => GetAllScoreScalesCourse$outboundSchema))
+    .optional(),
+  scoreScaleValue: z.array(
+    z.lazy(() => GetAllScoreScalesScoreScaleValue$outboundSchema),
+  ),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllScoreScalesScoreScale$ {
+  /** @deprecated use `GetAllScoreScalesScoreScale$inboundSchema` instead. */
+  export const inboundSchema = GetAllScoreScalesScoreScale$inboundSchema;
+  /** @deprecated use `GetAllScoreScalesScoreScale$outboundSchema` instead. */
+  export const outboundSchema = GetAllScoreScalesScoreScale$outboundSchema;
+  /** @deprecated use `GetAllScoreScalesScoreScale$Outbound` instead. */
+  export type Outbound = GetAllScoreScalesScoreScale$Outbound;
+}
+
+export function getAllScoreScalesScoreScaleToJSON(
+  getAllScoreScalesScoreScale: GetAllScoreScalesScoreScale,
+): string {
+  return JSON.stringify(
+    GetAllScoreScalesScoreScale$outboundSchema.parse(
+      getAllScoreScalesScoreScale,
+    ),
+  );
+}
+
+export function getAllScoreScalesScoreScaleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllScoreScalesScoreScale, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllScoreScalesScoreScale$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllScoreScalesScoreScale' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllScoreScalesResponseBody$inboundSchema: z.ZodType<
   GetAllScoreScalesResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  scoreScales: z.array(components.ScoreScale$inboundSchema),
+  scoreScales: z.array(z.lazy(() => GetAllScoreScalesScoreScale$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -180,7 +499,7 @@ export const GetAllScoreScalesResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllScoreScalesResponseBody$Outbound = {
-  scoreScales: Array<components.ScoreScale$Outbound>;
+  scoreScales: Array<GetAllScoreScalesScoreScale$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -194,7 +513,9 @@ export const GetAllScoreScalesResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllScoreScalesResponseBody
 > = z.object({
-  scoreScales: z.array(components.ScoreScale$outboundSchema),
+  scoreScales: z.array(
+    z.lazy(() => GetAllScoreScalesScoreScale$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

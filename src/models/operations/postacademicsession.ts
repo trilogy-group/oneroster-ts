@@ -35,9 +35,10 @@ export type PostAcademicSessionOrg = {
 };
 
 export type PostAcademicSessionAcademicSession = {
-  sourcedId?: string | undefined;
-  status?: PostAcademicSessionStatus | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  sourcedId: string;
+  status: PostAcademicSessionStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -219,9 +220,12 @@ export const PostAcademicSessionAcademicSession$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: PostAcademicSessionStatus$inboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: PostAcademicSessionStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),
@@ -234,9 +238,10 @@ export const PostAcademicSessionAcademicSession$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PostAcademicSessionAcademicSession$Outbound = {
-  sourcedId?: string | undefined;
+  sourcedId: string;
   status: string;
-  metadata?: { [k: string]: any } | undefined;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -252,9 +257,10 @@ export const PostAcademicSessionAcademicSession$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PostAcademicSessionAcademicSession
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: PostAcademicSessionStatus$outboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: PostAcademicSessionStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),

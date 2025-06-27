@@ -16,10 +16,7 @@ import { EnrollmentsManagement } from "./enrollmentsmanagement.js";
 import { GradingPeriodsManagement } from "./gradingperiodsmanagement.js";
 import { LineItemsManagement } from "./lineitemsmanagement.js";
 import { OrganizationsManagement } from "./organizationsmanagement.js";
-import { ResourcesClassesManagement } from "./resourcesclassesmanagement.js";
-import { ResourcesCoursesManagement } from "./resourcescoursesmanagement.js";
 import { ResourcesManagement } from "./resourcesmanagement.js";
-import { ResourcesUsersManagement } from "./resourcesusersmanagement.js";
 import { ResultsManagement } from "./resultsmanagement.js";
 import { SchoolsManagement } from "./schoolsmanagement.js";
 import { ScoreScalesManagement } from "./scorescalesmanagement.js";
@@ -75,27 +72,6 @@ export class OneRoster extends ClientSDK {
   get assessmentLineItemsManagement(): AssessmentLineItemsManagement {
     return (this._assessmentLineItemsManagement ??=
       new AssessmentLineItemsManagement(this._options));
-  }
-
-  private _resourcesCoursesManagement?: ResourcesCoursesManagement;
-  get resourcesCoursesManagement(): ResourcesCoursesManagement {
-    return (this._resourcesCoursesManagement ??= new ResourcesCoursesManagement(
-      this._options,
-    ));
-  }
-
-  private _resourcesClassesManagement?: ResourcesClassesManagement;
-  get resourcesClassesManagement(): ResourcesClassesManagement {
-    return (this._resourcesClassesManagement ??= new ResourcesClassesManagement(
-      this._options,
-    ));
-  }
-
-  private _resourcesUsersManagement?: ResourcesUsersManagement;
-  get resourcesUsersManagement(): ResourcesUsersManagement {
-    return (this._resourcesUsersManagement ??= new ResourcesUsersManagement(
-      this._options,
-    ));
   }
 
   private _resourcesManagement?: ResourcesManagement;

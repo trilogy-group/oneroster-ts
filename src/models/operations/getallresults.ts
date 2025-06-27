@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -53,11 +52,82 @@ export type GetAllResultsRequest = {
   search?: string | undefined;
 };
 
+export const GetAllResultsStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllResultsStatus = ClosedEnum<typeof GetAllResultsStatus>;
+
+export type GetAllResultsLineItem = {
+  sourcedId: string;
+};
+
+export type GetAllResultsStudent = {
+  sourcedId: string;
+};
+
+export type GetAllResultsClass = {
+  sourcedId: string;
+};
+
+export type GetAllResultsScoreScale = {
+  sourcedId: string;
+};
+
+export const GetAllResultsScoreStatus = {
+  Exempt: "exempt",
+  FullyGraded: "fully graded",
+  NotSubmitted: "not submitted",
+  PartiallyGraded: "partially graded",
+  Submitted: "submitted",
+} as const;
+export type GetAllResultsScoreStatus = ClosedEnum<
+  typeof GetAllResultsScoreStatus
+>;
+
+export type GetAllResultsLearningObjectiveResult = {
+  learningObjectiveId: string;
+  score?: number | undefined;
+  textScore?: string | undefined;
+};
+
+export type GetAllResultsLearningObjectiveSet = {
+  source: string;
+  learningObjectiveResults: Array<GetAllResultsLearningObjectiveResult>;
+};
+
+/**
+ * Represents a result.
+ */
+export type GetAllResultsResult = {
+  sourcedId?: string | undefined;
+  status: GetAllResultsStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  lineItem: GetAllResultsLineItem;
+  student: GetAllResultsStudent;
+  class?: GetAllResultsClass | null | undefined;
+  scoreScale?: GetAllResultsScoreScale | null | undefined;
+  scoreStatus: GetAllResultsScoreStatus;
+  score?: number | null | undefined;
+  textScore?: string | null | undefined;
+  scoreDate: Date;
+  comment?: string | null | undefined;
+  learningObjectiveSet?:
+    | Array<GetAllResultsLearningObjectiveSet>
+    | null
+    | undefined;
+  inProgress?: string | undefined;
+  incomplete?: string | undefined;
+  late?: string | undefined;
+  missing?: string | undefined;
+};
+
 /**
  * Successful response containing a collection of results
  */
 export type GetAllResultsResponseBody = {
-  results: Array<components.Result>;
+  results: Array<GetAllResultsResult>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -163,12 +233,517 @@ export function getAllResultsRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllResultsStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllResultsStatus
+> = z.nativeEnum(GetAllResultsStatus);
+
+/** @internal */
+export const GetAllResultsStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllResultsStatus
+> = GetAllResultsStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsStatus$ {
+  /** @deprecated use `GetAllResultsStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsStatus$inboundSchema;
+  /** @deprecated use `GetAllResultsStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllResultsLineItem$inboundSchema: z.ZodType<
+  GetAllResultsLineItem,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetAllResultsLineItem$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetAllResultsLineItem$outboundSchema: z.ZodType<
+  GetAllResultsLineItem$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsLineItem
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsLineItem$ {
+  /** @deprecated use `GetAllResultsLineItem$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsLineItem$inboundSchema;
+  /** @deprecated use `GetAllResultsLineItem$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsLineItem$outboundSchema;
+  /** @deprecated use `GetAllResultsLineItem$Outbound` instead. */
+  export type Outbound = GetAllResultsLineItem$Outbound;
+}
+
+export function getAllResultsLineItemToJSON(
+  getAllResultsLineItem: GetAllResultsLineItem,
+): string {
+  return JSON.stringify(
+    GetAllResultsLineItem$outboundSchema.parse(getAllResultsLineItem),
+  );
+}
+
+export function getAllResultsLineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsLineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllResultsLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsLineItem' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllResultsStudent$inboundSchema: z.ZodType<
+  GetAllResultsStudent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetAllResultsStudent$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetAllResultsStudent$outboundSchema: z.ZodType<
+  GetAllResultsStudent$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsStudent
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsStudent$ {
+  /** @deprecated use `GetAllResultsStudent$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsStudent$inboundSchema;
+  /** @deprecated use `GetAllResultsStudent$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsStudent$outboundSchema;
+  /** @deprecated use `GetAllResultsStudent$Outbound` instead. */
+  export type Outbound = GetAllResultsStudent$Outbound;
+}
+
+export function getAllResultsStudentToJSON(
+  getAllResultsStudent: GetAllResultsStudent,
+): string {
+  return JSON.stringify(
+    GetAllResultsStudent$outboundSchema.parse(getAllResultsStudent),
+  );
+}
+
+export function getAllResultsStudentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsStudent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllResultsStudent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsStudent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllResultsClass$inboundSchema: z.ZodType<
+  GetAllResultsClass,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetAllResultsClass$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetAllResultsClass$outboundSchema: z.ZodType<
+  GetAllResultsClass$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsClass
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsClass$ {
+  /** @deprecated use `GetAllResultsClass$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsClass$inboundSchema;
+  /** @deprecated use `GetAllResultsClass$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsClass$outboundSchema;
+  /** @deprecated use `GetAllResultsClass$Outbound` instead. */
+  export type Outbound = GetAllResultsClass$Outbound;
+}
+
+export function getAllResultsClassToJSON(
+  getAllResultsClass: GetAllResultsClass,
+): string {
+  return JSON.stringify(
+    GetAllResultsClass$outboundSchema.parse(getAllResultsClass),
+  );
+}
+
+export function getAllResultsClassFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsClass, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllResultsClass$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsClass' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllResultsScoreScale$inboundSchema: z.ZodType<
+  GetAllResultsScoreScale,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetAllResultsScoreScale$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetAllResultsScoreScale$outboundSchema: z.ZodType<
+  GetAllResultsScoreScale$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsScoreScale
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsScoreScale$ {
+  /** @deprecated use `GetAllResultsScoreScale$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsScoreScale$inboundSchema;
+  /** @deprecated use `GetAllResultsScoreScale$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsScoreScale$outboundSchema;
+  /** @deprecated use `GetAllResultsScoreScale$Outbound` instead. */
+  export type Outbound = GetAllResultsScoreScale$Outbound;
+}
+
+export function getAllResultsScoreScaleToJSON(
+  getAllResultsScoreScale: GetAllResultsScoreScale,
+): string {
+  return JSON.stringify(
+    GetAllResultsScoreScale$outboundSchema.parse(getAllResultsScoreScale),
+  );
+}
+
+export function getAllResultsScoreScaleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsScoreScale, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllResultsScoreScale$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsScoreScale' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllResultsScoreStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllResultsScoreStatus
+> = z.nativeEnum(GetAllResultsScoreStatus);
+
+/** @internal */
+export const GetAllResultsScoreStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllResultsScoreStatus
+> = GetAllResultsScoreStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsScoreStatus$ {
+  /** @deprecated use `GetAllResultsScoreStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsScoreStatus$inboundSchema;
+  /** @deprecated use `GetAllResultsScoreStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsScoreStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllResultsLearningObjectiveResult$inboundSchema: z.ZodType<
+  GetAllResultsLearningObjectiveResult,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  learningObjectiveId: z.string(),
+  score: z.number().optional(),
+  textScore: z.string().optional(),
+});
+
+/** @internal */
+export type GetAllResultsLearningObjectiveResult$Outbound = {
+  learningObjectiveId: string;
+  score?: number | undefined;
+  textScore?: string | undefined;
+};
+
+/** @internal */
+export const GetAllResultsLearningObjectiveResult$outboundSchema: z.ZodType<
+  GetAllResultsLearningObjectiveResult$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsLearningObjectiveResult
+> = z.object({
+  learningObjectiveId: z.string(),
+  score: z.number().optional(),
+  textScore: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsLearningObjectiveResult$ {
+  /** @deprecated use `GetAllResultsLearningObjectiveResult$inboundSchema` instead. */
+  export const inboundSchema =
+    GetAllResultsLearningObjectiveResult$inboundSchema;
+  /** @deprecated use `GetAllResultsLearningObjectiveResult$outboundSchema` instead. */
+  export const outboundSchema =
+    GetAllResultsLearningObjectiveResult$outboundSchema;
+  /** @deprecated use `GetAllResultsLearningObjectiveResult$Outbound` instead. */
+  export type Outbound = GetAllResultsLearningObjectiveResult$Outbound;
+}
+
+export function getAllResultsLearningObjectiveResultToJSON(
+  getAllResultsLearningObjectiveResult: GetAllResultsLearningObjectiveResult,
+): string {
+  return JSON.stringify(
+    GetAllResultsLearningObjectiveResult$outboundSchema.parse(
+      getAllResultsLearningObjectiveResult,
+    ),
+  );
+}
+
+export function getAllResultsLearningObjectiveResultFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsLearningObjectiveResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetAllResultsLearningObjectiveResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsLearningObjectiveResult' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllResultsLearningObjectiveSet$inboundSchema: z.ZodType<
+  GetAllResultsLearningObjectiveSet,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  source: z.string(),
+  learningObjectiveResults: z.array(
+    z.lazy(() => GetAllResultsLearningObjectiveResult$inboundSchema),
+  ),
+});
+
+/** @internal */
+export type GetAllResultsLearningObjectiveSet$Outbound = {
+  source: string;
+  learningObjectiveResults: Array<
+    GetAllResultsLearningObjectiveResult$Outbound
+  >;
+};
+
+/** @internal */
+export const GetAllResultsLearningObjectiveSet$outboundSchema: z.ZodType<
+  GetAllResultsLearningObjectiveSet$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsLearningObjectiveSet
+> = z.object({
+  source: z.string(),
+  learningObjectiveResults: z.array(
+    z.lazy(() => GetAllResultsLearningObjectiveResult$outboundSchema),
+  ),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsLearningObjectiveSet$ {
+  /** @deprecated use `GetAllResultsLearningObjectiveSet$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsLearningObjectiveSet$inboundSchema;
+  /** @deprecated use `GetAllResultsLearningObjectiveSet$outboundSchema` instead. */
+  export const outboundSchema =
+    GetAllResultsLearningObjectiveSet$outboundSchema;
+  /** @deprecated use `GetAllResultsLearningObjectiveSet$Outbound` instead. */
+  export type Outbound = GetAllResultsLearningObjectiveSet$Outbound;
+}
+
+export function getAllResultsLearningObjectiveSetToJSON(
+  getAllResultsLearningObjectiveSet: GetAllResultsLearningObjectiveSet,
+): string {
+  return JSON.stringify(
+    GetAllResultsLearningObjectiveSet$outboundSchema.parse(
+      getAllResultsLearningObjectiveSet,
+    ),
+  );
+}
+
+export function getAllResultsLearningObjectiveSetFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsLearningObjectiveSet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllResultsLearningObjectiveSet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsLearningObjectiveSet' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllResultsResult$inboundSchema: z.ZodType<
+  GetAllResultsResult,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetAllResultsStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  lineItem: z.lazy(() => GetAllResultsLineItem$inboundSchema),
+  student: z.lazy(() => GetAllResultsStudent$inboundSchema),
+  class: z.nullable(z.lazy(() => GetAllResultsClass$inboundSchema)).optional(),
+  scoreScale: z.nullable(z.lazy(() => GetAllResultsScoreScale$inboundSchema))
+    .optional(),
+  scoreStatus: GetAllResultsScoreStatus$inboundSchema,
+  score: z.nullable(z.number()).optional(),
+  textScore: z.nullable(z.string()).optional(),
+  scoreDate: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  comment: z.nullable(z.string()).optional(),
+  learningObjectiveSet: z.nullable(
+    z.array(z.lazy(() => GetAllResultsLearningObjectiveSet$inboundSchema)),
+  ).optional(),
+  inProgress: z.string().optional(),
+  incomplete: z.string().optional(),
+  late: z.string().optional(),
+  missing: z.string().optional(),
+});
+
+/** @internal */
+export type GetAllResultsResult$Outbound = {
+  sourcedId?: string | undefined;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  lineItem: GetAllResultsLineItem$Outbound;
+  student: GetAllResultsStudent$Outbound;
+  class?: GetAllResultsClass$Outbound | null | undefined;
+  scoreScale?: GetAllResultsScoreScale$Outbound | null | undefined;
+  scoreStatus: string;
+  score?: number | null | undefined;
+  textScore?: string | null | undefined;
+  scoreDate: string;
+  comment?: string | null | undefined;
+  learningObjectiveSet?:
+    | Array<GetAllResultsLearningObjectiveSet$Outbound>
+    | null
+    | undefined;
+  inProgress?: string | undefined;
+  incomplete?: string | undefined;
+  late?: string | undefined;
+  missing?: string | undefined;
+};
+
+/** @internal */
+export const GetAllResultsResult$outboundSchema: z.ZodType<
+  GetAllResultsResult$Outbound,
+  z.ZodTypeDef,
+  GetAllResultsResult
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetAllResultsStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  lineItem: z.lazy(() => GetAllResultsLineItem$outboundSchema),
+  student: z.lazy(() => GetAllResultsStudent$outboundSchema),
+  class: z.nullable(z.lazy(() => GetAllResultsClass$outboundSchema)).optional(),
+  scoreScale: z.nullable(z.lazy(() => GetAllResultsScoreScale$outboundSchema))
+    .optional(),
+  scoreStatus: GetAllResultsScoreStatus$outboundSchema,
+  score: z.nullable(z.number()).optional(),
+  textScore: z.nullable(z.string()).optional(),
+  scoreDate: z.date().transform(v => v.toISOString()),
+  comment: z.nullable(z.string()).optional(),
+  learningObjectiveSet: z.nullable(
+    z.array(z.lazy(() => GetAllResultsLearningObjectiveSet$outboundSchema)),
+  ).optional(),
+  inProgress: z.string().optional(),
+  incomplete: z.string().optional(),
+  late: z.string().optional(),
+  missing: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllResultsResult$ {
+  /** @deprecated use `GetAllResultsResult$inboundSchema` instead. */
+  export const inboundSchema = GetAllResultsResult$inboundSchema;
+  /** @deprecated use `GetAllResultsResult$outboundSchema` instead. */
+  export const outboundSchema = GetAllResultsResult$outboundSchema;
+  /** @deprecated use `GetAllResultsResult$Outbound` instead. */
+  export type Outbound = GetAllResultsResult$Outbound;
+}
+
+export function getAllResultsResultToJSON(
+  getAllResultsResult: GetAllResultsResult,
+): string {
+  return JSON.stringify(
+    GetAllResultsResult$outboundSchema.parse(getAllResultsResult),
+  );
+}
+
+export function getAllResultsResultFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllResultsResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllResultsResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllResultsResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllResultsResponseBody$inboundSchema: z.ZodType<
   GetAllResultsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  results: z.array(components.Result$inboundSchema),
+  results: z.array(z.lazy(() => GetAllResultsResult$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -178,7 +753,7 @@ export const GetAllResultsResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllResultsResponseBody$Outbound = {
-  results: Array<components.Result$Outbound>;
+  results: Array<GetAllResultsResult$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -192,7 +767,7 @@ export const GetAllResultsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllResultsResponseBody
 > = z.object({
-  results: z.array(components.Result$outboundSchema),
+  results: z.array(z.lazy(() => GetAllResultsResult$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

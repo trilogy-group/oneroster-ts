@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -53,11 +52,100 @@ export type GetAllTermsRequest = {
   search?: string | undefined;
 };
 
+export const GetAllTermsStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllTermsStatus = ClosedEnum<typeof GetAllTermsStatus>;
+
+export const GetAllTermsType = {
+  GradingPeriod: "gradingPeriod",
+  Semester: "semester",
+  SchoolYear: "schoolYear",
+  Term: "term",
+} as const;
+export type GetAllTermsType = ClosedEnum<typeof GetAllTermsType>;
+
+export const GetAllTermsParentType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetAllTermsParentType = ClosedEnum<typeof GetAllTermsParentType>;
+
+export type GetAllTermsParent = {
+  href: string;
+  sourcedId: string;
+  type: GetAllTermsParentType;
+};
+
+export const GetAllTermsOrgType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetAllTermsOrgType = ClosedEnum<typeof GetAllTermsOrgType>;
+
+export type GetAllTermsOrg = {
+  href: string;
+  sourcedId: string;
+  type: GetAllTermsOrgType;
+};
+
+/**
+ * Represents an academic session.
+ */
+export type GetAllTermsTerm = {
+  sourcedId: string;
+  status: GetAllTermsStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: GetAllTermsType;
+  parent?: GetAllTermsParent | null | undefined;
+  schoolYear: number;
+  org: GetAllTermsOrg;
+};
+
 /**
  * Successful response containing a collection of terms
  */
 export type GetAllTermsResponseBody = {
-  terms: Array<components.AcademicSession>;
+  terms: Array<GetAllTermsTerm>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -163,12 +251,296 @@ export function getAllTermsRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllTermsStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsStatus
+> = z.nativeEnum(GetAllTermsStatus);
+
+/** @internal */
+export const GetAllTermsStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsStatus
+> = GetAllTermsStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsStatus$ {
+  /** @deprecated use `GetAllTermsStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsStatus$inboundSchema;
+  /** @deprecated use `GetAllTermsStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllTermsType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsType
+> = z.nativeEnum(GetAllTermsType);
+
+/** @internal */
+export const GetAllTermsType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsType
+> = GetAllTermsType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsType$ {
+  /** @deprecated use `GetAllTermsType$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsType$inboundSchema;
+  /** @deprecated use `GetAllTermsType$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllTermsParentType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsParentType
+> = z.nativeEnum(GetAllTermsParentType);
+
+/** @internal */
+export const GetAllTermsParentType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsParentType
+> = GetAllTermsParentType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsParentType$ {
+  /** @deprecated use `GetAllTermsParentType$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsParentType$inboundSchema;
+  /** @deprecated use `GetAllTermsParentType$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsParentType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllTermsParent$inboundSchema: z.ZodType<
+  GetAllTermsParent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllTermsParentType$inboundSchema,
+});
+
+/** @internal */
+export type GetAllTermsParent$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllTermsParent$outboundSchema: z.ZodType<
+  GetAllTermsParent$Outbound,
+  z.ZodTypeDef,
+  GetAllTermsParent
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllTermsParentType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsParent$ {
+  /** @deprecated use `GetAllTermsParent$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsParent$inboundSchema;
+  /** @deprecated use `GetAllTermsParent$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsParent$outboundSchema;
+  /** @deprecated use `GetAllTermsParent$Outbound` instead. */
+  export type Outbound = GetAllTermsParent$Outbound;
+}
+
+export function getAllTermsParentToJSON(
+  getAllTermsParent: GetAllTermsParent,
+): string {
+  return JSON.stringify(
+    GetAllTermsParent$outboundSchema.parse(getAllTermsParent),
+  );
+}
+
+export function getAllTermsParentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllTermsParent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllTermsParent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllTermsParent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllTermsOrgType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsOrgType
+> = z.nativeEnum(GetAllTermsOrgType);
+
+/** @internal */
+export const GetAllTermsOrgType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllTermsOrgType
+> = GetAllTermsOrgType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsOrgType$ {
+  /** @deprecated use `GetAllTermsOrgType$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsOrgType$inboundSchema;
+  /** @deprecated use `GetAllTermsOrgType$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsOrgType$outboundSchema;
+}
+
+/** @internal */
+export const GetAllTermsOrg$inboundSchema: z.ZodType<
+  GetAllTermsOrg,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllTermsOrgType$inboundSchema,
+});
+
+/** @internal */
+export type GetAllTermsOrg$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllTermsOrg$outboundSchema: z.ZodType<
+  GetAllTermsOrg$Outbound,
+  z.ZodTypeDef,
+  GetAllTermsOrg
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetAllTermsOrgType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsOrg$ {
+  /** @deprecated use `GetAllTermsOrg$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsOrg$inboundSchema;
+  /** @deprecated use `GetAllTermsOrg$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsOrg$outboundSchema;
+  /** @deprecated use `GetAllTermsOrg$Outbound` instead. */
+  export type Outbound = GetAllTermsOrg$Outbound;
+}
+
+export function getAllTermsOrgToJSON(getAllTermsOrg: GetAllTermsOrg): string {
+  return JSON.stringify(GetAllTermsOrg$outboundSchema.parse(getAllTermsOrg));
+}
+
+export function getAllTermsOrgFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllTermsOrg, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllTermsOrg$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllTermsOrg' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllTermsTerm$inboundSchema: z.ZodType<
+  GetAllTermsTerm,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllTermsStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetAllTermsType$inboundSchema,
+  parent: z.nullable(z.lazy(() => GetAllTermsParent$inboundSchema)).optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetAllTermsOrg$inboundSchema),
+});
+
+/** @internal */
+export type GetAllTermsTerm$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: string;
+  parent?: GetAllTermsParent$Outbound | null | undefined;
+  schoolYear: number;
+  org: GetAllTermsOrg$Outbound;
+};
+
+/** @internal */
+export const GetAllTermsTerm$outboundSchema: z.ZodType<
+  GetAllTermsTerm$Outbound,
+  z.ZodTypeDef,
+  GetAllTermsTerm
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllTermsStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetAllTermsType$outboundSchema,
+  parent: z.nullable(z.lazy(() => GetAllTermsParent$outboundSchema)).optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetAllTermsOrg$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllTermsTerm$ {
+  /** @deprecated use `GetAllTermsTerm$inboundSchema` instead. */
+  export const inboundSchema = GetAllTermsTerm$inboundSchema;
+  /** @deprecated use `GetAllTermsTerm$outboundSchema` instead. */
+  export const outboundSchema = GetAllTermsTerm$outboundSchema;
+  /** @deprecated use `GetAllTermsTerm$Outbound` instead. */
+  export type Outbound = GetAllTermsTerm$Outbound;
+}
+
+export function getAllTermsTermToJSON(
+  getAllTermsTerm: GetAllTermsTerm,
+): string {
+  return JSON.stringify(GetAllTermsTerm$outboundSchema.parse(getAllTermsTerm));
+}
+
+export function getAllTermsTermFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllTermsTerm, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllTermsTerm$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllTermsTerm' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllTermsResponseBody$inboundSchema: z.ZodType<
   GetAllTermsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  terms: z.array(components.AcademicSession$inboundSchema),
+  terms: z.array(z.lazy(() => GetAllTermsTerm$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -178,7 +550,7 @@ export const GetAllTermsResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllTermsResponseBody$Outbound = {
-  terms: Array<components.AcademicSession$Outbound>;
+  terms: Array<GetAllTermsTerm$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -192,7 +564,7 @@ export const GetAllTermsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllTermsResponseBody
 > = z.object({
-  terms: z.array(components.AcademicSession$outboundSchema),
+  terms: z.array(z.lazy(() => GetAllTermsTerm$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

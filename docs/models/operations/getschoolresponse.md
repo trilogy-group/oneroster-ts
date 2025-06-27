@@ -14,18 +14,7 @@ let value: GetSchoolResponse = {
     name: "<value>",
     type: "national",
     identifier: "<value>",
-    parent: {
-      href: "https://grave-certification.biz/",
-      sourcedId: "<id>",
-      type: "<value>",
-    },
-    children: [
-      {
-        href: "https://slow-shoulder.info",
-        sourcedId: "<id>",
-        type: "<value>",
-      },
-    ],
+    children: [],
   },
 };
 ```

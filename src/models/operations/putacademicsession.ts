@@ -34,9 +34,10 @@ export type PutAcademicSessionOrg = {
 };
 
 export type PutAcademicSessionAcademicSession = {
-  sourcedId?: string | undefined;
-  status?: PutAcademicSessionStatus | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  sourcedId: string;
+  status: PutAcademicSessionStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -214,9 +215,12 @@ export const PutAcademicSessionAcademicSession$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: PutAcademicSessionStatus$inboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: PutAcademicSessionStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),
@@ -229,9 +233,10 @@ export const PutAcademicSessionAcademicSession$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PutAcademicSessionAcademicSession$Outbound = {
-  sourcedId?: string | undefined;
+  sourcedId: string;
   status: string;
-  metadata?: { [k: string]: any } | undefined;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -247,9 +252,10 @@ export const PutAcademicSessionAcademicSession$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PutAcademicSessionAcademicSession
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: PutAcademicSessionStatus$outboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: PutAcademicSessionStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),

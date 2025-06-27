@@ -11,24 +11,12 @@ let value: GetStudentsForClassInSchoolUser = {
   enabledUser: false,
   givenName: "<value>",
   familyName: "<value>",
-  roles: [
-    {
-      roleType: "secondary",
-      role: "administrator",
-      org: {
-        href: "https://recent-fowl.name",
-        sourcedId: "<id>",
-        type: "<value>",
-      },
-      beginDate: "<value>",
-      endDate: "<value>",
-    },
-  ],
+  roles: [],
   agents: [
     {
-      href: "https://jaunty-cellar.info/",
+      href: "https://haunting-negotiation.com",
       sourcedId: "<id>",
-      type: "class",
+      type: "lineItem",
     },
   ],
 };
@@ -61,3 +49,4 @@ let value: GetStudentsForClassInSchoolUser = {
 | `password`                                                                                                           | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |
 | `sms`                                                                                                                | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |
 | `phone`                                                                                                              | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |
+| `demographics`                                                                                                       | [components.Demographics](../../models/components/demographics.md)                                                   | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |

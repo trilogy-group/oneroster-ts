@@ -13,18 +13,7 @@ let value: Org = {
   name: "<value>",
   type: "district",
   identifier: "<value>",
-  parent: {
-    href: "https://eminent-creature.name/",
-    sourcedId: "<id>",
-    type: "<value>",
-  },
-  children: [
-    {
-      href: "https://early-teammate.org/",
-      sourcedId: "<id>",
-      type: "<value>",
-    },
-  ],
+  children: [],
 };
 ```
 
@@ -39,5 +28,5 @@ let value: Org = {
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `type`                                                                                        | [components.OrgType1](../../models/components/orgtype1.md)                                    | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `identifier`                                                                                  | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `parent`                                                                                      | [components.OrgParent](../../models/components/orgparent.md)                                  | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `parent`                                                                                      | [components.OrgParent](../../models/components/orgparent.md)                                  | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `children`                                                                                    | [components.Child](../../models/components/child.md)[]                                        | :heavy_check_mark:                                                                            | N/A                                                                                           |

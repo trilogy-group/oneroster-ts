@@ -17,9 +17,9 @@ let value: GetGradingPeriodResponse = {
     type: "term",
     schoolYear: 5476.03,
     org: {
-      href: "https://legal-solution.info/",
+      href: "https://cumbersome-outset.net",
       sourcedId: "<id>",
-      type: "class",
+      type: "scoreScale",
     },
   },
 };

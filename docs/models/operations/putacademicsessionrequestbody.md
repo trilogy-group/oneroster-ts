@@ -7,6 +7,8 @@ import { PutAcademicSessionRequestBody } from "@superbuilders/oneroster/models/o
 
 let value: PutAcademicSessionRequestBody = {
   academicSession: {
+    sourcedId: "<id>",
+    status: "active",
     title: "<value>",
     startDate: "<value>",
     endDate: "<value>",

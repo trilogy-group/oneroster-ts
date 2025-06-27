@@ -47,8 +47,8 @@ export type Org = {
   name: string;
   type: OrgType1;
   identifier: string;
-  parent: OrgParent | null;
-  children: Array<Child>;
+  parent?: OrgParent | null | undefined;
+  children: Array<Child> | null;
 };
 
 /** @internal */
@@ -210,8 +210,8 @@ export const Org$inboundSchema: z.ZodType<Org, z.ZodTypeDef, unknown> = z
     name: z.string(),
     type: OrgType1$inboundSchema,
     identifier: z.string(),
-    parent: z.nullable(z.lazy(() => OrgParent$inboundSchema)),
-    children: z.array(z.lazy(() => Child$inboundSchema)),
+    parent: z.nullable(z.lazy(() => OrgParent$inboundSchema)).optional(),
+    children: z.nullable(z.array(z.lazy(() => Child$inboundSchema))),
   });
 
 /** @internal */
@@ -223,8 +223,8 @@ export type Org$Outbound = {
   name: string;
   type: string;
   identifier: string;
-  parent: OrgParent$Outbound | null;
-  children: Array<Child$Outbound>;
+  parent?: OrgParent$Outbound | null | undefined;
+  children: Array<Child$Outbound> | null;
 };
 
 /** @internal */
@@ -237,8 +237,8 @@ export const Org$outboundSchema: z.ZodType<Org$Outbound, z.ZodTypeDef, Org> = z
     name: z.string(),
     type: OrgType1$outboundSchema,
     identifier: z.string(),
-    parent: z.nullable(z.lazy(() => OrgParent$outboundSchema)),
-    children: z.array(z.lazy(() => Child$outboundSchema)),
+    parent: z.nullable(z.lazy(() => OrgParent$outboundSchema)).optional(),
+    children: z.nullable(z.array(z.lazy(() => Child$outboundSchema))),
   });
 
 /**

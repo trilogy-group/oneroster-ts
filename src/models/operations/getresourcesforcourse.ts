@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,51 @@ export type GetResourcesForCourseRequest = {
   search?: string | undefined;
 };
 
+export const GetResourcesForCourseStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetResourcesForCourseStatus = ClosedEnum<
+  typeof GetResourcesForCourseStatus
+>;
+
+export const GetResourcesForCourseRole = {
+  Primary: "primary",
+  Secondary: "secondary",
+} as const;
+export type GetResourcesForCourseRole = ClosedEnum<
+  typeof GetResourcesForCourseRole
+>;
+
+export const GetResourcesForCourseImportance = {
+  Primary: "primary",
+  Secondary: "secondary",
+} as const;
+export type GetResourcesForCourseImportance = ClosedEnum<
+  typeof GetResourcesForCourseImportance
+>;
+
+/**
+ * Represents a digital resource of some kind.
+ */
+export type GetResourcesForCourseResource = {
+  sourcedId: string;
+  status: GetResourcesForCourseStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  roles?: Array<GetResourcesForCourseRole> | undefined;
+  importance?: GetResourcesForCourseImportance | undefined;
+  vendorResourceId: string;
+  vendorId?: string | null | undefined;
+  applicationId?: string | null | undefined;
+};
+
 /**
  * Successful response containing a collection of resources for the course
  */
 export type GetResourcesForCourseResponseBody = {
-  resources: Array<components.Resource>;
+  resources: Array<GetResourcesForCourseResource>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -174,12 +213,160 @@ export function getResourcesForCourseRequestFromJSON(
 }
 
 /** @internal */
+export const GetResourcesForCourseStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForCourseStatus
+> = z.nativeEnum(GetResourcesForCourseStatus);
+
+/** @internal */
+export const GetResourcesForCourseStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForCourseStatus
+> = GetResourcesForCourseStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForCourseStatus$ {
+  /** @deprecated use `GetResourcesForCourseStatus$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForCourseStatus$inboundSchema;
+  /** @deprecated use `GetResourcesForCourseStatus$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForCourseStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetResourcesForCourseRole$inboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForCourseRole
+> = z.nativeEnum(GetResourcesForCourseRole);
+
+/** @internal */
+export const GetResourcesForCourseRole$outboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForCourseRole
+> = GetResourcesForCourseRole$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForCourseRole$ {
+  /** @deprecated use `GetResourcesForCourseRole$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForCourseRole$inboundSchema;
+  /** @deprecated use `GetResourcesForCourseRole$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForCourseRole$outboundSchema;
+}
+
+/** @internal */
+export const GetResourcesForCourseImportance$inboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForCourseImportance
+> = z.nativeEnum(GetResourcesForCourseImportance);
+
+/** @internal */
+export const GetResourcesForCourseImportance$outboundSchema: z.ZodNativeEnum<
+  typeof GetResourcesForCourseImportance
+> = GetResourcesForCourseImportance$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForCourseImportance$ {
+  /** @deprecated use `GetResourcesForCourseImportance$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForCourseImportance$inboundSchema;
+  /** @deprecated use `GetResourcesForCourseImportance$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForCourseImportance$outboundSchema;
+}
+
+/** @internal */
+export const GetResourcesForCourseResource$inboundSchema: z.ZodType<
+  GetResourcesForCourseResource,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetResourcesForCourseStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  roles: z.array(GetResourcesForCourseRole$inboundSchema).optional(),
+  importance: GetResourcesForCourseImportance$inboundSchema.optional(),
+  vendorResourceId: z.string(),
+  vendorId: z.nullable(z.string()).optional(),
+  applicationId: z.nullable(z.string()).optional(),
+});
+
+/** @internal */
+export type GetResourcesForCourseResource$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  roles?: Array<string> | undefined;
+  importance?: string | undefined;
+  vendorResourceId: string;
+  vendorId?: string | null | undefined;
+  applicationId?: string | null | undefined;
+};
+
+/** @internal */
+export const GetResourcesForCourseResource$outboundSchema: z.ZodType<
+  GetResourcesForCourseResource$Outbound,
+  z.ZodTypeDef,
+  GetResourcesForCourseResource
+> = z.object({
+  sourcedId: z.string(),
+  status: GetResourcesForCourseStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  roles: z.array(GetResourcesForCourseRole$outboundSchema).optional(),
+  importance: GetResourcesForCourseImportance$outboundSchema.optional(),
+  vendorResourceId: z.string(),
+  vendorId: z.nullable(z.string()).optional(),
+  applicationId: z.nullable(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesForCourseResource$ {
+  /** @deprecated use `GetResourcesForCourseResource$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesForCourseResource$inboundSchema;
+  /** @deprecated use `GetResourcesForCourseResource$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesForCourseResource$outboundSchema;
+  /** @deprecated use `GetResourcesForCourseResource$Outbound` instead. */
+  export type Outbound = GetResourcesForCourseResource$Outbound;
+}
+
+export function getResourcesForCourseResourceToJSON(
+  getResourcesForCourseResource: GetResourcesForCourseResource,
+): string {
+  return JSON.stringify(
+    GetResourcesForCourseResource$outboundSchema.parse(
+      getResourcesForCourseResource,
+    ),
+  );
+}
+
+export function getResourcesForCourseResourceFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesForCourseResource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResourcesForCourseResource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesForCourseResource' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetResourcesForCourseResponseBody$inboundSchema: z.ZodType<
   GetResourcesForCourseResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  resources: z.array(components.Resource$inboundSchema),
+  resources: z.array(z.lazy(() => GetResourcesForCourseResource$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -189,7 +376,7 @@ export const GetResourcesForCourseResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetResourcesForCourseResponseBody$Outbound = {
-  resources: Array<components.Resource$Outbound>;
+  resources: Array<GetResourcesForCourseResource$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -203,7 +390,9 @@ export const GetResourcesForCourseResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetResourcesForCourseResponseBody
 > = z.object({
-  resources: z.array(components.Resource$outboundSchema),
+  resources: z.array(
+    z.lazy(() => GetResourcesForCourseResource$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

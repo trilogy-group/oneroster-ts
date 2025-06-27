@@ -14,9 +14,9 @@ let value: GetUserUser = {
   roles: [
     {
       roleType: "secondary",
-      role: "relative",
+      role: "proctor",
       org: {
-        href: "https://minor-optimal.biz",
+        href: "https://excellent-receptor.com",
         sourcedId: "<id>",
         type: "<value>",
       },
@@ -26,9 +26,9 @@ let value: GetUserUser = {
   ],
   agents: [
     {
-      href: "https://leading-bench.biz",
+      href: "https://blind-convection.biz/",
       sourcedId: "<id>",
-      type: "class",
+      type: "teacher",
     },
   ],
 };
@@ -61,3 +61,4 @@ let value: GetUserUser = {
 | `password`                                                                                    | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `sms`                                                                                         | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `phone`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `demographics`                                                                                | [components.Demographics](../../models/components/demographics.md)                            | :heavy_minus_sign:                                                                            | N/A                                                                                           |

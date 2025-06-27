@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,106 @@ export type GetTermsForSchoolRequest = {
   search?: string | undefined;
 };
 
+export const GetTermsForSchoolStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetTermsForSchoolStatus = ClosedEnum<
+  typeof GetTermsForSchoolStatus
+>;
+
+export const GetTermsForSchoolType = {
+  GradingPeriod: "gradingPeriod",
+  Semester: "semester",
+  SchoolYear: "schoolYear",
+  Term: "term",
+} as const;
+export type GetTermsForSchoolType = ClosedEnum<typeof GetTermsForSchoolType>;
+
+export const GetTermsForSchoolParentType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetTermsForSchoolParentType = ClosedEnum<
+  typeof GetTermsForSchoolParentType
+>;
+
+export type GetTermsForSchoolParent = {
+  href: string;
+  sourcedId: string;
+  type: GetTermsForSchoolParentType;
+};
+
+export const GetTermsForSchoolOrgType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetTermsForSchoolOrgType = ClosedEnum<
+  typeof GetTermsForSchoolOrgType
+>;
+
+export type GetTermsForSchoolOrg = {
+  href: string;
+  sourcedId: string;
+  type: GetTermsForSchoolOrgType;
+};
+
+/**
+ * Represents an academic session.
+ */
+export type GetTermsForSchoolTerm = {
+  sourcedId: string;
+  status: GetTermsForSchoolStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: GetTermsForSchoolType;
+  parent?: GetTermsForSchoolParent | null | undefined;
+  schoolYear: number;
+  org: GetTermsForSchoolOrg;
+};
+
 /**
  * Collection of terms successfully retrieved
  */
 export type GetTermsForSchoolResponseBody = {
-  terms: Array<components.AcademicSession>;
+  terms: Array<GetTermsForSchoolTerm>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -172,12 +266,304 @@ export function getTermsForSchoolRequestFromJSON(
 }
 
 /** @internal */
+export const GetTermsForSchoolStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolStatus
+> = z.nativeEnum(GetTermsForSchoolStatus);
+
+/** @internal */
+export const GetTermsForSchoolStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolStatus
+> = GetTermsForSchoolStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolStatus$ {
+  /** @deprecated use `GetTermsForSchoolStatus$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolStatus$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolStatus$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetTermsForSchoolType$inboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolType
+> = z.nativeEnum(GetTermsForSchoolType);
+
+/** @internal */
+export const GetTermsForSchoolType$outboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolType
+> = GetTermsForSchoolType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolType$ {
+  /** @deprecated use `GetTermsForSchoolType$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolType$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolType$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolType$outboundSchema;
+}
+
+/** @internal */
+export const GetTermsForSchoolParentType$inboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolParentType
+> = z.nativeEnum(GetTermsForSchoolParentType);
+
+/** @internal */
+export const GetTermsForSchoolParentType$outboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolParentType
+> = GetTermsForSchoolParentType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolParentType$ {
+  /** @deprecated use `GetTermsForSchoolParentType$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolParentType$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolParentType$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolParentType$outboundSchema;
+}
+
+/** @internal */
+export const GetTermsForSchoolParent$inboundSchema: z.ZodType<
+  GetTermsForSchoolParent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetTermsForSchoolParentType$inboundSchema,
+});
+
+/** @internal */
+export type GetTermsForSchoolParent$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetTermsForSchoolParent$outboundSchema: z.ZodType<
+  GetTermsForSchoolParent$Outbound,
+  z.ZodTypeDef,
+  GetTermsForSchoolParent
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetTermsForSchoolParentType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolParent$ {
+  /** @deprecated use `GetTermsForSchoolParent$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolParent$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolParent$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolParent$outboundSchema;
+  /** @deprecated use `GetTermsForSchoolParent$Outbound` instead. */
+  export type Outbound = GetTermsForSchoolParent$Outbound;
+}
+
+export function getTermsForSchoolParentToJSON(
+  getTermsForSchoolParent: GetTermsForSchoolParent,
+): string {
+  return JSON.stringify(
+    GetTermsForSchoolParent$outboundSchema.parse(getTermsForSchoolParent),
+  );
+}
+
+export function getTermsForSchoolParentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTermsForSchoolParent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTermsForSchoolParent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTermsForSchoolParent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetTermsForSchoolOrgType$inboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolOrgType
+> = z.nativeEnum(GetTermsForSchoolOrgType);
+
+/** @internal */
+export const GetTermsForSchoolOrgType$outboundSchema: z.ZodNativeEnum<
+  typeof GetTermsForSchoolOrgType
+> = GetTermsForSchoolOrgType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolOrgType$ {
+  /** @deprecated use `GetTermsForSchoolOrgType$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolOrgType$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolOrgType$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolOrgType$outboundSchema;
+}
+
+/** @internal */
+export const GetTermsForSchoolOrg$inboundSchema: z.ZodType<
+  GetTermsForSchoolOrg,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetTermsForSchoolOrgType$inboundSchema,
+});
+
+/** @internal */
+export type GetTermsForSchoolOrg$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetTermsForSchoolOrg$outboundSchema: z.ZodType<
+  GetTermsForSchoolOrg$Outbound,
+  z.ZodTypeDef,
+  GetTermsForSchoolOrg
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetTermsForSchoolOrgType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolOrg$ {
+  /** @deprecated use `GetTermsForSchoolOrg$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolOrg$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolOrg$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolOrg$outboundSchema;
+  /** @deprecated use `GetTermsForSchoolOrg$Outbound` instead. */
+  export type Outbound = GetTermsForSchoolOrg$Outbound;
+}
+
+export function getTermsForSchoolOrgToJSON(
+  getTermsForSchoolOrg: GetTermsForSchoolOrg,
+): string {
+  return JSON.stringify(
+    GetTermsForSchoolOrg$outboundSchema.parse(getTermsForSchoolOrg),
+  );
+}
+
+export function getTermsForSchoolOrgFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTermsForSchoolOrg, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTermsForSchoolOrg$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTermsForSchoolOrg' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetTermsForSchoolTerm$inboundSchema: z.ZodType<
+  GetTermsForSchoolTerm,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetTermsForSchoolStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetTermsForSchoolType$inboundSchema,
+  parent: z.nullable(z.lazy(() => GetTermsForSchoolParent$inboundSchema))
+    .optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetTermsForSchoolOrg$inboundSchema),
+});
+
+/** @internal */
+export type GetTermsForSchoolTerm$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: string;
+  parent?: GetTermsForSchoolParent$Outbound | null | undefined;
+  schoolYear: number;
+  org: GetTermsForSchoolOrg$Outbound;
+};
+
+/** @internal */
+export const GetTermsForSchoolTerm$outboundSchema: z.ZodType<
+  GetTermsForSchoolTerm$Outbound,
+  z.ZodTypeDef,
+  GetTermsForSchoolTerm
+> = z.object({
+  sourcedId: z.string(),
+  status: GetTermsForSchoolStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetTermsForSchoolType$outboundSchema,
+  parent: z.nullable(z.lazy(() => GetTermsForSchoolParent$outboundSchema))
+    .optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetTermsForSchoolOrg$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTermsForSchoolTerm$ {
+  /** @deprecated use `GetTermsForSchoolTerm$inboundSchema` instead. */
+  export const inboundSchema = GetTermsForSchoolTerm$inboundSchema;
+  /** @deprecated use `GetTermsForSchoolTerm$outboundSchema` instead. */
+  export const outboundSchema = GetTermsForSchoolTerm$outboundSchema;
+  /** @deprecated use `GetTermsForSchoolTerm$Outbound` instead. */
+  export type Outbound = GetTermsForSchoolTerm$Outbound;
+}
+
+export function getTermsForSchoolTermToJSON(
+  getTermsForSchoolTerm: GetTermsForSchoolTerm,
+): string {
+  return JSON.stringify(
+    GetTermsForSchoolTerm$outboundSchema.parse(getTermsForSchoolTerm),
+  );
+}
+
+export function getTermsForSchoolTermFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTermsForSchoolTerm, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTermsForSchoolTerm$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTermsForSchoolTerm' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetTermsForSchoolResponseBody$inboundSchema: z.ZodType<
   GetTermsForSchoolResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  terms: z.array(components.AcademicSession$inboundSchema),
+  terms: z.array(z.lazy(() => GetTermsForSchoolTerm$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -187,7 +573,7 @@ export const GetTermsForSchoolResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetTermsForSchoolResponseBody$Outbound = {
-  terms: Array<components.AcademicSession$Outbound>;
+  terms: Array<GetTermsForSchoolTerm$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -201,7 +587,7 @@ export const GetTermsForSchoolResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTermsForSchoolResponseBody
 > = z.object({
-  terms: z.array(components.AcademicSession$outboundSchema),
+  terms: z.array(z.lazy(() => GetTermsForSchoolTerm$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

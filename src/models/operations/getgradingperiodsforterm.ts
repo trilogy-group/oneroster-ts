@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,108 @@ export type GetGradingPeriodsForTermRequest = {
   search?: string | undefined;
 };
 
+export const GetGradingPeriodsForTermStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetGradingPeriodsForTermStatus = ClosedEnum<
+  typeof GetGradingPeriodsForTermStatus
+>;
+
+export const GetGradingPeriodsForTermType = {
+  GradingPeriod: "gradingPeriod",
+  Semester: "semester",
+  SchoolYear: "schoolYear",
+  Term: "term",
+} as const;
+export type GetGradingPeriodsForTermType = ClosedEnum<
+  typeof GetGradingPeriodsForTermType
+>;
+
+export const GetGradingPeriodsForTermParentType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetGradingPeriodsForTermParentType = ClosedEnum<
+  typeof GetGradingPeriodsForTermParentType
+>;
+
+export type GetGradingPeriodsForTermParent = {
+  href: string;
+  sourcedId: string;
+  type: GetGradingPeriodsForTermParentType;
+};
+
+export const GetGradingPeriodsForTermOrgType = {
+  AcademicSession: "academicSession",
+  AssessmentLineItem: "assessmentLineItem",
+  Category: "category",
+  Class: "class",
+  Course: "course",
+  Demographics: "demographics",
+  Enrollment: "enrollment",
+  GradingPeriod: "gradingPeriod",
+  LineItem: "lineItem",
+  Org: "org",
+  Resource: "resource",
+  Result: "result",
+  ScoreScale: "scoreScale",
+  Student: "student",
+  Teacher: "teacher",
+  Term: "term",
+  User: "user",
+  ComponentResource: "componentResource",
+  CourseComponent: "courseComponent",
+} as const;
+export type GetGradingPeriodsForTermOrgType = ClosedEnum<
+  typeof GetGradingPeriodsForTermOrgType
+>;
+
+export type GetGradingPeriodsForTermOrg = {
+  href: string;
+  sourcedId: string;
+  type: GetGradingPeriodsForTermOrgType;
+};
+
+/**
+ * Represents an academic session.
+ */
+export type GetGradingPeriodsForTermGradingPeriod = {
+  sourcedId: string;
+  status: GetGradingPeriodsForTermStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: GetGradingPeriodsForTermType;
+  parent?: GetGradingPeriodsForTermParent | null | undefined;
+  schoolYear: number;
+  org: GetGradingPeriodsForTermOrg;
+};
+
 /**
  * Successful response containing a collection of grading periods for the term
  */
 export type GetGradingPeriodsForTermResponseBody = {
-  gradingPeriods: Array<components.AcademicSession>;
+  gradingPeriods: Array<GetGradingPeriodsForTermGradingPeriod>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -174,12 +270,317 @@ export function getGradingPeriodsForTermRequestFromJSON(
 }
 
 /** @internal */
+export const GetGradingPeriodsForTermStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermStatus
+> = z.nativeEnum(GetGradingPeriodsForTermStatus);
+
+/** @internal */
+export const GetGradingPeriodsForTermStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermStatus
+> = GetGradingPeriodsForTermStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermStatus$ {
+  /** @deprecated use `GetGradingPeriodsForTermStatus$inboundSchema` instead. */
+  export const inboundSchema = GetGradingPeriodsForTermStatus$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermStatus$outboundSchema` instead. */
+  export const outboundSchema = GetGradingPeriodsForTermStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetGradingPeriodsForTermType$inboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermType
+> = z.nativeEnum(GetGradingPeriodsForTermType);
+
+/** @internal */
+export const GetGradingPeriodsForTermType$outboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermType
+> = GetGradingPeriodsForTermType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermType$ {
+  /** @deprecated use `GetGradingPeriodsForTermType$inboundSchema` instead. */
+  export const inboundSchema = GetGradingPeriodsForTermType$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermType$outboundSchema` instead. */
+  export const outboundSchema = GetGradingPeriodsForTermType$outboundSchema;
+}
+
+/** @internal */
+export const GetGradingPeriodsForTermParentType$inboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermParentType
+> = z.nativeEnum(GetGradingPeriodsForTermParentType);
+
+/** @internal */
+export const GetGradingPeriodsForTermParentType$outboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermParentType
+> = GetGradingPeriodsForTermParentType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermParentType$ {
+  /** @deprecated use `GetGradingPeriodsForTermParentType$inboundSchema` instead. */
+  export const inboundSchema = GetGradingPeriodsForTermParentType$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermParentType$outboundSchema` instead. */
+  export const outboundSchema =
+    GetGradingPeriodsForTermParentType$outboundSchema;
+}
+
+/** @internal */
+export const GetGradingPeriodsForTermParent$inboundSchema: z.ZodType<
+  GetGradingPeriodsForTermParent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetGradingPeriodsForTermParentType$inboundSchema,
+});
+
+/** @internal */
+export type GetGradingPeriodsForTermParent$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetGradingPeriodsForTermParent$outboundSchema: z.ZodType<
+  GetGradingPeriodsForTermParent$Outbound,
+  z.ZodTypeDef,
+  GetGradingPeriodsForTermParent
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetGradingPeriodsForTermParentType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermParent$ {
+  /** @deprecated use `GetGradingPeriodsForTermParent$inboundSchema` instead. */
+  export const inboundSchema = GetGradingPeriodsForTermParent$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermParent$outboundSchema` instead. */
+  export const outboundSchema = GetGradingPeriodsForTermParent$outboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermParent$Outbound` instead. */
+  export type Outbound = GetGradingPeriodsForTermParent$Outbound;
+}
+
+export function getGradingPeriodsForTermParentToJSON(
+  getGradingPeriodsForTermParent: GetGradingPeriodsForTermParent,
+): string {
+  return JSON.stringify(
+    GetGradingPeriodsForTermParent$outboundSchema.parse(
+      getGradingPeriodsForTermParent,
+    ),
+  );
+}
+
+export function getGradingPeriodsForTermParentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGradingPeriodsForTermParent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGradingPeriodsForTermParent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGradingPeriodsForTermParent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetGradingPeriodsForTermOrgType$inboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermOrgType
+> = z.nativeEnum(GetGradingPeriodsForTermOrgType);
+
+/** @internal */
+export const GetGradingPeriodsForTermOrgType$outboundSchema: z.ZodNativeEnum<
+  typeof GetGradingPeriodsForTermOrgType
+> = GetGradingPeriodsForTermOrgType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermOrgType$ {
+  /** @deprecated use `GetGradingPeriodsForTermOrgType$inboundSchema` instead. */
+  export const inboundSchema = GetGradingPeriodsForTermOrgType$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermOrgType$outboundSchema` instead. */
+  export const outboundSchema = GetGradingPeriodsForTermOrgType$outboundSchema;
+}
+
+/** @internal */
+export const GetGradingPeriodsForTermOrg$inboundSchema: z.ZodType<
+  GetGradingPeriodsForTermOrg,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetGradingPeriodsForTermOrgType$inboundSchema,
+});
+
+/** @internal */
+export type GetGradingPeriodsForTermOrg$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetGradingPeriodsForTermOrg$outboundSchema: z.ZodType<
+  GetGradingPeriodsForTermOrg$Outbound,
+  z.ZodTypeDef,
+  GetGradingPeriodsForTermOrg
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: GetGradingPeriodsForTermOrgType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermOrg$ {
+  /** @deprecated use `GetGradingPeriodsForTermOrg$inboundSchema` instead. */
+  export const inboundSchema = GetGradingPeriodsForTermOrg$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermOrg$outboundSchema` instead. */
+  export const outboundSchema = GetGradingPeriodsForTermOrg$outboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermOrg$Outbound` instead. */
+  export type Outbound = GetGradingPeriodsForTermOrg$Outbound;
+}
+
+export function getGradingPeriodsForTermOrgToJSON(
+  getGradingPeriodsForTermOrg: GetGradingPeriodsForTermOrg,
+): string {
+  return JSON.stringify(
+    GetGradingPeriodsForTermOrg$outboundSchema.parse(
+      getGradingPeriodsForTermOrg,
+    ),
+  );
+}
+
+export function getGradingPeriodsForTermOrgFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGradingPeriodsForTermOrg, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGradingPeriodsForTermOrg$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGradingPeriodsForTermOrg' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetGradingPeriodsForTermGradingPeriod$inboundSchema: z.ZodType<
+  GetGradingPeriodsForTermGradingPeriod,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetGradingPeriodsForTermStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetGradingPeriodsForTermType$inboundSchema,
+  parent: z.nullable(z.lazy(() => GetGradingPeriodsForTermParent$inboundSchema))
+    .optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetGradingPeriodsForTermOrg$inboundSchema),
+});
+
+/** @internal */
+export type GetGradingPeriodsForTermGradingPeriod$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  startDate: string;
+  endDate: string;
+  type: string;
+  parent?: GetGradingPeriodsForTermParent$Outbound | null | undefined;
+  schoolYear: number;
+  org: GetGradingPeriodsForTermOrg$Outbound;
+};
+
+/** @internal */
+export const GetGradingPeriodsForTermGradingPeriod$outboundSchema: z.ZodType<
+  GetGradingPeriodsForTermGradingPeriod$Outbound,
+  z.ZodTypeDef,
+  GetGradingPeriodsForTermGradingPeriod
+> = z.object({
+  sourcedId: z.string(),
+  status: GetGradingPeriodsForTermStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  type: GetGradingPeriodsForTermType$outboundSchema,
+  parent: z.nullable(
+    z.lazy(() => GetGradingPeriodsForTermParent$outboundSchema),
+  ).optional(),
+  schoolYear: z.number(),
+  org: z.lazy(() => GetGradingPeriodsForTermOrg$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGradingPeriodsForTermGradingPeriod$ {
+  /** @deprecated use `GetGradingPeriodsForTermGradingPeriod$inboundSchema` instead. */
+  export const inboundSchema =
+    GetGradingPeriodsForTermGradingPeriod$inboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermGradingPeriod$outboundSchema` instead. */
+  export const outboundSchema =
+    GetGradingPeriodsForTermGradingPeriod$outboundSchema;
+  /** @deprecated use `GetGradingPeriodsForTermGradingPeriod$Outbound` instead. */
+  export type Outbound = GetGradingPeriodsForTermGradingPeriod$Outbound;
+}
+
+export function getGradingPeriodsForTermGradingPeriodToJSON(
+  getGradingPeriodsForTermGradingPeriod: GetGradingPeriodsForTermGradingPeriod,
+): string {
+  return JSON.stringify(
+    GetGradingPeriodsForTermGradingPeriod$outboundSchema.parse(
+      getGradingPeriodsForTermGradingPeriod,
+    ),
+  );
+}
+
+export function getGradingPeriodsForTermGradingPeriodFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGradingPeriodsForTermGradingPeriod, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetGradingPeriodsForTermGradingPeriod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGradingPeriodsForTermGradingPeriod' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetGradingPeriodsForTermResponseBody$inboundSchema: z.ZodType<
   GetGradingPeriodsForTermResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  gradingPeriods: z.array(components.AcademicSession$inboundSchema),
+  gradingPeriods: z.array(
+    z.lazy(() => GetGradingPeriodsForTermGradingPeriod$inboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -189,7 +590,7 @@ export const GetGradingPeriodsForTermResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetGradingPeriodsForTermResponseBody$Outbound = {
-  gradingPeriods: Array<components.AcademicSession$Outbound>;
+  gradingPeriods: Array<GetGradingPeriodsForTermGradingPeriod$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -203,7 +604,9 @@ export const GetGradingPeriodsForTermResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetGradingPeriodsForTermResponseBody
 > = z.object({
-  gradingPeriods: z.array(components.AcademicSession$outboundSchema),
+  gradingPeriods: z.array(
+    z.lazy(() => GetGradingPeriodsForTermGradingPeriod$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

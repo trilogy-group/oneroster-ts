@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -55,11 +54,55 @@ export type GetAllEnrollmentsRequest = {
   search?: string | undefined;
 };
 
+export const GetAllEnrollmentsStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetAllEnrollmentsStatus = ClosedEnum<
+  typeof GetAllEnrollmentsStatus
+>;
+
+export const GetAllEnrollmentsRole = {
+  Administrator: "administrator",
+  Proctor: "proctor",
+  Student: "student",
+  Teacher: "teacher",
+} as const;
+export type GetAllEnrollmentsRole = ClosedEnum<typeof GetAllEnrollmentsRole>;
+
+export type GetAllEnrollmentsUser = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+export type GetAllEnrollmentsClass = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/**
+ * Represents an enrollment.
+ */
+export type GetAllEnrollmentsEnrollment = {
+  sourcedId: string;
+  status: GetAllEnrollmentsStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  role: GetAllEnrollmentsRole;
+  primary: boolean;
+  beginDate: string | null;
+  endDate: string | null;
+  user: GetAllEnrollmentsUser;
+  class: GetAllEnrollmentsClass;
+};
+
 /**
  * Successful response
  */
 export type GetAllEnrollmentsResponseBody = {
-  enrollments: Array<components.Enrollment>;
+  enrollments: Array<GetAllEnrollmentsEnrollment>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -165,12 +208,259 @@ export function getAllEnrollmentsRequestFromJSON(
 }
 
 /** @internal */
+export const GetAllEnrollmentsStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllEnrollmentsStatus
+> = z.nativeEnum(GetAllEnrollmentsStatus);
+
+/** @internal */
+export const GetAllEnrollmentsStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllEnrollmentsStatus
+> = GetAllEnrollmentsStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllEnrollmentsStatus$ {
+  /** @deprecated use `GetAllEnrollmentsStatus$inboundSchema` instead. */
+  export const inboundSchema = GetAllEnrollmentsStatus$inboundSchema;
+  /** @deprecated use `GetAllEnrollmentsStatus$outboundSchema` instead. */
+  export const outboundSchema = GetAllEnrollmentsStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetAllEnrollmentsRole$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllEnrollmentsRole
+> = z.nativeEnum(GetAllEnrollmentsRole);
+
+/** @internal */
+export const GetAllEnrollmentsRole$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllEnrollmentsRole
+> = GetAllEnrollmentsRole$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllEnrollmentsRole$ {
+  /** @deprecated use `GetAllEnrollmentsRole$inboundSchema` instead. */
+  export const inboundSchema = GetAllEnrollmentsRole$inboundSchema;
+  /** @deprecated use `GetAllEnrollmentsRole$outboundSchema` instead. */
+  export const outboundSchema = GetAllEnrollmentsRole$outboundSchema;
+}
+
+/** @internal */
+export const GetAllEnrollmentsUser$inboundSchema: z.ZodType<
+  GetAllEnrollmentsUser,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetAllEnrollmentsUser$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllEnrollmentsUser$outboundSchema: z.ZodType<
+  GetAllEnrollmentsUser$Outbound,
+  z.ZodTypeDef,
+  GetAllEnrollmentsUser
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllEnrollmentsUser$ {
+  /** @deprecated use `GetAllEnrollmentsUser$inboundSchema` instead. */
+  export const inboundSchema = GetAllEnrollmentsUser$inboundSchema;
+  /** @deprecated use `GetAllEnrollmentsUser$outboundSchema` instead. */
+  export const outboundSchema = GetAllEnrollmentsUser$outboundSchema;
+  /** @deprecated use `GetAllEnrollmentsUser$Outbound` instead. */
+  export type Outbound = GetAllEnrollmentsUser$Outbound;
+}
+
+export function getAllEnrollmentsUserToJSON(
+  getAllEnrollmentsUser: GetAllEnrollmentsUser,
+): string {
+  return JSON.stringify(
+    GetAllEnrollmentsUser$outboundSchema.parse(getAllEnrollmentsUser),
+  );
+}
+
+export function getAllEnrollmentsUserFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllEnrollmentsUser, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllEnrollmentsUser$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllEnrollmentsUser' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllEnrollmentsClass$inboundSchema: z.ZodType<
+  GetAllEnrollmentsClass,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetAllEnrollmentsClass$Outbound = {
+  href: string;
+  sourcedId: string;
+  type: string;
+};
+
+/** @internal */
+export const GetAllEnrollmentsClass$outboundSchema: z.ZodType<
+  GetAllEnrollmentsClass$Outbound,
+  z.ZodTypeDef,
+  GetAllEnrollmentsClass
+> = z.object({
+  href: z.string(),
+  sourcedId: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllEnrollmentsClass$ {
+  /** @deprecated use `GetAllEnrollmentsClass$inboundSchema` instead. */
+  export const inboundSchema = GetAllEnrollmentsClass$inboundSchema;
+  /** @deprecated use `GetAllEnrollmentsClass$outboundSchema` instead. */
+  export const outboundSchema = GetAllEnrollmentsClass$outboundSchema;
+  /** @deprecated use `GetAllEnrollmentsClass$Outbound` instead. */
+  export type Outbound = GetAllEnrollmentsClass$Outbound;
+}
+
+export function getAllEnrollmentsClassToJSON(
+  getAllEnrollmentsClass: GetAllEnrollmentsClass,
+): string {
+  return JSON.stringify(
+    GetAllEnrollmentsClass$outboundSchema.parse(getAllEnrollmentsClass),
+  );
+}
+
+export function getAllEnrollmentsClassFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllEnrollmentsClass, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllEnrollmentsClass$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllEnrollmentsClass' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetAllEnrollmentsEnrollment$inboundSchema: z.ZodType<
+  GetAllEnrollmentsEnrollment,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllEnrollmentsStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  role: GetAllEnrollmentsRole$inboundSchema,
+  primary: z.boolean(),
+  beginDate: z.nullable(z.string()),
+  endDate: z.nullable(z.string()),
+  user: z.lazy(() => GetAllEnrollmentsUser$inboundSchema),
+  class: z.lazy(() => GetAllEnrollmentsClass$inboundSchema),
+});
+
+/** @internal */
+export type GetAllEnrollmentsEnrollment$Outbound = {
+  sourcedId: string;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  role: string;
+  primary: boolean;
+  beginDate: string | null;
+  endDate: string | null;
+  user: GetAllEnrollmentsUser$Outbound;
+  class: GetAllEnrollmentsClass$Outbound;
+};
+
+/** @internal */
+export const GetAllEnrollmentsEnrollment$outboundSchema: z.ZodType<
+  GetAllEnrollmentsEnrollment$Outbound,
+  z.ZodTypeDef,
+  GetAllEnrollmentsEnrollment
+> = z.object({
+  sourcedId: z.string(),
+  status: GetAllEnrollmentsStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  role: GetAllEnrollmentsRole$outboundSchema,
+  primary: z.boolean(),
+  beginDate: z.nullable(z.string()),
+  endDate: z.nullable(z.string()),
+  user: z.lazy(() => GetAllEnrollmentsUser$outboundSchema),
+  class: z.lazy(() => GetAllEnrollmentsClass$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllEnrollmentsEnrollment$ {
+  /** @deprecated use `GetAllEnrollmentsEnrollment$inboundSchema` instead. */
+  export const inboundSchema = GetAllEnrollmentsEnrollment$inboundSchema;
+  /** @deprecated use `GetAllEnrollmentsEnrollment$outboundSchema` instead. */
+  export const outboundSchema = GetAllEnrollmentsEnrollment$outboundSchema;
+  /** @deprecated use `GetAllEnrollmentsEnrollment$Outbound` instead. */
+  export type Outbound = GetAllEnrollmentsEnrollment$Outbound;
+}
+
+export function getAllEnrollmentsEnrollmentToJSON(
+  getAllEnrollmentsEnrollment: GetAllEnrollmentsEnrollment,
+): string {
+  return JSON.stringify(
+    GetAllEnrollmentsEnrollment$outboundSchema.parse(
+      getAllEnrollmentsEnrollment,
+    ),
+  );
+}
+
+export function getAllEnrollmentsEnrollmentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllEnrollmentsEnrollment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllEnrollmentsEnrollment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllEnrollmentsEnrollment' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetAllEnrollmentsResponseBody$inboundSchema: z.ZodType<
   GetAllEnrollmentsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  enrollments: z.array(components.Enrollment$inboundSchema),
+  enrollments: z.array(z.lazy(() => GetAllEnrollmentsEnrollment$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -180,7 +470,7 @@ export const GetAllEnrollmentsResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllEnrollmentsResponseBody$Outbound = {
-  enrollments: Array<components.Enrollment$Outbound>;
+  enrollments: Array<GetAllEnrollmentsEnrollment$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -194,7 +484,9 @@ export const GetAllEnrollmentsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllEnrollmentsResponseBody
 > = z.object({
-  enrollments: z.array(components.Enrollment$outboundSchema),
+  enrollments: z.array(
+    z.lazy(() => GetAllEnrollmentsEnrollment$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

@@ -9,10 +9,9 @@ import { GetLineItemResponse } from "@superbuilders/oneroster/models/operations"
 
 let value: GetLineItemResponse = {
   lineItem: {
-    status: "active",
     title: "<value>",
-    assignDate: new Date("2024-11-06T10:38:08.819Z"),
-    dueDate: new Date("2025-09-03T22:30:18.963Z"),
+    assignDate: new Date("2024-03-20T23:18:56.025Z"),
+    dueDate: new Date("2023-07-28T04:26:11.874Z"),
     class: {
       sourcedId: "<id>",
     },

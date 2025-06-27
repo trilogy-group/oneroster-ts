@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -63,11 +62,86 @@ export type GetResultsForStudentForClassRequest = {
   search?: string | undefined;
 };
 
+export const GetResultsForStudentForClassStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetResultsForStudentForClassStatus = ClosedEnum<
+  typeof GetResultsForStudentForClassStatus
+>;
+
+export type GetResultsForStudentForClassLineItem = {
+  sourcedId: string;
+};
+
+export type GetResultsForStudentForClassStudent = {
+  sourcedId: string;
+};
+
+export type GetResultsForStudentForClassClass = {
+  sourcedId: string;
+};
+
+export type GetResultsForStudentForClassScoreScale = {
+  sourcedId: string;
+};
+
+export const GetResultsForStudentForClassScoreStatus = {
+  Exempt: "exempt",
+  FullyGraded: "fully graded",
+  NotSubmitted: "not submitted",
+  PartiallyGraded: "partially graded",
+  Submitted: "submitted",
+} as const;
+export type GetResultsForStudentForClassScoreStatus = ClosedEnum<
+  typeof GetResultsForStudentForClassScoreStatus
+>;
+
+export type GetResultsForStudentForClassLearningObjectiveResult = {
+  learningObjectiveId: string;
+  score?: number | undefined;
+  textScore?: string | undefined;
+};
+
+export type GetResultsForStudentForClassLearningObjectiveSet = {
+  source: string;
+  learningObjectiveResults: Array<
+    GetResultsForStudentForClassLearningObjectiveResult
+  >;
+};
+
+/**
+ * Represents a result.
+ */
+export type GetResultsForStudentForClassResult = {
+  sourcedId?: string | undefined;
+  status: GetResultsForStudentForClassStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  lineItem: GetResultsForStudentForClassLineItem;
+  student: GetResultsForStudentForClassStudent;
+  class?: GetResultsForStudentForClassClass | null | undefined;
+  scoreScale?: GetResultsForStudentForClassScoreScale | null | undefined;
+  scoreStatus: GetResultsForStudentForClassScoreStatus;
+  score?: number | null | undefined;
+  textScore?: string | null | undefined;
+  scoreDate: Date;
+  comment?: string | null | undefined;
+  learningObjectiveSet?:
+    | Array<GetResultsForStudentForClassLearningObjectiveSet>
+    | null
+    | undefined;
+  inProgress?: string | undefined;
+  incomplete?: string | undefined;
+  late?: string | undefined;
+  missing?: string | undefined;
+};
+
 /**
  * Successful response containing a collection of results for the specified student in the class
  */
 export type GetResultsForStudentForClassResponseBody = {
-  results: Array<components.Result>;
+  results: Array<GetResultsForStudentForClassResult>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -186,12 +260,582 @@ export function getResultsForStudentForClassRequestFromJSON(
 }
 
 /** @internal */
+export const GetResultsForStudentForClassStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetResultsForStudentForClassStatus
+> = z.nativeEnum(GetResultsForStudentForClassStatus);
+
+/** @internal */
+export const GetResultsForStudentForClassStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetResultsForStudentForClassStatus
+> = GetResultsForStudentForClassStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassStatus$ {
+  /** @deprecated use `GetResultsForStudentForClassStatus$inboundSchema` instead. */
+  export const inboundSchema = GetResultsForStudentForClassStatus$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassStatus$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetResultsForStudentForClassLineItem$inboundSchema: z.ZodType<
+  GetResultsForStudentForClassLineItem,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetResultsForStudentForClassLineItem$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassLineItem$outboundSchema: z.ZodType<
+  GetResultsForStudentForClassLineItem$Outbound,
+  z.ZodTypeDef,
+  GetResultsForStudentForClassLineItem
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassLineItem$ {
+  /** @deprecated use `GetResultsForStudentForClassLineItem$inboundSchema` instead. */
+  export const inboundSchema =
+    GetResultsForStudentForClassLineItem$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassLineItem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassLineItem$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassLineItem$Outbound` instead. */
+  export type Outbound = GetResultsForStudentForClassLineItem$Outbound;
+}
+
+export function getResultsForStudentForClassLineItemToJSON(
+  getResultsForStudentForClassLineItem: GetResultsForStudentForClassLineItem,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassLineItem$outboundSchema.parse(
+      getResultsForStudentForClassLineItem,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassLineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResultsForStudentForClassLineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResultsForStudentForClassLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResultsForStudentForClassLineItem' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResultsForStudentForClassStudent$inboundSchema: z.ZodType<
+  GetResultsForStudentForClassStudent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetResultsForStudentForClassStudent$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassStudent$outboundSchema: z.ZodType<
+  GetResultsForStudentForClassStudent$Outbound,
+  z.ZodTypeDef,
+  GetResultsForStudentForClassStudent
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassStudent$ {
+  /** @deprecated use `GetResultsForStudentForClassStudent$inboundSchema` instead. */
+  export const inboundSchema =
+    GetResultsForStudentForClassStudent$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassStudent$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassStudent$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassStudent$Outbound` instead. */
+  export type Outbound = GetResultsForStudentForClassStudent$Outbound;
+}
+
+export function getResultsForStudentForClassStudentToJSON(
+  getResultsForStudentForClassStudent: GetResultsForStudentForClassStudent,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassStudent$outboundSchema.parse(
+      getResultsForStudentForClassStudent,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassStudentFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResultsForStudentForClassStudent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResultsForStudentForClassStudent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResultsForStudentForClassStudent' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResultsForStudentForClassClass$inboundSchema: z.ZodType<
+  GetResultsForStudentForClassClass,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetResultsForStudentForClassClass$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassClass$outboundSchema: z.ZodType<
+  GetResultsForStudentForClassClass$Outbound,
+  z.ZodTypeDef,
+  GetResultsForStudentForClassClass
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassClass$ {
+  /** @deprecated use `GetResultsForStudentForClassClass$inboundSchema` instead. */
+  export const inboundSchema = GetResultsForStudentForClassClass$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassClass$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassClass$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassClass$Outbound` instead. */
+  export type Outbound = GetResultsForStudentForClassClass$Outbound;
+}
+
+export function getResultsForStudentForClassClassToJSON(
+  getResultsForStudentForClassClass: GetResultsForStudentForClassClass,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassClass$outboundSchema.parse(
+      getResultsForStudentForClassClass,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassClassFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResultsForStudentForClassClass, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResultsForStudentForClassClass$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResultsForStudentForClassClass' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResultsForStudentForClassScoreScale$inboundSchema: z.ZodType<
+  GetResultsForStudentForClassScoreScale,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetResultsForStudentForClassScoreScale$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassScoreScale$outboundSchema: z.ZodType<
+  GetResultsForStudentForClassScoreScale$Outbound,
+  z.ZodTypeDef,
+  GetResultsForStudentForClassScoreScale
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassScoreScale$ {
+  /** @deprecated use `GetResultsForStudentForClassScoreScale$inboundSchema` instead. */
+  export const inboundSchema =
+    GetResultsForStudentForClassScoreScale$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassScoreScale$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassScoreScale$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassScoreScale$Outbound` instead. */
+  export type Outbound = GetResultsForStudentForClassScoreScale$Outbound;
+}
+
+export function getResultsForStudentForClassScoreScaleToJSON(
+  getResultsForStudentForClassScoreScale:
+    GetResultsForStudentForClassScoreScale,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassScoreScale$outboundSchema.parse(
+      getResultsForStudentForClassScoreScale,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassScoreScaleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResultsForStudentForClassScoreScale, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResultsForStudentForClassScoreScale$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResultsForStudentForClassScoreScale' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResultsForStudentForClassScoreStatus$inboundSchema:
+  z.ZodNativeEnum<typeof GetResultsForStudentForClassScoreStatus> = z
+    .nativeEnum(GetResultsForStudentForClassScoreStatus);
+
+/** @internal */
+export const GetResultsForStudentForClassScoreStatus$outboundSchema:
+  z.ZodNativeEnum<typeof GetResultsForStudentForClassScoreStatus> =
+    GetResultsForStudentForClassScoreStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassScoreStatus$ {
+  /** @deprecated use `GetResultsForStudentForClassScoreStatus$inboundSchema` instead. */
+  export const inboundSchema =
+    GetResultsForStudentForClassScoreStatus$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassScoreStatus$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassScoreStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetResultsForStudentForClassLearningObjectiveResult$inboundSchema:
+  z.ZodType<
+    GetResultsForStudentForClassLearningObjectiveResult,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    learningObjectiveId: z.string(),
+    score: z.number().optional(),
+    textScore: z.string().optional(),
+  });
+
+/** @internal */
+export type GetResultsForStudentForClassLearningObjectiveResult$Outbound = {
+  learningObjectiveId: string;
+  score?: number | undefined;
+  textScore?: string | undefined;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassLearningObjectiveResult$outboundSchema:
+  z.ZodType<
+    GetResultsForStudentForClassLearningObjectiveResult$Outbound,
+    z.ZodTypeDef,
+    GetResultsForStudentForClassLearningObjectiveResult
+  > = z.object({
+    learningObjectiveId: z.string(),
+    score: z.number().optional(),
+    textScore: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassLearningObjectiveResult$ {
+  /** @deprecated use `GetResultsForStudentForClassLearningObjectiveResult$inboundSchema` instead. */
+  export const inboundSchema =
+    GetResultsForStudentForClassLearningObjectiveResult$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassLearningObjectiveResult$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassLearningObjectiveResult$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassLearningObjectiveResult$Outbound` instead. */
+  export type Outbound =
+    GetResultsForStudentForClassLearningObjectiveResult$Outbound;
+}
+
+export function getResultsForStudentForClassLearningObjectiveResultToJSON(
+  getResultsForStudentForClassLearningObjectiveResult:
+    GetResultsForStudentForClassLearningObjectiveResult,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassLearningObjectiveResult$outboundSchema.parse(
+      getResultsForStudentForClassLearningObjectiveResult,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassLearningObjectiveResultFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetResultsForStudentForClassLearningObjectiveResult,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResultsForStudentForClassLearningObjectiveResult$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetResultsForStudentForClassLearningObjectiveResult' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResultsForStudentForClassLearningObjectiveSet$inboundSchema:
+  z.ZodType<
+    GetResultsForStudentForClassLearningObjectiveSet,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    source: z.string(),
+    learningObjectiveResults: z.array(
+      z.lazy(() =>
+        GetResultsForStudentForClassLearningObjectiveResult$inboundSchema
+      ),
+    ),
+  });
+
+/** @internal */
+export type GetResultsForStudentForClassLearningObjectiveSet$Outbound = {
+  source: string;
+  learningObjectiveResults: Array<
+    GetResultsForStudentForClassLearningObjectiveResult$Outbound
+  >;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassLearningObjectiveSet$outboundSchema:
+  z.ZodType<
+    GetResultsForStudentForClassLearningObjectiveSet$Outbound,
+    z.ZodTypeDef,
+    GetResultsForStudentForClassLearningObjectiveSet
+  > = z.object({
+    source: z.string(),
+    learningObjectiveResults: z.array(
+      z.lazy(() =>
+        GetResultsForStudentForClassLearningObjectiveResult$outboundSchema
+      ),
+    ),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassLearningObjectiveSet$ {
+  /** @deprecated use `GetResultsForStudentForClassLearningObjectiveSet$inboundSchema` instead. */
+  export const inboundSchema =
+    GetResultsForStudentForClassLearningObjectiveSet$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassLearningObjectiveSet$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassLearningObjectiveSet$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassLearningObjectiveSet$Outbound` instead. */
+  export type Outbound =
+    GetResultsForStudentForClassLearningObjectiveSet$Outbound;
+}
+
+export function getResultsForStudentForClassLearningObjectiveSetToJSON(
+  getResultsForStudentForClassLearningObjectiveSet:
+    GetResultsForStudentForClassLearningObjectiveSet,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassLearningObjectiveSet$outboundSchema.parse(
+      getResultsForStudentForClassLearningObjectiveSet,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassLearningObjectiveSetFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetResultsForStudentForClassLearningObjectiveSet,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResultsForStudentForClassLearningObjectiveSet$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetResultsForStudentForClassLearningObjectiveSet' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResultsForStudentForClassResult$inboundSchema: z.ZodType<
+  GetResultsForStudentForClassResult,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetResultsForStudentForClassStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  lineItem: z.lazy(() => GetResultsForStudentForClassLineItem$inboundSchema),
+  student: z.lazy(() => GetResultsForStudentForClassStudent$inboundSchema),
+  class: z.nullable(
+    z.lazy(() => GetResultsForStudentForClassClass$inboundSchema),
+  ).optional(),
+  scoreScale: z.nullable(
+    z.lazy(() => GetResultsForStudentForClassScoreScale$inboundSchema),
+  ).optional(),
+  scoreStatus: GetResultsForStudentForClassScoreStatus$inboundSchema,
+  score: z.nullable(z.number()).optional(),
+  textScore: z.nullable(z.string()).optional(),
+  scoreDate: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  comment: z.nullable(z.string()).optional(),
+  learningObjectiveSet: z.nullable(
+    z.array(z.lazy(() =>
+      GetResultsForStudentForClassLearningObjectiveSet$inboundSchema
+    )),
+  ).optional(),
+  inProgress: z.string().optional(),
+  incomplete: z.string().optional(),
+  late: z.string().optional(),
+  missing: z.string().optional(),
+});
+
+/** @internal */
+export type GetResultsForStudentForClassResult$Outbound = {
+  sourcedId?: string | undefined;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  lineItem: GetResultsForStudentForClassLineItem$Outbound;
+  student: GetResultsForStudentForClassStudent$Outbound;
+  class?: GetResultsForStudentForClassClass$Outbound | null | undefined;
+  scoreScale?:
+    | GetResultsForStudentForClassScoreScale$Outbound
+    | null
+    | undefined;
+  scoreStatus: string;
+  score?: number | null | undefined;
+  textScore?: string | null | undefined;
+  scoreDate: string;
+  comment?: string | null | undefined;
+  learningObjectiveSet?:
+    | Array<GetResultsForStudentForClassLearningObjectiveSet$Outbound>
+    | null
+    | undefined;
+  inProgress?: string | undefined;
+  incomplete?: string | undefined;
+  late?: string | undefined;
+  missing?: string | undefined;
+};
+
+/** @internal */
+export const GetResultsForStudentForClassResult$outboundSchema: z.ZodType<
+  GetResultsForStudentForClassResult$Outbound,
+  z.ZodTypeDef,
+  GetResultsForStudentForClassResult
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetResultsForStudentForClassStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  lineItem: z.lazy(() => GetResultsForStudentForClassLineItem$outboundSchema),
+  student: z.lazy(() => GetResultsForStudentForClassStudent$outboundSchema),
+  class: z.nullable(
+    z.lazy(() => GetResultsForStudentForClassClass$outboundSchema),
+  ).optional(),
+  scoreScale: z.nullable(
+    z.lazy(() => GetResultsForStudentForClassScoreScale$outboundSchema),
+  ).optional(),
+  scoreStatus: GetResultsForStudentForClassScoreStatus$outboundSchema,
+  score: z.nullable(z.number()).optional(),
+  textScore: z.nullable(z.string()).optional(),
+  scoreDate: z.date().transform(v => v.toISOString()),
+  comment: z.nullable(z.string()).optional(),
+  learningObjectiveSet: z.nullable(
+    z.array(z.lazy(() =>
+      GetResultsForStudentForClassLearningObjectiveSet$outboundSchema
+    )),
+  ).optional(),
+  inProgress: z.string().optional(),
+  incomplete: z.string().optional(),
+  late: z.string().optional(),
+  missing: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResultsForStudentForClassResult$ {
+  /** @deprecated use `GetResultsForStudentForClassResult$inboundSchema` instead. */
+  export const inboundSchema = GetResultsForStudentForClassResult$inboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassResult$outboundSchema` instead. */
+  export const outboundSchema =
+    GetResultsForStudentForClassResult$outboundSchema;
+  /** @deprecated use `GetResultsForStudentForClassResult$Outbound` instead. */
+  export type Outbound = GetResultsForStudentForClassResult$Outbound;
+}
+
+export function getResultsForStudentForClassResultToJSON(
+  getResultsForStudentForClassResult: GetResultsForStudentForClassResult,
+): string {
+  return JSON.stringify(
+    GetResultsForStudentForClassResult$outboundSchema.parse(
+      getResultsForStudentForClassResult,
+    ),
+  );
+}
+
+export function getResultsForStudentForClassResultFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResultsForStudentForClassResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResultsForStudentForClassResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResultsForStudentForClassResult' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetResultsForStudentForClassResponseBody$inboundSchema: z.ZodType<
   GetResultsForStudentForClassResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  results: z.array(components.Result$inboundSchema),
+  results: z.array(
+    z.lazy(() => GetResultsForStudentForClassResult$inboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -201,7 +845,7 @@ export const GetResultsForStudentForClassResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetResultsForStudentForClassResponseBody$Outbound = {
-  results: Array<components.Result$Outbound>;
+  results: Array<GetResultsForStudentForClassResult$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -215,7 +859,9 @@ export const GetResultsForStudentForClassResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetResultsForStudentForClassResponseBody
 > = z.object({
-  results: z.array(components.Result$outboundSchema),
+  results: z.array(
+    z.lazy(() => GetResultsForStudentForClassResult$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

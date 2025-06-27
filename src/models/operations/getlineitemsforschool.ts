@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,74 @@ export type GetLineItemsForSchoolRequest = {
   search?: string | undefined;
 };
 
+export const GetLineItemsForSchoolStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetLineItemsForSchoolStatus = ClosedEnum<
+  typeof GetLineItemsForSchoolStatus
+>;
+
+export type GetLineItemsForSchoolClass = {
+  sourcedId: string;
+};
+
+export type GetLineItemsForSchoolSchool = {
+  sourcedId: string;
+};
+
+export type GetLineItemsForSchoolCategory = {
+  sourcedId: string;
+};
+
+export type GetLineItemsForSchoolGradingPeriod = {
+  sourcedId: string;
+};
+
+export type GetLineItemsForSchoolAcademicSession = {
+  sourcedId: string;
+};
+
+export type GetLineItemsForSchoolScoreScale = {
+  sourcedId: string;
+};
+
+export type GetLineItemsForSchoolLearningObjectiveSet = {
+  source: string;
+  learningObjectiveIds: Array<string>;
+};
+
+/**
+ * Represents a line item.
+ */
+export type GetLineItemsForSchoolLineItem = {
+  sourcedId?: string | undefined;
+  status?: GetLineItemsForSchoolStatus | undefined;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  description?: string | null | undefined;
+  assignDate: Date;
+  dueDate: Date;
+  class: GetLineItemsForSchoolClass;
+  school: GetLineItemsForSchoolSchool;
+  category: GetLineItemsForSchoolCategory;
+  gradingPeriod?: GetLineItemsForSchoolGradingPeriod | null | undefined;
+  academicSession?: GetLineItemsForSchoolAcademicSession | null | undefined;
+  scoreScale?: GetLineItemsForSchoolScoreScale | null | undefined;
+  resultValueMin?: number | null | undefined;
+  resultValueMax?: number | null | undefined;
+  learningObjectiveSet?:
+    | Array<GetLineItemsForSchoolLearningObjectiveSet>
+    | null
+    | undefined;
+};
+
 /**
  * Successful response containing a collection of line items
  */
 export type GetLineItemsForSchoolResponseBody = {
-  lineItems: Array<components.LineItem>;
+  lineItems: Array<GetLineItemsForSchoolLineItem>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -174,12 +236,576 @@ export function getLineItemsForSchoolRequestFromJSON(
 }
 
 /** @internal */
+export const GetLineItemsForSchoolStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetLineItemsForSchoolStatus
+> = z.nativeEnum(GetLineItemsForSchoolStatus);
+
+/** @internal */
+export const GetLineItemsForSchoolStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetLineItemsForSchoolStatus
+> = GetLineItemsForSchoolStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolStatus$ {
+  /** @deprecated use `GetLineItemsForSchoolStatus$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolStatus$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolStatus$outboundSchema` instead. */
+  export const outboundSchema = GetLineItemsForSchoolStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetLineItemsForSchoolClass$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolClass,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolClass$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolClass$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolClass$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolClass
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolClass$ {
+  /** @deprecated use `GetLineItemsForSchoolClass$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolClass$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolClass$outboundSchema` instead. */
+  export const outboundSchema = GetLineItemsForSchoolClass$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolClass$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolClass$Outbound;
+}
+
+export function getLineItemsForSchoolClassToJSON(
+  getLineItemsForSchoolClass: GetLineItemsForSchoolClass,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolClass$outboundSchema.parse(getLineItemsForSchoolClass),
+  );
+}
+
+export function getLineItemsForSchoolClassFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolClass, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLineItemsForSchoolClass$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolClass' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolSchool$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolSchool,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolSchool$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolSchool$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolSchool$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolSchool
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolSchool$ {
+  /** @deprecated use `GetLineItemsForSchoolSchool$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolSchool$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolSchool$outboundSchema` instead. */
+  export const outboundSchema = GetLineItemsForSchoolSchool$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolSchool$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolSchool$Outbound;
+}
+
+export function getLineItemsForSchoolSchoolToJSON(
+  getLineItemsForSchoolSchool: GetLineItemsForSchoolSchool,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolSchool$outboundSchema.parse(
+      getLineItemsForSchoolSchool,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolSchoolFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolSchool, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLineItemsForSchoolSchool$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolSchool' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolCategory$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolCategory,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolCategory$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolCategory$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolCategory$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolCategory
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolCategory$ {
+  /** @deprecated use `GetLineItemsForSchoolCategory$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolCategory$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolCategory$outboundSchema` instead. */
+  export const outboundSchema = GetLineItemsForSchoolCategory$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolCategory$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolCategory$Outbound;
+}
+
+export function getLineItemsForSchoolCategoryToJSON(
+  getLineItemsForSchoolCategory: GetLineItemsForSchoolCategory,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolCategory$outboundSchema.parse(
+      getLineItemsForSchoolCategory,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolCategoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolCategory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLineItemsForSchoolCategory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolCategory' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolGradingPeriod$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolGradingPeriod,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolGradingPeriod$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolGradingPeriod$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolGradingPeriod$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolGradingPeriod
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolGradingPeriod$ {
+  /** @deprecated use `GetLineItemsForSchoolGradingPeriod$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolGradingPeriod$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolGradingPeriod$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLineItemsForSchoolGradingPeriod$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolGradingPeriod$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolGradingPeriod$Outbound;
+}
+
+export function getLineItemsForSchoolGradingPeriodToJSON(
+  getLineItemsForSchoolGradingPeriod: GetLineItemsForSchoolGradingPeriod,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolGradingPeriod$outboundSchema.parse(
+      getLineItemsForSchoolGradingPeriod,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolGradingPeriodFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolGradingPeriod, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetLineItemsForSchoolGradingPeriod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolGradingPeriod' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolAcademicSession$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolAcademicSession,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolAcademicSession$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolAcademicSession$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolAcademicSession$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolAcademicSession
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolAcademicSession$ {
+  /** @deprecated use `GetLineItemsForSchoolAcademicSession$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLineItemsForSchoolAcademicSession$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolAcademicSession$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLineItemsForSchoolAcademicSession$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolAcademicSession$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolAcademicSession$Outbound;
+}
+
+export function getLineItemsForSchoolAcademicSessionToJSON(
+  getLineItemsForSchoolAcademicSession: GetLineItemsForSchoolAcademicSession,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolAcademicSession$outboundSchema.parse(
+      getLineItemsForSchoolAcademicSession,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolAcademicSessionFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolAcademicSession, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetLineItemsForSchoolAcademicSession$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolAcademicSession' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolScoreScale$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolScoreScale,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolScoreScale$Outbound = {
+  sourcedId: string;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolScoreScale$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolScoreScale$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolScoreScale
+> = z.object({
+  sourcedId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolScoreScale$ {
+  /** @deprecated use `GetLineItemsForSchoolScoreScale$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolScoreScale$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolScoreScale$outboundSchema` instead. */
+  export const outboundSchema = GetLineItemsForSchoolScoreScale$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolScoreScale$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolScoreScale$Outbound;
+}
+
+export function getLineItemsForSchoolScoreScaleToJSON(
+  getLineItemsForSchoolScoreScale: GetLineItemsForSchoolScoreScale,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolScoreScale$outboundSchema.parse(
+      getLineItemsForSchoolScoreScale,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolScoreScaleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolScoreScale, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLineItemsForSchoolScoreScale$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolScoreScale' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolLearningObjectiveSet$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolLearningObjectiveSet,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  source: z.string(),
+  learningObjectiveIds: z.array(z.string()),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolLearningObjectiveSet$Outbound = {
+  source: string;
+  learningObjectiveIds: Array<string>;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolLearningObjectiveSet$outboundSchema:
+  z.ZodType<
+    GetLineItemsForSchoolLearningObjectiveSet$Outbound,
+    z.ZodTypeDef,
+    GetLineItemsForSchoolLearningObjectiveSet
+  > = z.object({
+    source: z.string(),
+    learningObjectiveIds: z.array(z.string()),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolLearningObjectiveSet$ {
+  /** @deprecated use `GetLineItemsForSchoolLearningObjectiveSet$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLineItemsForSchoolLearningObjectiveSet$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolLearningObjectiveSet$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLineItemsForSchoolLearningObjectiveSet$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolLearningObjectiveSet$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolLearningObjectiveSet$Outbound;
+}
+
+export function getLineItemsForSchoolLearningObjectiveSetToJSON(
+  getLineItemsForSchoolLearningObjectiveSet:
+    GetLineItemsForSchoolLearningObjectiveSet,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolLearningObjectiveSet$outboundSchema.parse(
+      getLineItemsForSchoolLearningObjectiveSet,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolLearningObjectiveSetFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetLineItemsForSchoolLearningObjectiveSet,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetLineItemsForSchoolLearningObjectiveSet$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetLineItemsForSchoolLearningObjectiveSet' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetLineItemsForSchoolLineItem$inboundSchema: z.ZodType<
+  GetLineItemsForSchoolLineItem,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetLineItemsForSchoolStatus$inboundSchema.default("active"),
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  description: z.nullable(z.string()).optional(),
+  assignDate: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  dueDate: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  class: z.lazy(() => GetLineItemsForSchoolClass$inboundSchema),
+  school: z.lazy(() => GetLineItemsForSchoolSchool$inboundSchema),
+  category: z.lazy(() => GetLineItemsForSchoolCategory$inboundSchema),
+  gradingPeriod: z.nullable(
+    z.lazy(() => GetLineItemsForSchoolGradingPeriod$inboundSchema),
+  ).optional(),
+  academicSession: z.nullable(
+    z.lazy(() => GetLineItemsForSchoolAcademicSession$inboundSchema),
+  ).optional(),
+  scoreScale: z.nullable(
+    z.lazy(() => GetLineItemsForSchoolScoreScale$inboundSchema),
+  ).optional(),
+  resultValueMin: z.nullable(z.number()).optional(),
+  resultValueMax: z.nullable(z.number()).optional(),
+  learningObjectiveSet: z.nullable(
+    z.array(
+      z.lazy(() => GetLineItemsForSchoolLearningObjectiveSet$inboundSchema),
+    ),
+  ).optional(),
+});
+
+/** @internal */
+export type GetLineItemsForSchoolLineItem$Outbound = {
+  sourcedId?: string | undefined;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  description?: string | null | undefined;
+  assignDate: string;
+  dueDate: string;
+  class: GetLineItemsForSchoolClass$Outbound;
+  school: GetLineItemsForSchoolSchool$Outbound;
+  category: GetLineItemsForSchoolCategory$Outbound;
+  gradingPeriod?:
+    | GetLineItemsForSchoolGradingPeriod$Outbound
+    | null
+    | undefined;
+  academicSession?:
+    | GetLineItemsForSchoolAcademicSession$Outbound
+    | null
+    | undefined;
+  scoreScale?: GetLineItemsForSchoolScoreScale$Outbound | null | undefined;
+  resultValueMin?: number | null | undefined;
+  resultValueMax?: number | null | undefined;
+  learningObjectiveSet?:
+    | Array<GetLineItemsForSchoolLearningObjectiveSet$Outbound>
+    | null
+    | undefined;
+};
+
+/** @internal */
+export const GetLineItemsForSchoolLineItem$outboundSchema: z.ZodType<
+  GetLineItemsForSchoolLineItem$Outbound,
+  z.ZodTypeDef,
+  GetLineItemsForSchoolLineItem
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetLineItemsForSchoolStatus$outboundSchema.default("active"),
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  description: z.nullable(z.string()).optional(),
+  assignDate: z.date().transform(v => v.toISOString()),
+  dueDate: z.date().transform(v => v.toISOString()),
+  class: z.lazy(() => GetLineItemsForSchoolClass$outboundSchema),
+  school: z.lazy(() => GetLineItemsForSchoolSchool$outboundSchema),
+  category: z.lazy(() => GetLineItemsForSchoolCategory$outboundSchema),
+  gradingPeriod: z.nullable(
+    z.lazy(() => GetLineItemsForSchoolGradingPeriod$outboundSchema),
+  ).optional(),
+  academicSession: z.nullable(
+    z.lazy(() => GetLineItemsForSchoolAcademicSession$outboundSchema),
+  ).optional(),
+  scoreScale: z.nullable(
+    z.lazy(() => GetLineItemsForSchoolScoreScale$outboundSchema),
+  ).optional(),
+  resultValueMin: z.nullable(z.number()).optional(),
+  resultValueMax: z.nullable(z.number()).optional(),
+  learningObjectiveSet: z.nullable(
+    z.array(z.lazy(() =>
+      GetLineItemsForSchoolLearningObjectiveSet$outboundSchema
+    )),
+  ).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLineItemsForSchoolLineItem$ {
+  /** @deprecated use `GetLineItemsForSchoolLineItem$inboundSchema` instead. */
+  export const inboundSchema = GetLineItemsForSchoolLineItem$inboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolLineItem$outboundSchema` instead. */
+  export const outboundSchema = GetLineItemsForSchoolLineItem$outboundSchema;
+  /** @deprecated use `GetLineItemsForSchoolLineItem$Outbound` instead. */
+  export type Outbound = GetLineItemsForSchoolLineItem$Outbound;
+}
+
+export function getLineItemsForSchoolLineItemToJSON(
+  getLineItemsForSchoolLineItem: GetLineItemsForSchoolLineItem,
+): string {
+  return JSON.stringify(
+    GetLineItemsForSchoolLineItem$outboundSchema.parse(
+      getLineItemsForSchoolLineItem,
+    ),
+  );
+}
+
+export function getLineItemsForSchoolLineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLineItemsForSchoolLineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLineItemsForSchoolLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLineItemsForSchoolLineItem' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetLineItemsForSchoolResponseBody$inboundSchema: z.ZodType<
   GetLineItemsForSchoolResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  lineItems: z.array(components.LineItem$inboundSchema),
+  lineItems: z.array(z.lazy(() => GetLineItemsForSchoolLineItem$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -189,7 +815,7 @@ export const GetLineItemsForSchoolResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetLineItemsForSchoolResponseBody$Outbound = {
-  lineItems: Array<components.LineItem$Outbound>;
+  lineItems: Array<GetLineItemsForSchoolLineItem$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -203,7 +829,9 @@ export const GetLineItemsForSchoolResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLineItemsForSchoolResponseBody
 > = z.object({
-  lineItems: z.array(components.LineItem$outboundSchema),
+  lineItems: z.array(
+    z.lazy(() => GetLineItemsForSchoolLineItem$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

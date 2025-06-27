@@ -24,21 +24,21 @@ let value: GetScoreScalesForSchoolResponseBody = {
       ],
     },
   ],
-  totalCount: 6321.22,
-  pageCount: 8740.71,
-  pageNumber: 1224.22,
-  offset: 4618.13,
-  limit: 8224.67,
+  totalCount: 1224.22,
+  pageCount: 4618.13,
+  pageNumber: 8224.67,
+  offset: 957.8,
+  limit: 8800.32,
 };
 ```
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `scoreScales`                                                    | [components.ScoreScale](../../models/components/scorescale.md)[] | :heavy_check_mark:                                               | N/A                                                              |
-| `totalCount`                                                     | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `pageCount`                                                      | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `pageNumber`                                                     | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `offset`                                                         | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `limit`                                                          | *number*                                                         | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `scoreScales`                                                                                                  | [operations.GetScoreScalesForSchoolScoreScale](../../models/operations/getscorescalesforschoolscorescale.md)[] | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `totalCount`                                                                                                   | *number*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `pageCount`                                                                                                    | *number*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `pageNumber`                                                                                                   | *number*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `offset`                                                                                                       | *number*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `limit`                                                                                                        | *number*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |

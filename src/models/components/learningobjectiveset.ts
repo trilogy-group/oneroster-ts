@@ -7,87 +7,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type LearningObjectiveSetLearningObjectiveId = {
-  learningObjectiveId: string;
-  score?: number | undefined;
-  textScore?: string | undefined;
-};
-
 export type LearningObjectiveSet = {
   source: string;
-  learningObjectiveIds: Array<LearningObjectiveSetLearningObjectiveId>;
+  learningObjectiveIds: Array<string>;
 };
-
-/** @internal */
-export const LearningObjectiveSetLearningObjectiveId$inboundSchema: z.ZodType<
-  LearningObjectiveSetLearningObjectiveId,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  learningObjectiveId: z.string(),
-  score: z.number().optional(),
-  textScore: z.string().optional(),
-});
-
-/** @internal */
-export type LearningObjectiveSetLearningObjectiveId$Outbound = {
-  learningObjectiveId: string;
-  score?: number | undefined;
-  textScore?: string | undefined;
-};
-
-/** @internal */
-export const LearningObjectiveSetLearningObjectiveId$outboundSchema: z.ZodType<
-  LearningObjectiveSetLearningObjectiveId$Outbound,
-  z.ZodTypeDef,
-  LearningObjectiveSetLearningObjectiveId
-> = z.object({
-  learningObjectiveId: z.string(),
-  score: z.number().optional(),
-  textScore: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LearningObjectiveSetLearningObjectiveId$ {
-  /** @deprecated use `LearningObjectiveSetLearningObjectiveId$inboundSchema` instead. */
-  export const inboundSchema =
-    LearningObjectiveSetLearningObjectiveId$inboundSchema;
-  /** @deprecated use `LearningObjectiveSetLearningObjectiveId$outboundSchema` instead. */
-  export const outboundSchema =
-    LearningObjectiveSetLearningObjectiveId$outboundSchema;
-  /** @deprecated use `LearningObjectiveSetLearningObjectiveId$Outbound` instead. */
-  export type Outbound = LearningObjectiveSetLearningObjectiveId$Outbound;
-}
-
-export function learningObjectiveSetLearningObjectiveIdToJSON(
-  learningObjectiveSetLearningObjectiveId:
-    LearningObjectiveSetLearningObjectiveId,
-): string {
-  return JSON.stringify(
-    LearningObjectiveSetLearningObjectiveId$outboundSchema.parse(
-      learningObjectiveSetLearningObjectiveId,
-    ),
-  );
-}
-
-export function learningObjectiveSetLearningObjectiveIdFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  LearningObjectiveSetLearningObjectiveId,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      LearningObjectiveSetLearningObjectiveId$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'LearningObjectiveSetLearningObjectiveId' from JSON`,
-  );
-}
 
 /** @internal */
 export const LearningObjectiveSet$inboundSchema: z.ZodType<
@@ -96,15 +19,13 @@ export const LearningObjectiveSet$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   source: z.string(),
-  learningObjectiveIds: z.array(
-    z.lazy(() => LearningObjectiveSetLearningObjectiveId$inboundSchema),
-  ),
+  learningObjectiveIds: z.array(z.string()),
 });
 
 /** @internal */
 export type LearningObjectiveSet$Outbound = {
   source: string;
-  learningObjectiveIds: Array<LearningObjectiveSetLearningObjectiveId$Outbound>;
+  learningObjectiveIds: Array<string>;
 };
 
 /** @internal */
@@ -114,9 +35,7 @@ export const LearningObjectiveSet$outboundSchema: z.ZodType<
   LearningObjectiveSet
 > = z.object({
   source: z.string(),
-  learningObjectiveIds: z.array(
-    z.lazy(() => LearningObjectiveSetLearningObjectiveId$outboundSchema),
-  ),
+  learningObjectiveIds: z.array(z.string()),
 });
 
 /**

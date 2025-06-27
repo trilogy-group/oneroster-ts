@@ -8,12 +8,7 @@ Successful response containing a collection of categories
 import { GetAllCategoriesResponseBody } from "@superbuilders/oneroster/models/operations";
 
 let value: GetAllCategoriesResponseBody = {
-  categories: [
-    {
-      status: "active",
-      title: "<value>",
-    },
-  ],
+  categories: [],
   totalCount: 4480.26,
   pageCount: 335.09,
   pageNumber: 5859.99,
@@ -24,11 +19,11 @@ let value: GetAllCategoriesResponseBody = {
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `categories`                                                 | [components.Category](../../models/components/category.md)[] | :heavy_check_mark:                                           | N/A                                                          |
-| `totalCount`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageCount`                                                  | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `pageNumber`                                                 | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `offset`                                                     | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
-| `limit`                                                      | *number*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `categories`                                                                                 | [operations.GetAllCategoriesCategory](../../models/operations/getallcategoriescategory.md)[] | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `totalCount`                                                                                 | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `pageCount`                                                                                  | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `pageNumber`                                                                                 | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `offset`                                                                                     | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `limit`                                                                                      | *number*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |

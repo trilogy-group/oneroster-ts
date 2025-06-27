@@ -7,6 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -145,7 +146,7 @@ export type GetStudentsForClassPrimaryOrg = {
   type: string;
 };
 
-export type Student = {
+export type GetStudentsForClassStudent = {
   sourcedId: string;
   status: GetStudentsForClassStatus;
   dateLastModified?: Date | undefined;
@@ -169,13 +170,14 @@ export type Student = {
   password?: string | null | undefined;
   sms?: string | null | undefined;
   phone?: string | null | undefined;
+  demographics?: components.Demographics | null | undefined;
 };
 
 /**
  * Successful response with the list of students
  */
 export type GetStudentsForClassResponseBody = {
-  students: Array<Student>;
+  students: Array<GetStudentsForClassStudent>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -676,39 +678,43 @@ export function getStudentsForClassPrimaryOrgFromJSON(
 }
 
 /** @internal */
-export const Student$inboundSchema: z.ZodType<Student, z.ZodTypeDef, unknown> =
-  z.object({
-    sourcedId: z.string(),
-    status: GetStudentsForClassStatus$inboundSchema,
-    dateLastModified: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ).optional(),
-    metadata: z.nullable(z.record(z.any())).optional(),
-    userMasterIdentifier: z.nullable(z.string()).optional(),
-    username: z.nullable(z.string()).optional(),
-    userIds: z.array(z.lazy(() => GetStudentsForClassUserId$inboundSchema))
-      .optional(),
-    enabledUser: z.boolean(),
-    givenName: z.string(),
-    familyName: z.string(),
-    middleName: z.nullable(z.string()).optional(),
-    roles: z.array(z.lazy(() => GetStudentsForClassRole$inboundSchema)),
-    agents: z.array(z.lazy(() => GetStudentsForClassAgent$inboundSchema)),
-    primaryOrg: z.lazy(() => GetStudentsForClassPrimaryOrg$inboundSchema)
-      .optional(),
-    email: z.nullable(z.string()).optional(),
-    preferredFirstName: z.nullable(z.string()).optional(),
-    preferredMiddleName: z.nullable(z.string()).optional(),
-    preferredLastName: z.nullable(z.string()).optional(),
-    pronouns: z.nullable(z.string()).optional(),
-    grades: z.array(z.string()).optional(),
-    password: z.nullable(z.string()).optional(),
-    sms: z.nullable(z.string()).optional(),
-    phone: z.nullable(z.string()).optional(),
-  });
+export const GetStudentsForClassStudent$inboundSchema: z.ZodType<
+  GetStudentsForClassStudent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string(),
+  status: GetStudentsForClassStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  userMasterIdentifier: z.nullable(z.string()).optional(),
+  username: z.nullable(z.string()).optional(),
+  userIds: z.array(z.lazy(() => GetStudentsForClassUserId$inboundSchema))
+    .optional(),
+  enabledUser: z.boolean(),
+  givenName: z.string(),
+  familyName: z.string(),
+  middleName: z.nullable(z.string()).optional(),
+  roles: z.array(z.lazy(() => GetStudentsForClassRole$inboundSchema)),
+  agents: z.array(z.lazy(() => GetStudentsForClassAgent$inboundSchema)),
+  primaryOrg: z.lazy(() => GetStudentsForClassPrimaryOrg$inboundSchema)
+    .optional(),
+  email: z.nullable(z.string()).optional(),
+  preferredFirstName: z.nullable(z.string()).optional(),
+  preferredMiddleName: z.nullable(z.string()).optional(),
+  preferredLastName: z.nullable(z.string()).optional(),
+  pronouns: z.nullable(z.string()).optional(),
+  grades: z.array(z.string()).optional(),
+  password: z.nullable(z.string()).optional(),
+  sms: z.nullable(z.string()).optional(),
+  phone: z.nullable(z.string()).optional(),
+  demographics: z.nullable(components.Demographics$inboundSchema).optional(),
+});
 
 /** @internal */
-export type Student$Outbound = {
+export type GetStudentsForClassStudent$Outbound = {
   sourcedId: string;
   status: string;
   dateLastModified?: string | undefined;
@@ -732,13 +738,14 @@ export type Student$Outbound = {
   password?: string | null | undefined;
   sms?: string | null | undefined;
   phone?: string | null | undefined;
+  demographics?: components.Demographics$Outbound | null | undefined;
 };
 
 /** @internal */
-export const Student$outboundSchema: z.ZodType<
-  Student$Outbound,
+export const GetStudentsForClassStudent$outboundSchema: z.ZodType<
+  GetStudentsForClassStudent$Outbound,
   z.ZodTypeDef,
-  Student
+  GetStudentsForClassStudent
 > = z.object({
   sourcedId: z.string(),
   status: GetStudentsForClassStatus$outboundSchema,
@@ -765,32 +772,37 @@ export const Student$outboundSchema: z.ZodType<
   password: z.nullable(z.string()).optional(),
   sms: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
+  demographics: z.nullable(components.Demographics$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Student$ {
-  /** @deprecated use `Student$inboundSchema` instead. */
-  export const inboundSchema = Student$inboundSchema;
-  /** @deprecated use `Student$outboundSchema` instead. */
-  export const outboundSchema = Student$outboundSchema;
-  /** @deprecated use `Student$Outbound` instead. */
-  export type Outbound = Student$Outbound;
+export namespace GetStudentsForClassStudent$ {
+  /** @deprecated use `GetStudentsForClassStudent$inboundSchema` instead. */
+  export const inboundSchema = GetStudentsForClassStudent$inboundSchema;
+  /** @deprecated use `GetStudentsForClassStudent$outboundSchema` instead. */
+  export const outboundSchema = GetStudentsForClassStudent$outboundSchema;
+  /** @deprecated use `GetStudentsForClassStudent$Outbound` instead. */
+  export type Outbound = GetStudentsForClassStudent$Outbound;
 }
 
-export function studentToJSON(student: Student): string {
-  return JSON.stringify(Student$outboundSchema.parse(student));
+export function getStudentsForClassStudentToJSON(
+  getStudentsForClassStudent: GetStudentsForClassStudent,
+): string {
+  return JSON.stringify(
+    GetStudentsForClassStudent$outboundSchema.parse(getStudentsForClassStudent),
+  );
 }
 
-export function studentFromJSON(
+export function getStudentsForClassStudentFromJSON(
   jsonString: string,
-): SafeParseResult<Student, SDKValidationError> {
+): SafeParseResult<GetStudentsForClassStudent, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Student$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Student' from JSON`,
+    (x) => GetStudentsForClassStudent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStudentsForClassStudent' from JSON`,
   );
 }
 
@@ -800,7 +812,7 @@ export const GetStudentsForClassResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  students: z.array(z.lazy(() => Student$inboundSchema)),
+  students: z.array(z.lazy(() => GetStudentsForClassStudent$inboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -810,7 +822,7 @@ export const GetStudentsForClassResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetStudentsForClassResponseBody$Outbound = {
-  students: Array<Student$Outbound>;
+  students: Array<GetStudentsForClassStudent$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -824,7 +836,7 @@ export const GetStudentsForClassResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetStudentsForClassResponseBody
 > = z.object({
-  students: z.array(z.lazy(() => Student$outboundSchema)),
+  students: z.array(z.lazy(() => GetStudentsForClassStudent$outboundSchema)),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

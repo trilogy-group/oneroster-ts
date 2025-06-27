@@ -11,45 +11,45 @@ let value: GetClassesForStudentResponseBody = {
   classes: [
     {
       sourcedId: "<id>",
-      status: "tobedeleted",
+      status: "active",
       title: "<value>",
-      classCode: "<value>",
+      classCode: null,
       classType: "homeroom",
       location: "<value>",
       course: {
-        href: "https://impressionable-widow.net/",
+        href: "https://utilized-resource.net/",
         sourcedId: "<id>",
         type: "<value>",
       },
       school: {
-        href: "https://mysterious-march.info/",
+        href: "https://nervous-hamburger.name",
         sourcedId: "<id>",
         type: "<value>",
       },
       terms: [
         {
-          href: "https://woeful-outset.org",
+          href: "https://separate-guacamole.name",
           sourcedId: "<id>",
           type: "<value>",
         },
       ],
     },
   ],
-  totalCount: 6884.17,
-  pageCount: 3.54,
-  pageNumber: 3234.88,
-  offset: 5133.26,
-  limit: 8643.98,
+  totalCount: 6328.82,
+  pageCount: 9354.56,
+  pageNumber: 6884.17,
+  offset: 3.54,
+  limit: 3234.88,
 };
 ```
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `classes`                                              | [components.Class](../../models/components/class.md)[] | :heavy_check_mark:                                     | N/A                                                    |
-| `totalCount`                                           | *number*                                               | :heavy_check_mark:                                     | N/A                                                    |
-| `pageCount`                                            | *number*                                               | :heavy_check_mark:                                     | N/A                                                    |
-| `pageNumber`                                           | *number*                                               | :heavy_check_mark:                                     | N/A                                                    |
-| `offset`                                               | *number*                                               | :heavy_check_mark:                                     | N/A                                                    |
-| `limit`                                                | *number*                                               | :heavy_check_mark:                                     | N/A                                                    |
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `classes`                                                                                      | [operations.GetClassesForStudentClass](../../models/operations/getclassesforstudentclass.md)[] | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `totalCount`                                                                                   | *number*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `pageCount`                                                                                    | *number*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `pageNumber`                                                                                   | *number*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `offset`                                                                                       | *number*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `limit`                                                                                        | *number*                                                                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |

@@ -4,8 +4,12 @@
 
 import { resourcesManagementCreateResource } from "../funcs/resourcesManagementCreateResource.js";
 import { resourcesManagementDeleteResource } from "../funcs/resourcesManagementDeleteResource.js";
+import { resourcesManagementExportResourceToCommonCartridge } from "../funcs/resourcesManagementExportResourceToCommonCartridge.js";
 import { resourcesManagementGetAllResources } from "../funcs/resourcesManagementGetAllResources.js";
 import { resourcesManagementGetResource } from "../funcs/resourcesManagementGetResource.js";
+import { resourcesManagementGetResourcesForClass } from "../funcs/resourcesManagementGetResourcesForClass.js";
+import { resourcesManagementGetResourcesForCourse } from "../funcs/resourcesManagementGetResourcesForCourse.js";
+import { resourcesManagementGetResourcesForUser } from "../funcs/resourcesManagementGetResourcesForUser.js";
 import { resourcesManagementUpdateResource } from "../funcs/resourcesManagementUpdateResource.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -94,6 +98,80 @@ export class ResourcesManagement extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(resourcesManagementDeleteResource(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get resources for a class
+   *
+   * @remarks
+   * To get the collection of resources available to a specific class. If the corresponding record cannot be located, the api will return a 404 error code and message 'Class not found.'
+   */
+  async getResourcesForClass(
+    request: operations.GetResourcesForClassRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.GetResourcesForClassResponse, { offset: number }>
+  > {
+    return unwrapResultIterator(resourcesManagementGetResourcesForClass(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get resources for a course
+   *
+   * @remarks
+   * To get the collection of resources assigned to a specific course. If the corresponding record cannot be located, the api will return a 404 error code and message 'Course not found.'
+   */
+  async getResourcesForCourse(
+    request: operations.GetResourcesForCourseRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.GetResourcesForCourseResponse, { offset: number }>
+  > {
+    return unwrapResultIterator(resourcesManagementGetResourcesForCourse(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Export Resource to Common Cartridge
+   *
+   * @remarks
+   * Export a resource to Common Cartridge (.imscc) format for import into LMS systems.
+   */
+  async exportResourceToCommonCartridge(
+    request: operations.ExportResourceToCommonCartridgeRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ExportResourceToCommonCartridgeResponse> {
+    return unwrapAsync(resourcesManagementExportResourceToCommonCartridge(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get resources for a user
+   *
+   * @remarks
+   * To get the collection of resources available to a specific user. If the corresponding record cannot be located, the api will return a 404 error code and message 'User not found.'
+   */
+  async getResourcesForUser(
+    request: operations.GetResourcesForUserRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.GetResourcesForUserResponse, { offset: number }>
+  > {
+    return unwrapResultIterator(resourcesManagementGetResourcesForUser(
       this,
       request,
       options,

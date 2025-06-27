@@ -7,6 +7,8 @@ import { CreateGradingPeriodRequest } from "@superbuilders/oneroster/models/oper
 
 let value: CreateGradingPeriodRequest = {
   academicSession: {
+    sourcedId: "<id>",
+    status: "tobedeleted",
     title: "<value>",
     startDate: "<value>",
     endDate: "<value>",

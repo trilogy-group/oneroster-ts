@@ -8,16 +8,16 @@ import { LineItemLearningObjectiveSet } from "@superbuilders/oneroster/models/co
 let value: LineItemLearningObjectiveSet = {
   source: "<value>",
   learningObjectiveIds: [
-    {
-      learningObjectiveId: "<id>",
-    },
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```
 
 ## Fields
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `source`                                                                                           | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
-| `learningObjectiveIds`                                                                             | [components.LineItemLearningObjectiveId](../../models/components/lineitemlearningobjectiveid.md)[] | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| Field                  | Type                   | Required               | Description            |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `source`               | *string*               | :heavy_check_mark:     | N/A                    |
+| `learningObjectiveIds` | *string*[]             | :heavy_check_mark:     | N/A                    |

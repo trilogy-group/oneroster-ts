@@ -70,10 +70,10 @@ export const startCommand = buildCommand({
         brief: "Sets the tokenURL auth field for the API",
         optional: false,
         default:
-          "https://alpha-auth-development-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
+          "https://alpha-auth-production-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
         parse: (value) => {
           return z.string().default(
-            "https://alpha-auth-development-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
+            "https://alpha-auth-production-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
           ).parse(value);
         },
       },

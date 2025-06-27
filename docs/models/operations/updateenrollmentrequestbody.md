@@ -7,9 +7,7 @@ import { UpdateEnrollmentRequestBody } from "@superbuilders/oneroster/models/ope
 
 let value: UpdateEnrollmentRequestBody = {
   enrollment: {
-    sourcedId: "<id>",
-    status: "tobedeleted",
-    role: "proctor",
+    role: "student",
     beginDate: "2024-01-01",
     endDate: "2024-01-01",
     user: {

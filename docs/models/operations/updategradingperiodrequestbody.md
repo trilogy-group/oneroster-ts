@@ -7,6 +7,8 @@ import { UpdateGradingPeriodRequestBody } from "@superbuilders/oneroster/models/
 
 let value: UpdateGradingPeriodRequestBody = {
   academicSession: {
+    sourcedId: "<id>",
+    status: "active",
     title: "<value>",
     startDate: "<value>",
     endDate: "<value>",

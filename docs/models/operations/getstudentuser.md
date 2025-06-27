@@ -8,27 +8,27 @@ import { GetStudentUser } from "@superbuilders/oneroster/models/operations";
 let value: GetStudentUser = {
   sourcedId: "<id>",
   status: "tobedeleted",
-  enabledUser: false,
+  enabledUser: true,
   givenName: "<value>",
   familyName: "<value>",
   roles: [
     {
       roleType: "primary",
-      role: "student",
+      role: "relative",
       org: {
-        href: "https://prickly-analogy.biz/",
+        href: "https://self-assured-deer.info/",
         sourcedId: "<id>",
         type: "<value>",
       },
-      beginDate: "<value>",
+      beginDate: null,
       endDate: "<value>",
     },
   ],
   agents: [
     {
-      href: "https://awful-heartbeat.org",
+      href: "https://infatuated-status.name/",
       sourcedId: "<id>",
-      type: "scoreScale",
+      type: "category",
     },
   ],
 };
@@ -61,3 +61,4 @@ let value: GetStudentUser = {
 | `password`                                                                                    | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `sms`                                                                                         | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `phone`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `demographics`                                                                                | [components.Demographics](../../models/components/demographics.md)                            | :heavy_minus_sign:                                                                            | N/A                                                                                           |

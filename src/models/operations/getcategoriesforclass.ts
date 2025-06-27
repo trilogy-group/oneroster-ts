@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -59,11 +58,31 @@ export type GetCategoriesForClassRequest = {
   search?: string | undefined;
 };
 
+export const GetCategoriesForClassStatus = {
+  Active: "active",
+  Tobedeleted: "tobedeleted",
+} as const;
+export type GetCategoriesForClassStatus = ClosedEnum<
+  typeof GetCategoriesForClassStatus
+>;
+
+/**
+ * Represents a category.
+ */
+export type GetCategoriesForClassCategory = {
+  sourcedId?: string | undefined;
+  status: GetCategoriesForClassStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  weight?: number | null | undefined;
+};
+
 /**
  * Successful response containing a collection of categories for the class
  */
 export type GetCategoriesForClassResponseBody = {
-  categories: Array<components.Category>;
+  categories: Array<GetCategoriesForClassCategory>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -174,12 +193,108 @@ export function getCategoriesForClassRequestFromJSON(
 }
 
 /** @internal */
+export const GetCategoriesForClassStatus$inboundSchema: z.ZodNativeEnum<
+  typeof GetCategoriesForClassStatus
+> = z.nativeEnum(GetCategoriesForClassStatus);
+
+/** @internal */
+export const GetCategoriesForClassStatus$outboundSchema: z.ZodNativeEnum<
+  typeof GetCategoriesForClassStatus
+> = GetCategoriesForClassStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCategoriesForClassStatus$ {
+  /** @deprecated use `GetCategoriesForClassStatus$inboundSchema` instead. */
+  export const inboundSchema = GetCategoriesForClassStatus$inboundSchema;
+  /** @deprecated use `GetCategoriesForClassStatus$outboundSchema` instead. */
+  export const outboundSchema = GetCategoriesForClassStatus$outboundSchema;
+}
+
+/** @internal */
+export const GetCategoriesForClassCategory$inboundSchema: z.ZodType<
+  GetCategoriesForClassCategory,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetCategoriesForClassStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  weight: z.nullable(z.number()).optional(),
+});
+
+/** @internal */
+export type GetCategoriesForClassCategory$Outbound = {
+  sourcedId?: string | undefined;
+  status: string;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  title: string;
+  weight?: number | null | undefined;
+};
+
+/** @internal */
+export const GetCategoriesForClassCategory$outboundSchema: z.ZodType<
+  GetCategoriesForClassCategory$Outbound,
+  z.ZodTypeDef,
+  GetCategoriesForClassCategory
+> = z.object({
+  sourcedId: z.string().optional(),
+  status: GetCategoriesForClassStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string(),
+  weight: z.nullable(z.number()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCategoriesForClassCategory$ {
+  /** @deprecated use `GetCategoriesForClassCategory$inboundSchema` instead. */
+  export const inboundSchema = GetCategoriesForClassCategory$inboundSchema;
+  /** @deprecated use `GetCategoriesForClassCategory$outboundSchema` instead. */
+  export const outboundSchema = GetCategoriesForClassCategory$outboundSchema;
+  /** @deprecated use `GetCategoriesForClassCategory$Outbound` instead. */
+  export type Outbound = GetCategoriesForClassCategory$Outbound;
+}
+
+export function getCategoriesForClassCategoryToJSON(
+  getCategoriesForClassCategory: GetCategoriesForClassCategory,
+): string {
+  return JSON.stringify(
+    GetCategoriesForClassCategory$outboundSchema.parse(
+      getCategoriesForClassCategory,
+    ),
+  );
+}
+
+export function getCategoriesForClassCategoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCategoriesForClassCategory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCategoriesForClassCategory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCategoriesForClassCategory' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetCategoriesForClassResponseBody$inboundSchema: z.ZodType<
   GetCategoriesForClassResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  categories: z.array(components.Category$inboundSchema),
+  categories: z.array(
+    z.lazy(() => GetCategoriesForClassCategory$inboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),
@@ -189,7 +304,7 @@ export const GetCategoriesForClassResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetCategoriesForClassResponseBody$Outbound = {
-  categories: Array<components.Category$Outbound>;
+  categories: Array<GetCategoriesForClassCategory$Outbound>;
   totalCount: number;
   pageCount: number;
   pageNumber: number;
@@ -203,7 +318,9 @@ export const GetCategoriesForClassResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetCategoriesForClassResponseBody
 > = z.object({
-  categories: z.array(components.Category$outboundSchema),
+  categories: z.array(
+    z.lazy(() => GetCategoriesForClassCategory$outboundSchema),
+  ),
   totalCount: z.number(),
   pageCount: z.number(),
   pageNumber: z.number(),

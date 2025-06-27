@@ -29,7 +29,7 @@ export type AssessmentLineItemClass = {
 /**
  * Represents a parent assessment line item.
  */
-export type AssessmentLineItemParent = {
+export type ParentAssessmentLineItem = {
   sourcedId: string;
 };
 
@@ -68,7 +68,7 @@ export type AssessmentLineItem = {
   /**
    * Represents a parent assessment line item.
    */
-  parent?: AssessmentLineItemParent | null | undefined;
+  parentAssessmentLineItem?: ParentAssessmentLineItem | null | undefined;
   /**
    * Represents a score scale.
    */
@@ -165,8 +165,8 @@ export function assessmentLineItemClassFromJSON(
 }
 
 /** @internal */
-export const AssessmentLineItemParent$inboundSchema: z.ZodType<
-  AssessmentLineItemParent,
+export const ParentAssessmentLineItem$inboundSchema: z.ZodType<
+  ParentAssessmentLineItem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -174,15 +174,15 @@ export const AssessmentLineItemParent$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type AssessmentLineItemParent$Outbound = {
+export type ParentAssessmentLineItem$Outbound = {
   sourcedId: string;
 };
 
 /** @internal */
-export const AssessmentLineItemParent$outboundSchema: z.ZodType<
-  AssessmentLineItemParent$Outbound,
+export const ParentAssessmentLineItem$outboundSchema: z.ZodType<
+  ParentAssessmentLineItem$Outbound,
   z.ZodTypeDef,
-  AssessmentLineItemParent
+  ParentAssessmentLineItem
 > = z.object({
   sourcedId: z.string(),
 });
@@ -191,30 +191,30 @@ export const AssessmentLineItemParent$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AssessmentLineItemParent$ {
-  /** @deprecated use `AssessmentLineItemParent$inboundSchema` instead. */
-  export const inboundSchema = AssessmentLineItemParent$inboundSchema;
-  /** @deprecated use `AssessmentLineItemParent$outboundSchema` instead. */
-  export const outboundSchema = AssessmentLineItemParent$outboundSchema;
-  /** @deprecated use `AssessmentLineItemParent$Outbound` instead. */
-  export type Outbound = AssessmentLineItemParent$Outbound;
+export namespace ParentAssessmentLineItem$ {
+  /** @deprecated use `ParentAssessmentLineItem$inboundSchema` instead. */
+  export const inboundSchema = ParentAssessmentLineItem$inboundSchema;
+  /** @deprecated use `ParentAssessmentLineItem$outboundSchema` instead. */
+  export const outboundSchema = ParentAssessmentLineItem$outboundSchema;
+  /** @deprecated use `ParentAssessmentLineItem$Outbound` instead. */
+  export type Outbound = ParentAssessmentLineItem$Outbound;
 }
 
-export function assessmentLineItemParentToJSON(
-  assessmentLineItemParent: AssessmentLineItemParent,
+export function parentAssessmentLineItemToJSON(
+  parentAssessmentLineItem: ParentAssessmentLineItem,
 ): string {
   return JSON.stringify(
-    AssessmentLineItemParent$outboundSchema.parse(assessmentLineItemParent),
+    ParentAssessmentLineItem$outboundSchema.parse(parentAssessmentLineItem),
   );
 }
 
-export function assessmentLineItemParentFromJSON(
+export function parentAssessmentLineItemFromJSON(
   jsonString: string,
-): SafeParseResult<AssessmentLineItemParent, SDKValidationError> {
+): SafeParseResult<ParentAssessmentLineItem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => AssessmentLineItemParent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AssessmentLineItemParent' from JSON`,
+    (x) => ParentAssessmentLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParentAssessmentLineItem' from JSON`,
   );
 }
 
@@ -394,8 +394,9 @@ export const AssessmentLineItem$inboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   class: z.nullable(z.lazy(() => AssessmentLineItemClass$inboundSchema))
     .optional(),
-  parent: z.nullable(z.lazy(() => AssessmentLineItemParent$inboundSchema))
-    .optional(),
+  parentAssessmentLineItem: z.nullable(
+    z.lazy(() => ParentAssessmentLineItem$inboundSchema),
+  ).optional(),
   scoreScale: z.nullable(
     z.lazy(() => AssessmentLineItemScoreScale$inboundSchema),
   ).optional(),
@@ -417,7 +418,10 @@ export type AssessmentLineItem$Outbound = {
   title: string;
   description?: string | null | undefined;
   class?: AssessmentLineItemClass$Outbound | null | undefined;
-  parent?: AssessmentLineItemParent$Outbound | null | undefined;
+  parentAssessmentLineItem?:
+    | ParentAssessmentLineItem$Outbound
+    | null
+    | undefined;
   scoreScale?: AssessmentLineItemScoreScale$Outbound | null | undefined;
   resultValueMin?: number | null | undefined;
   resultValueMax?: number | null | undefined;
@@ -443,8 +447,9 @@ export const AssessmentLineItem$outboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   class: z.nullable(z.lazy(() => AssessmentLineItemClass$outboundSchema))
     .optional(),
-  parent: z.nullable(z.lazy(() => AssessmentLineItemParent$outboundSchema))
-    .optional(),
+  parentAssessmentLineItem: z.nullable(
+    z.lazy(() => ParentAssessmentLineItem$outboundSchema),
+  ).optional(),
   scoreScale: z.nullable(
     z.lazy(() => AssessmentLineItemScoreScale$outboundSchema),
   ).optional(),

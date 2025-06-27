@@ -8,16 +8,15 @@ import { LearningObjectiveSet } from "@superbuilders/oneroster/models/components
 let value: LearningObjectiveSet = {
   source: "<value>",
   learningObjectiveIds: [
-    {
-      learningObjectiveId: "<id>",
-    },
+    "<value 1>",
+    "<value 2>",
   ],
 };
 ```
 
 ## Fields
 
-| Field                                                                                                                      | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `source`                                                                                                                   | *string*                                                                                                                   | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
-| `learningObjectiveIds`                                                                                                     | [components.LearningObjectiveSetLearningObjectiveId](../../models/components/learningobjectivesetlearningobjectiveid.md)[] | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
+| Field                  | Type                   | Required               | Description            |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `source`               | *string*               | :heavy_check_mark:     | N/A                    |
+| `learningObjectiveIds` | *string*[]             | :heavy_check_mark:     | N/A                    |

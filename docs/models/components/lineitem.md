@@ -8,10 +8,9 @@ Represents a line item.
 import { LineItem } from "@superbuilders/oneroster/models/components";
 
 let value: LineItem = {
-  status: "active",
   title: "<value>",
-  assignDate: new Date("2025-11-30T15:55:48.022Z"),
-  dueDate: new Date("2024-10-09T02:10:46.282Z"),
+  assignDate: new Date("2024-02-06T12:50:59.125Z"),
+  dueDate: new Date("2025-11-30T15:55:48.022Z"),
   class: {
     sourcedId: "<id>",
   },
@@ -29,7 +28,7 @@ let value: LineItem = {
 | Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `sourcedId`                                                                                          | *string*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
-| `status`                                                                                             | [components.LineItemStatus](../../models/components/lineitemstatus.md)                               | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `status`                                                                                             | [components.LineItemStatus](../../models/components/lineitemstatus.md)                               | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
 | `dateLastModified`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)        | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
 | `metadata`                                                                                           | Record<string, *any*>                                                                                | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
 | `title`                                                                                              | *string*                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

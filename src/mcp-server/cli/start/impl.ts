@@ -53,10 +53,10 @@ async function startStdio(flags: StartCommandFlags) {
     allowedTools: flags.tool,
     scopes: flags.scope,
     security: {
-      clientID: flags["client-id"],
-      clientSecret: flags["client-secret"],
+      clientID: flags["client-id"] ?? "",
+      clientSecret: flags["client-secret"] ?? "",
       tokenURL: flags["token-url"]
-        ?? "https://alpha-auth-development-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
+        ?? "https://alpha-auth-production-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
     },
     serverURL: flags["server-url"],
     serverIdx: flags["server-index"],
@@ -79,10 +79,10 @@ async function startSSE(flags: StartCommandFlags) {
     allowedTools: flags.tool,
     scopes: flags.scope,
     security: {
-      clientID: flags["client-id"],
-      clientSecret: flags["client-secret"],
+      clientID: flags["client-id"] ?? "",
+      clientSecret: flags["client-secret"] ?? "",
       tokenURL: flags["token-url"]
-        ?? "https://alpha-auth-development-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
+        ?? "https://alpha-auth-production-idp.auth.us-west-2.amazoncognito.com/oauth2/token",
     },
     serverURL: flags["server-url"],
     serverIdx: flags["server-index"],

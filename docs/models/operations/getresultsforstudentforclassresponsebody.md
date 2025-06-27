@@ -17,25 +17,25 @@ let value: GetResultsForStudentForClassResponseBody = {
       student: {
         sourcedId: "<id>",
       },
-      scoreStatus: "partially graded",
-      scoreDate: new Date("2024-06-12T07:08:23.003Z"),
+      scoreStatus: "not submitted",
+      scoreDate: new Date("2025-10-02T01:25:57.991Z"),
     },
   ],
-  totalCount: 9170.26,
-  pageCount: 3776.56,
-  pageNumber: 6053.35,
-  offset: 1454.47,
-  limit: 3699.99,
+  totalCount: 3776.56,
+  pageCount: 6053.35,
+  pageNumber: 1454.47,
+  offset: 3699.99,
+  limit: 1400.19,
 };
 ```
 
 ## Fields
 
-| Field                                                    | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `results`                                                | [components.Result](../../models/components/result.md)[] | :heavy_check_mark:                                       | N/A                                                      |
-| `totalCount`                                             | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `pageCount`                                              | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `pageNumber`                                             | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `offset`                                                 | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
-| `limit`                                                  | *number*                                                 | :heavy_check_mark:                                       | N/A                                                      |
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `results`                                                                                                        | [operations.GetResultsForStudentForClassResult](../../models/operations/getresultsforstudentforclassresult.md)[] | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
+| `totalCount`                                                                                                     | *number*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
+| `pageCount`                                                                                                      | *number*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
+| `pageNumber`                                                                                                     | *number*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
+| `offset`                                                                                                         | *number*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
+| `limit`                                                                                                          | *number*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |

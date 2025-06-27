@@ -39,7 +39,7 @@ export const ResultScoreStatus = {
 } as const;
 export type ResultScoreStatus = ClosedEnum<typeof ResultScoreStatus>;
 
-export type ResultLearningObjectiveId = {
+export type ResultLearningObjectiveResult = {
   learningObjectiveId: string;
   score?: number | undefined;
   textScore?: string | undefined;
@@ -47,7 +47,7 @@ export type ResultLearningObjectiveId = {
 
 export type ResultLearningObjectiveSet = {
   source: string;
-  learningObjectiveIds: Array<ResultLearningObjectiveId>;
+  learningObjectiveResults: Array<ResultLearningObjectiveResult>;
 };
 
 /**
@@ -319,8 +319,8 @@ export namespace ResultScoreStatus$ {
 }
 
 /** @internal */
-export const ResultLearningObjectiveId$inboundSchema: z.ZodType<
-  ResultLearningObjectiveId,
+export const ResultLearningObjectiveResult$inboundSchema: z.ZodType<
+  ResultLearningObjectiveResult,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -330,17 +330,17 @@ export const ResultLearningObjectiveId$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ResultLearningObjectiveId$Outbound = {
+export type ResultLearningObjectiveResult$Outbound = {
   learningObjectiveId: string;
   score?: number | undefined;
   textScore?: string | undefined;
 };
 
 /** @internal */
-export const ResultLearningObjectiveId$outboundSchema: z.ZodType<
-  ResultLearningObjectiveId$Outbound,
+export const ResultLearningObjectiveResult$outboundSchema: z.ZodType<
+  ResultLearningObjectiveResult$Outbound,
   z.ZodTypeDef,
-  ResultLearningObjectiveId
+  ResultLearningObjectiveResult
 > = z.object({
   learningObjectiveId: z.string(),
   score: z.number().optional(),
@@ -351,30 +351,32 @@ export const ResultLearningObjectiveId$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ResultLearningObjectiveId$ {
-  /** @deprecated use `ResultLearningObjectiveId$inboundSchema` instead. */
-  export const inboundSchema = ResultLearningObjectiveId$inboundSchema;
-  /** @deprecated use `ResultLearningObjectiveId$outboundSchema` instead. */
-  export const outboundSchema = ResultLearningObjectiveId$outboundSchema;
-  /** @deprecated use `ResultLearningObjectiveId$Outbound` instead. */
-  export type Outbound = ResultLearningObjectiveId$Outbound;
+export namespace ResultLearningObjectiveResult$ {
+  /** @deprecated use `ResultLearningObjectiveResult$inboundSchema` instead. */
+  export const inboundSchema = ResultLearningObjectiveResult$inboundSchema;
+  /** @deprecated use `ResultLearningObjectiveResult$outboundSchema` instead. */
+  export const outboundSchema = ResultLearningObjectiveResult$outboundSchema;
+  /** @deprecated use `ResultLearningObjectiveResult$Outbound` instead. */
+  export type Outbound = ResultLearningObjectiveResult$Outbound;
 }
 
-export function resultLearningObjectiveIdToJSON(
-  resultLearningObjectiveId: ResultLearningObjectiveId,
+export function resultLearningObjectiveResultToJSON(
+  resultLearningObjectiveResult: ResultLearningObjectiveResult,
 ): string {
   return JSON.stringify(
-    ResultLearningObjectiveId$outboundSchema.parse(resultLearningObjectiveId),
+    ResultLearningObjectiveResult$outboundSchema.parse(
+      resultLearningObjectiveResult,
+    ),
   );
 }
 
-export function resultLearningObjectiveIdFromJSON(
+export function resultLearningObjectiveResultFromJSON(
   jsonString: string,
-): SafeParseResult<ResultLearningObjectiveId, SDKValidationError> {
+): SafeParseResult<ResultLearningObjectiveResult, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ResultLearningObjectiveId$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResultLearningObjectiveId' from JSON`,
+    (x) => ResultLearningObjectiveResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResultLearningObjectiveResult' from JSON`,
   );
 }
 
@@ -385,15 +387,15 @@ export const ResultLearningObjectiveSet$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   source: z.string(),
-  learningObjectiveIds: z.array(
-    z.lazy(() => ResultLearningObjectiveId$inboundSchema),
+  learningObjectiveResults: z.array(
+    z.lazy(() => ResultLearningObjectiveResult$inboundSchema),
   ),
 });
 
 /** @internal */
 export type ResultLearningObjectiveSet$Outbound = {
   source: string;
-  learningObjectiveIds: Array<ResultLearningObjectiveId$Outbound>;
+  learningObjectiveResults: Array<ResultLearningObjectiveResult$Outbound>;
 };
 
 /** @internal */
@@ -403,8 +405,8 @@ export const ResultLearningObjectiveSet$outboundSchema: z.ZodType<
   ResultLearningObjectiveSet
 > = z.object({
   source: z.string(),
-  learningObjectiveIds: z.array(
-    z.lazy(() => ResultLearningObjectiveId$outboundSchema),
+  learningObjectiveResults: z.array(
+    z.lazy(() => ResultLearningObjectiveResult$outboundSchema),
   ),
 });
 

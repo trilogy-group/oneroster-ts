@@ -25,9 +25,10 @@ export type CreateGradingPeriodOrg = {
 };
 
 export type CreateGradingPeriodAcademicSession = {
-  sourcedId?: string | undefined;
-  status?: CreateGradingPeriodStatus | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  sourcedId: string;
+  status: CreateGradingPeriodStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -188,13 +189,16 @@ export const CreateGradingPeriodAcademicSession$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: CreateGradingPeriodStatus$inboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: CreateGradingPeriodStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),
-  type: z.literal("gradingPeriod").optional(),
+  type: z.literal("gradingPeriod").default("gradingPeriod").optional(),
   parent: z.nullable(z.lazy(() => CreateGradingPeriodParent$inboundSchema))
     .optional(),
   schoolYear: z.string(),
@@ -203,9 +207,10 @@ export const CreateGradingPeriodAcademicSession$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateGradingPeriodAcademicSession$Outbound = {
-  sourcedId?: string | undefined;
+  sourcedId: string;
   status: string;
-  metadata?: { [k: string]: any } | undefined;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -221,9 +226,10 @@ export const CreateGradingPeriodAcademicSession$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateGradingPeriodAcademicSession
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: CreateGradingPeriodStatus$outboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: CreateGradingPeriodStatus$outboundSchema,
+  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),

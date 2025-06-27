@@ -27,9 +27,10 @@ export type CreateGradingPeriodForTermOrg = {
 };
 
 export type CreateGradingPeriodForTermAcademicSession = {
-  sourcedId?: string | undefined;
-  status?: CreateGradingPeriodForTermStatus | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  sourcedId: string;
+  status: CreateGradingPeriodForTermStatus;
+  dateLastModified?: Date | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -37,6 +38,8 @@ export type CreateGradingPeriodForTermAcademicSession = {
   parent?: CreateGradingPeriodForTermParent | null | undefined;
   schoolYear: string;
   org: CreateGradingPeriodForTermOrg;
+  tenantId: string | null;
+  clientAppId: string | null;
 };
 
 export type CreateGradingPeriodForTermRequestBody = {
@@ -200,25 +203,31 @@ export const CreateGradingPeriodForTermAcademicSession$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sourcedId: z.string().optional(),
-  status: CreateGradingPeriodForTermStatus$inboundSchema.default("active"),
-  metadata: z.record(z.any()).optional(),
+  sourcedId: z.string(),
+  status: CreateGradingPeriodForTermStatus$inboundSchema,
+  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   title: z.string(),
   startDate: z.string(),
   endDate: z.string(),
-  type: z.literal("gradingPeriod").optional(),
+  type: z.literal("gradingPeriod").default("gradingPeriod").optional(),
   parent: z.nullable(
     z.lazy(() => CreateGradingPeriodForTermParent$inboundSchema),
   ).optional(),
   schoolYear: z.string(),
   org: z.lazy(() => CreateGradingPeriodForTermOrg$inboundSchema),
+  tenantId: z.nullable(z.string()),
+  clientAppId: z.nullable(z.string()),
 });
 
 /** @internal */
 export type CreateGradingPeriodForTermAcademicSession$Outbound = {
-  sourcedId?: string | undefined;
+  sourcedId: string;
   status: string;
-  metadata?: { [k: string]: any } | undefined;
+  dateLastModified?: string | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   title: string;
   startDate: string;
   endDate: string;
@@ -226,6 +235,8 @@ export type CreateGradingPeriodForTermAcademicSession$Outbound = {
   parent?: CreateGradingPeriodForTermParent$Outbound | null | undefined;
   schoolYear: string;
   org: CreateGradingPeriodForTermOrg$Outbound;
+  tenantId: string | null;
+  clientAppId: string | null;
 };
 
 /** @internal */
@@ -235,9 +246,10 @@ export const CreateGradingPeriodForTermAcademicSession$outboundSchema:
     z.ZodTypeDef,
     CreateGradingPeriodForTermAcademicSession
   > = z.object({
-    sourcedId: z.string().optional(),
-    status: CreateGradingPeriodForTermStatus$outboundSchema.default("active"),
-    metadata: z.record(z.any()).optional(),
+    sourcedId: z.string(),
+    status: CreateGradingPeriodForTermStatus$outboundSchema,
+    dateLastModified: z.date().transform(v => v.toISOString()).optional(),
+    metadata: z.nullable(z.record(z.any())).optional(),
     title: z.string(),
     startDate: z.string(),
     endDate: z.string(),
@@ -247,6 +259,8 @@ export const CreateGradingPeriodForTermAcademicSession$outboundSchema:
     ).optional(),
     schoolYear: z.string(),
     org: z.lazy(() => CreateGradingPeriodForTermOrg$outboundSchema),
+    tenantId: z.nullable(z.string()),
+    clientAppId: z.nullable(z.string()),
   });
 
 /**

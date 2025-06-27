@@ -3,10 +3,44 @@
  */
 
 import * as z from "zod";
-import { safeParse } from "../../lib/schemas.js";
+import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type CreateUserOnboardingCompleted = {
+  state?: "completed" | undefined;
+  completedAt?: string | undefined;
+  courseId?: string | undefined;
+};
+
+export type CreateUserOnboardingInProgress = {
+  state?: "in_progress" | undefined;
+};
+
+export type CreateUserOnboardingNotStarted = {
+  state?: "not_started" | undefined;
+};
+
+export type CreateUserOnboardingUnion =
+  | CreateUserOnboardingNotStarted
+  | CreateUserOnboardingInProgress
+  | CreateUserOnboardingCompleted;
+
+export type CreateUserMetadata = {
+  onboarding?: {
+    [k: string]:
+      | CreateUserOnboardingNotStarted
+      | CreateUserOnboardingInProgress
+      | CreateUserOnboardingCompleted;
+  } | undefined;
+  additionalProperties?: { [k: string]: any };
+};
 
 export const CreateUserStatusRequest = {
   Active: "active",
@@ -66,7 +100,7 @@ export type CreateUserAgentRequest = {
 
 export type CreateUserUserRequest = {
   sourcedId?: string | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: CreateUserMetadata | undefined;
   status?: CreateUserStatusRequest | undefined;
   userMasterIdentifier?: string | null | undefined;
   username?: string | null | undefined;
@@ -202,6 +236,7 @@ export type CreateUserUserResponse = {
   password?: string | null | undefined;
   sms?: string | null | undefined;
   phone?: string | null | undefined;
+  demographics?: components.Demographics | null | undefined;
 };
 
 /**
@@ -210,6 +245,323 @@ export type CreateUserUserResponse = {
 export type CreateUserResponse = {
   user: CreateUserUserResponse;
 };
+
+/** @internal */
+export const CreateUserOnboardingCompleted$inboundSchema: z.ZodType<
+  CreateUserOnboardingCompleted,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  state: z.literal("completed").default("completed").optional(),
+  completedAt: z.string().optional(),
+  courseId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateUserOnboardingCompleted$Outbound = {
+  state: "completed";
+  completedAt?: string | undefined;
+  courseId?: string | undefined;
+};
+
+/** @internal */
+export const CreateUserOnboardingCompleted$outboundSchema: z.ZodType<
+  CreateUserOnboardingCompleted$Outbound,
+  z.ZodTypeDef,
+  CreateUserOnboardingCompleted
+> = z.object({
+  state: z.literal("completed").default("completed" as const),
+  completedAt: z.string().optional(),
+  courseId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateUserOnboardingCompleted$ {
+  /** @deprecated use `CreateUserOnboardingCompleted$inboundSchema` instead. */
+  export const inboundSchema = CreateUserOnboardingCompleted$inboundSchema;
+  /** @deprecated use `CreateUserOnboardingCompleted$outboundSchema` instead. */
+  export const outboundSchema = CreateUserOnboardingCompleted$outboundSchema;
+  /** @deprecated use `CreateUserOnboardingCompleted$Outbound` instead. */
+  export type Outbound = CreateUserOnboardingCompleted$Outbound;
+}
+
+export function createUserOnboardingCompletedToJSON(
+  createUserOnboardingCompleted: CreateUserOnboardingCompleted,
+): string {
+  return JSON.stringify(
+    CreateUserOnboardingCompleted$outboundSchema.parse(
+      createUserOnboardingCompleted,
+    ),
+  );
+}
+
+export function createUserOnboardingCompletedFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUserOnboardingCompleted, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUserOnboardingCompleted$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUserOnboardingCompleted' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateUserOnboardingInProgress$inboundSchema: z.ZodType<
+  CreateUserOnboardingInProgress,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  state: z.literal("in_progress").default("in_progress").optional(),
+});
+
+/** @internal */
+export type CreateUserOnboardingInProgress$Outbound = {
+  state: "in_progress";
+};
+
+/** @internal */
+export const CreateUserOnboardingInProgress$outboundSchema: z.ZodType<
+  CreateUserOnboardingInProgress$Outbound,
+  z.ZodTypeDef,
+  CreateUserOnboardingInProgress
+> = z.object({
+  state: z.literal("in_progress").default("in_progress" as const),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateUserOnboardingInProgress$ {
+  /** @deprecated use `CreateUserOnboardingInProgress$inboundSchema` instead. */
+  export const inboundSchema = CreateUserOnboardingInProgress$inboundSchema;
+  /** @deprecated use `CreateUserOnboardingInProgress$outboundSchema` instead. */
+  export const outboundSchema = CreateUserOnboardingInProgress$outboundSchema;
+  /** @deprecated use `CreateUserOnboardingInProgress$Outbound` instead. */
+  export type Outbound = CreateUserOnboardingInProgress$Outbound;
+}
+
+export function createUserOnboardingInProgressToJSON(
+  createUserOnboardingInProgress: CreateUserOnboardingInProgress,
+): string {
+  return JSON.stringify(
+    CreateUserOnboardingInProgress$outboundSchema.parse(
+      createUserOnboardingInProgress,
+    ),
+  );
+}
+
+export function createUserOnboardingInProgressFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUserOnboardingInProgress, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUserOnboardingInProgress$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUserOnboardingInProgress' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateUserOnboardingNotStarted$inboundSchema: z.ZodType<
+  CreateUserOnboardingNotStarted,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  state: z.literal("not_started").default("not_started").optional(),
+});
+
+/** @internal */
+export type CreateUserOnboardingNotStarted$Outbound = {
+  state: "not_started";
+};
+
+/** @internal */
+export const CreateUserOnboardingNotStarted$outboundSchema: z.ZodType<
+  CreateUserOnboardingNotStarted$Outbound,
+  z.ZodTypeDef,
+  CreateUserOnboardingNotStarted
+> = z.object({
+  state: z.literal("not_started").default("not_started" as const),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateUserOnboardingNotStarted$ {
+  /** @deprecated use `CreateUserOnboardingNotStarted$inboundSchema` instead. */
+  export const inboundSchema = CreateUserOnboardingNotStarted$inboundSchema;
+  /** @deprecated use `CreateUserOnboardingNotStarted$outboundSchema` instead. */
+  export const outboundSchema = CreateUserOnboardingNotStarted$outboundSchema;
+  /** @deprecated use `CreateUserOnboardingNotStarted$Outbound` instead. */
+  export type Outbound = CreateUserOnboardingNotStarted$Outbound;
+}
+
+export function createUserOnboardingNotStartedToJSON(
+  createUserOnboardingNotStarted: CreateUserOnboardingNotStarted,
+): string {
+  return JSON.stringify(
+    CreateUserOnboardingNotStarted$outboundSchema.parse(
+      createUserOnboardingNotStarted,
+    ),
+  );
+}
+
+export function createUserOnboardingNotStartedFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUserOnboardingNotStarted, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUserOnboardingNotStarted$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUserOnboardingNotStarted' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateUserOnboardingUnion$inboundSchema: z.ZodType<
+  CreateUserOnboardingUnion,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() => CreateUserOnboardingNotStarted$inboundSchema),
+  z.lazy(() => CreateUserOnboardingInProgress$inboundSchema),
+  z.lazy(() => CreateUserOnboardingCompleted$inboundSchema),
+]);
+
+/** @internal */
+export type CreateUserOnboardingUnion$Outbound =
+  | CreateUserOnboardingNotStarted$Outbound
+  | CreateUserOnboardingInProgress$Outbound
+  | CreateUserOnboardingCompleted$Outbound;
+
+/** @internal */
+export const CreateUserOnboardingUnion$outboundSchema: z.ZodType<
+  CreateUserOnboardingUnion$Outbound,
+  z.ZodTypeDef,
+  CreateUserOnboardingUnion
+> = z.union([
+  z.lazy(() => CreateUserOnboardingNotStarted$outboundSchema),
+  z.lazy(() => CreateUserOnboardingInProgress$outboundSchema),
+  z.lazy(() => CreateUserOnboardingCompleted$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateUserOnboardingUnion$ {
+  /** @deprecated use `CreateUserOnboardingUnion$inboundSchema` instead. */
+  export const inboundSchema = CreateUserOnboardingUnion$inboundSchema;
+  /** @deprecated use `CreateUserOnboardingUnion$outboundSchema` instead. */
+  export const outboundSchema = CreateUserOnboardingUnion$outboundSchema;
+  /** @deprecated use `CreateUserOnboardingUnion$Outbound` instead. */
+  export type Outbound = CreateUserOnboardingUnion$Outbound;
+}
+
+export function createUserOnboardingUnionToJSON(
+  createUserOnboardingUnion: CreateUserOnboardingUnion,
+): string {
+  return JSON.stringify(
+    CreateUserOnboardingUnion$outboundSchema.parse(createUserOnboardingUnion),
+  );
+}
+
+export function createUserOnboardingUnionFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUserOnboardingUnion, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUserOnboardingUnion$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUserOnboardingUnion' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateUserMetadata$inboundSchema: z.ZodType<
+  CreateUserMetadata,
+  z.ZodTypeDef,
+  unknown
+> = collectExtraKeys$(
+  z.object({
+    onboarding: z.record(
+      z.union([
+        z.lazy(() => CreateUserOnboardingNotStarted$inboundSchema),
+        z.lazy(() => CreateUserOnboardingInProgress$inboundSchema),
+        z.lazy(() => CreateUserOnboardingCompleted$inboundSchema),
+      ]),
+    ).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
+
+/** @internal */
+export type CreateUserMetadata$Outbound = {
+  onboarding?: {
+    [k: string]:
+      | CreateUserOnboardingNotStarted$Outbound
+      | CreateUserOnboardingInProgress$Outbound
+      | CreateUserOnboardingCompleted$Outbound;
+  } | undefined;
+  [additionalProperties: string]: unknown;
+};
+
+/** @internal */
+export const CreateUserMetadata$outboundSchema: z.ZodType<
+  CreateUserMetadata$Outbound,
+  z.ZodTypeDef,
+  CreateUserMetadata
+> = z.object({
+  onboarding: z.record(
+    z.union([
+      z.lazy(() => CreateUserOnboardingNotStarted$outboundSchema),
+      z.lazy(() => CreateUserOnboardingInProgress$outboundSchema),
+      z.lazy(() => CreateUserOnboardingCompleted$outboundSchema),
+    ]),
+  ).optional(),
+  additionalProperties: z.record(z.any()),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateUserMetadata$ {
+  /** @deprecated use `CreateUserMetadata$inboundSchema` instead. */
+  export const inboundSchema = CreateUserMetadata$inboundSchema;
+  /** @deprecated use `CreateUserMetadata$outboundSchema` instead. */
+  export const outboundSchema = CreateUserMetadata$outboundSchema;
+  /** @deprecated use `CreateUserMetadata$Outbound` instead. */
+  export type Outbound = CreateUserMetadata$Outbound;
+}
+
+export function createUserMetadataToJSON(
+  createUserMetadata: CreateUserMetadata,
+): string {
+  return JSON.stringify(
+    CreateUserMetadata$outboundSchema.parse(createUserMetadata),
+  );
+}
+
+export function createUserMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUserMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUserMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUserMetadata' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateUserStatusRequest$inboundSchema: z.ZodNativeEnum<
@@ -571,7 +923,7 @@ export const CreateUserUserRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   sourcedId: z.string().optional(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.lazy(() => CreateUserMetadata$inboundSchema).optional(),
   status: CreateUserStatusRequest$inboundSchema.default("active"),
   userMasterIdentifier: z.nullable(z.string()).optional(),
   username: z.nullable(z.string()).optional(),
@@ -600,7 +952,7 @@ export const CreateUserUserRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateUserUserRequest$Outbound = {
   sourcedId?: string | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: CreateUserMetadata$Outbound | undefined;
   status: string;
   userMasterIdentifier?: string | null | undefined;
   username?: string | null | undefined;
@@ -630,7 +982,7 @@ export const CreateUserUserRequest$outboundSchema: z.ZodType<
   CreateUserUserRequest
 > = z.object({
   sourcedId: z.string().optional(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.lazy(() => CreateUserMetadata$outboundSchema).optional(),
   status: CreateUserStatusRequest$outboundSchema.default("active"),
   userMasterIdentifier: z.nullable(z.string()).optional(),
   username: z.nullable(z.string()).optional(),
@@ -1166,6 +1518,7 @@ export const CreateUserUserResponse$inboundSchema: z.ZodType<
   password: z.nullable(z.string()).optional(),
   sms: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
+  demographics: z.nullable(components.Demographics$inboundSchema).optional(),
 });
 
 /** @internal */
@@ -1193,6 +1546,7 @@ export type CreateUserUserResponse$Outbound = {
   password?: string | null | undefined;
   sms?: string | null | undefined;
   phone?: string | null | undefined;
+  demographics?: components.Demographics$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -1226,6 +1580,7 @@ export const CreateUserUserResponse$outboundSchema: z.ZodType<
   password: z.nullable(z.string()).optional(),
   sms: z.nullable(z.string()).optional(),
   phone: z.nullable(z.string()).optional(),
+  demographics: z.nullable(components.Demographics$outboundSchema).optional(),
 });
 
 /**

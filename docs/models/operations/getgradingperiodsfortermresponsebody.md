@@ -11,34 +11,34 @@ let value: GetGradingPeriodsForTermResponseBody = {
   gradingPeriods: [
     {
       sourcedId: "<id>",
-      status: "tobedeleted",
+      status: "active",
       title: "<value>",
       startDate: "<value>",
       endDate: "<value>",
-      type: "semester",
-      schoolYear: 6040.34,
+      type: "schoolYear",
+      schoolYear: 3234.05,
       org: {
-        href: "https://rusty-schedule.net/",
+        href: "https://our-fellow.info",
         sourcedId: "<id>",
-        type: "academicSession",
+        type: "term",
       },
     },
   ],
-  totalCount: 8745.34,
-  pageCount: 7171.19,
-  pageNumber: 9372.17,
-  offset: 1119.18,
-  limit: 1189.61,
+  totalCount: 7011.96,
+  pageCount: 7842.91,
+  pageNumber: 6965.33,
+  offset: 173.16,
+  limit: 8745.34,
 };
 ```
 
 ## Fields
 
-| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `gradingPeriods`                                                           | [components.AcademicSession](../../models/components/academicsession.md)[] | :heavy_check_mark:                                                         | N/A                                                                        |
-| `totalCount`                                                               | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `pageCount`                                                                | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `pageNumber`                                                               | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `offset`                                                                   | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `limit`                                                                    | *number*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `gradingPeriods`                                                                                                       | [operations.GetGradingPeriodsForTermGradingPeriod](../../models/operations/getgradingperiodsfortermgradingperiod.md)[] | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `totalCount`                                                                                                           | *number*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `pageCount`                                                                                                            | *number*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `pageNumber`                                                                                                           | *number*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `offset`                                                                                                               | *number*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `limit`                                                                                                                | *number*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |

@@ -9,12 +9,6 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const UpdateResourceStatus = {
-  Active: "active",
-  Tobedeleted: "tobedeleted",
-} as const;
-export type UpdateResourceStatus = ClosedEnum<typeof UpdateResourceStatus>;
-
 export const UpdateResourceRole = {
   Primary: "primary",
   Secondary: "secondary",
@@ -29,21 +23,14 @@ export type UpdateResourceImportance = ClosedEnum<
   typeof UpdateResourceImportance
 >;
 
-export type UpdateResourceResource = {
-  sourcedId?: string | undefined;
-  status?: UpdateResourceStatus | undefined;
-  dateLastModified?: Date | undefined;
+export type UpdateResourceRequestBody = {
   metadata?: { [k: string]: any } | null | undefined;
-  title: string;
+  title?: string | undefined;
   roles?: Array<UpdateResourceRole> | undefined;
   importance?: UpdateResourceImportance | undefined;
-  vendorResourceId: string;
+  vendorResourceId?: string | undefined;
   vendorId?: string | undefined;
   applicationId?: string | undefined;
-};
-
-export type UpdateResourceRequestBody = {
-  resource: UpdateResourceResource;
 };
 
 export type UpdateResourceRequest = {
@@ -53,27 +40,6 @@ export type UpdateResourceRequest = {
   sourcedId: string;
   requestBody: UpdateResourceRequestBody;
 };
-
-/** @internal */
-export const UpdateResourceStatus$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateResourceStatus
-> = z.nativeEnum(UpdateResourceStatus);
-
-/** @internal */
-export const UpdateResourceStatus$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateResourceStatus
-> = UpdateResourceStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateResourceStatus$ {
-  /** @deprecated use `UpdateResourceStatus$inboundSchema` instead. */
-  export const inboundSchema = UpdateResourceStatus$inboundSchema;
-  /** @deprecated use `UpdateResourceStatus$outboundSchema` instead. */
-  export const outboundSchema = UpdateResourceStatus$outboundSchema;
-}
 
 /** @internal */
 export const UpdateResourceRole$inboundSchema: z.ZodNativeEnum<
@@ -118,100 +84,29 @@ export namespace UpdateResourceImportance$ {
 }
 
 /** @internal */
-export const UpdateResourceResource$inboundSchema: z.ZodType<
-  UpdateResourceResource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  sourcedId: z.string().optional(),
-  status: UpdateResourceStatus$inboundSchema.optional(),
-  dateLastModified: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  title: z.string(),
-  roles: z.array(UpdateResourceRole$inboundSchema).optional(),
-  importance: UpdateResourceImportance$inboundSchema.optional(),
-  vendorResourceId: z.string(),
-  vendorId: z.string().optional(),
-  applicationId: z.string().optional(),
-});
-
-/** @internal */
-export type UpdateResourceResource$Outbound = {
-  sourcedId?: string | undefined;
-  status?: string | undefined;
-  dateLastModified?: string | undefined;
-  metadata?: { [k: string]: any } | null | undefined;
-  title: string;
-  roles?: Array<string> | undefined;
-  importance?: string | undefined;
-  vendorResourceId: string;
-  vendorId?: string | undefined;
-  applicationId?: string | undefined;
-};
-
-/** @internal */
-export const UpdateResourceResource$outboundSchema: z.ZodType<
-  UpdateResourceResource$Outbound,
-  z.ZodTypeDef,
-  UpdateResourceResource
-> = z.object({
-  sourcedId: z.string().optional(),
-  status: UpdateResourceStatus$outboundSchema.optional(),
-  dateLastModified: z.date().transform(v => v.toISOString()).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  title: z.string(),
-  roles: z.array(UpdateResourceRole$outboundSchema).optional(),
-  importance: UpdateResourceImportance$outboundSchema.optional(),
-  vendorResourceId: z.string(),
-  vendorId: z.string().optional(),
-  applicationId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateResourceResource$ {
-  /** @deprecated use `UpdateResourceResource$inboundSchema` instead. */
-  export const inboundSchema = UpdateResourceResource$inboundSchema;
-  /** @deprecated use `UpdateResourceResource$outboundSchema` instead. */
-  export const outboundSchema = UpdateResourceResource$outboundSchema;
-  /** @deprecated use `UpdateResourceResource$Outbound` instead. */
-  export type Outbound = UpdateResourceResource$Outbound;
-}
-
-export function updateResourceResourceToJSON(
-  updateResourceResource: UpdateResourceResource,
-): string {
-  return JSON.stringify(
-    UpdateResourceResource$outboundSchema.parse(updateResourceResource),
-  );
-}
-
-export function updateResourceResourceFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateResourceResource, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateResourceResource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateResourceResource' from JSON`,
-  );
-}
-
-/** @internal */
 export const UpdateResourceRequestBody$inboundSchema: z.ZodType<
   UpdateResourceRequestBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  resource: z.lazy(() => UpdateResourceResource$inboundSchema),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string().optional(),
+  roles: z.array(UpdateResourceRole$inboundSchema).optional(),
+  importance: UpdateResourceImportance$inboundSchema.optional(),
+  vendorResourceId: z.string().optional(),
+  vendorId: z.string().optional(),
+  applicationId: z.string().optional(),
 });
 
 /** @internal */
 export type UpdateResourceRequestBody$Outbound = {
-  resource: UpdateResourceResource$Outbound;
+  metadata?: { [k: string]: any } | null | undefined;
+  title?: string | undefined;
+  roles?: Array<string> | undefined;
+  importance?: string | undefined;
+  vendorResourceId?: string | undefined;
+  vendorId?: string | undefined;
+  applicationId?: string | undefined;
 };
 
 /** @internal */
@@ -220,7 +115,13 @@ export const UpdateResourceRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateResourceRequestBody
 > = z.object({
-  resource: z.lazy(() => UpdateResourceResource$outboundSchema),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  title: z.string().optional(),
+  roles: z.array(UpdateResourceRole$outboundSchema).optional(),
+  importance: UpdateResourceImportance$outboundSchema.optional(),
+  vendorResourceId: z.string().optional(),
+  vendorId: z.string().optional(),
+  applicationId: z.string().optional(),
 });
 
 /**
