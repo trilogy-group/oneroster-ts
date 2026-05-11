@@ -1,5 +1,4 @@
 # GradingPeriodsManagement
-(*gradingPeriodsManagement*)
 
 ## Overview
 
@@ -21,6 +20,7 @@ To get all Grading Periods on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllGradingPeriods" method="get" path="/ims/oneroster/rostering/v1p2/gradingPeriods/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -112,6 +112,7 @@ To create a new Grading Period. The responding system must return the set of sou
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createGradingPeriod" method="post" path="/ims/oneroster/rostering/v1p2/gradingPeriods/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -193,6 +194,7 @@ Get a specific Grading Period on the service provider. If the corresponding reco
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGradingPeriod" method="get" path="/ims/oneroster/rostering/v1p2/gradingPeriods/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -278,6 +280,7 @@ To update an existing Grading Period. The sourcedId for the record to be updated
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateGradingPeriod" method="put" path="/ims/oneroster/rostering/v1p2/gradingPeriods/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -363,6 +366,7 @@ Perform a soft delete on a specific Grading Period on the service provider. The 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteGradingPeriod" method="delete" path="/ims/oneroster/rostering/v1p2/gradingPeriods/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -448,6 +452,7 @@ To get the set of Grading Periods related to a specific Term. If the specified T
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGradingPeriodsForTerm" method="get" path="/ims/oneroster/rostering/v1p2/terms/{termSourcedId}/gradingPeriods" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -541,6 +546,7 @@ To create a new Grading Period for a Term. A Grading Period is a type of Academi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createGradingPeriodForTerm" method="post" path="/ims/oneroster/rostering/v1p2/terms/{termSourcedId}/gradingPeriods" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -561,6 +567,7 @@ async function run() {
         title: "<value>",
         startDate: "<value>",
         endDate: "<value>",
+        type: "gradingPeriod",
         schoolYear: "<value>",
         org: {
           sourcedId: "<id>",
@@ -604,6 +611,7 @@ async function run() {
         title: "<value>",
         startDate: "<value>",
         endDate: "<value>",
+        type: "gradingPeriod",
         schoolYear: "<value>",
         org: {
           sourcedId: "<id>",

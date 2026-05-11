@@ -5,12 +5,15 @@
 ```typescript
 import { UnauthorizedRequestResponseImsxCodeMinorField } from "@superbuilders/oneroster/models/errors";
 
-let value: UnauthorizedRequestResponseImsxCodeMinorField = {};
+let value: UnauthorizedRequestResponseImsxCodeMinorField = {
+  imsxCodeMinorFieldName: "TargetEndSystem",
+  imsxCodeMinorFieldValue: "unauthorisedrequest",
+};
 ```
 
 ## Fields
 
 | Field                     | Type                      | Required                  | Description               |
 | ------------------------- | ------------------------- | ------------------------- | ------------------------- |
-| `imsxCodeMinorFieldName`  | *string*                  | :heavy_check_mark:        | N/A                       |
-| `imsxCodeMinorFieldValue` | *string*                  | :heavy_check_mark:        | N/A                       |
+| `imsxCodeMinorFieldName`  | *"TargetEndSystem"*       | :heavy_check_mark:        | N/A                       |
+| `imsxCodeMinorFieldValue` | *"unauthorisedrequest"*   | :heavy_check_mark:        | N/A                       |

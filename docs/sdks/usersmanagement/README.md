@@ -1,5 +1,4 @@
 # UsersManagement
-(*usersManagement*)
 
 ## Overview
 
@@ -21,6 +20,7 @@ To get all Users on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllUsers" method="get" path="/ims/oneroster/rostering/v1p2/users/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -112,6 +112,7 @@ To create a new User on the service provider. The responding system must return 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createUser" method="post" path="/ims/oneroster/rostering/v1p2/users/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -207,6 +208,7 @@ To get a specific User on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUser" method="get" path="/ims/oneroster/rostering/v1p2/users/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -292,6 +294,7 @@ To update an existing User on the service provider. The sourcedId for the record
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateUser" method="put" path="/ims/oneroster/rostering/v1p2/users/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -409,6 +412,7 @@ Perform a soft delete on a specific User on the service provider. This operation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteUser" method="delete" path="/ims/oneroster/rostering/v1p2/users/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -494,6 +498,7 @@ To get a specific User with demographics on the service provider. If the corresp
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUserWithDemographics" method="get" path="/ims/oneroster/rostering/v1p2/users/{sourcedId}/demographics" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -579,6 +584,7 @@ To get the set of Classes a User is enrolled in.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForUser" method="get" path="/ims/oneroster/rostering/v1p2/users/{userSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

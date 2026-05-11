@@ -1,5 +1,4 @@
 # EnrollmentsManagement
-(*enrollmentsManagement*)
 
 ## Overview
 
@@ -21,6 +20,7 @@ To get all Enrollments on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllEnrollments" method="get" path="/ims/oneroster/rostering/v1p2/enrollments/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -112,6 +112,7 @@ To create a new Enrollment. The responding system must return the set of sourced
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createEnrollment" method="post" path="/ims/oneroster/rostering/v1p2/enrollments/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -217,6 +218,7 @@ Get a specific Enrollment on the service provider. If the corresponding record c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEnrollment" method="get" path="/ims/oneroster/rostering/v1p2/enrollments/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -302,6 +304,7 @@ To update an existing Enrollment. The sourcedId for the record to be updated is 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateEnrollment" method="put" path="/ims/oneroster/rostering/v1p2/enrollments/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -413,6 +416,7 @@ Perform a soft delete on a specific Enrollment on the service provider. The oper
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteEnrollment" method="delete" path="/ims/oneroster/rostering/v1p2/enrollments/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -498,6 +502,7 @@ To get all Enrollments for a Class in a School on the service provider. If the s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEnrollmentsForClassInSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes/{classSourcedId}/enrollments" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -593,6 +598,7 @@ To get all Enrollments for a School on the service provider. If the specified sc
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEnrollmentsForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/enrollments" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

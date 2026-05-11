@@ -9,8 +9,8 @@ import { LineItem } from "@superbuilders/oneroster/models/components";
 
 let value: LineItem = {
   title: "<value>",
-  assignDate: new Date("2024-02-06T12:50:59.125Z"),
-  dueDate: new Date("2025-11-30T15:55:48.022Z"),
+  assignDate: new Date("2025-02-05T12:50:59.125Z"),
+  dueDate: new Date("2026-11-30T15:55:48.022Z"),
   class: {
     sourcedId: "<id>",
   },

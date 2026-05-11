@@ -15,7 +15,7 @@ let value: AssessmentResult = {
   student: {
     sourcedId: "<id>",
   },
-  scoreDate: new Date("2023-06-16T22:39:15.818Z"),
+  scoreDate: new Date("2024-06-15T22:39:15.818Z"),
   scoreStatus: "partially graded",
 };
 ```

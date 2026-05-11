@@ -5,7 +5,16 @@
 ```typescript
 import { GetResourcesForCourseResponse } from "@superbuilders/oneroster/models/operations";
 
-let value: GetResourcesForCourseResponse = {};
+let value: GetResourcesForCourseResponse = {
+  result: {
+    resources: [],
+    totalCount: 3796.78,
+    pageCount: 5719.15,
+    pageNumber: 101.51,
+    offset: 1709.86,
+    limit: 7759.37,
+  },
+};
 ```
 
 ## Fields

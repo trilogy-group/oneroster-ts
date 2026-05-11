@@ -7,6 +7,9 @@ import { CreateLineItemsForSchoolRequest } from "@superbuilders/oneroster/models
 
 let value: CreateLineItemsForSchoolRequest = {
   sourcedId: "<id>",
+  requestBody: {
+    lineItems: [],
+  },
 };
 ```
 

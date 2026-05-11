@@ -16,7 +16,7 @@ let value: GetAllResultsResult = {
     sourcedId: "<id>",
   },
   scoreStatus: "exempt",
-  scoreDate: new Date("2025-08-10T14:24:31.842Z"),
+  scoreDate: new Date("2026-08-10T14:24:31.842Z"),
 };
 ```
 

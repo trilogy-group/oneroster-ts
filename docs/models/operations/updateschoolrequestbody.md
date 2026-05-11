@@ -8,6 +8,7 @@ import { UpdateSchoolRequestBody } from "@superbuilders/oneroster/models/operati
 let value: UpdateSchoolRequestBody = {
   org: {
     name: "<value>",
+    type: "school",
   },
 };
 ```

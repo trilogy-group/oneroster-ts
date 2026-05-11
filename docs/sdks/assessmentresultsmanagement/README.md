@@ -1,5 +1,4 @@
 # AssessmentResultsManagement
-(*assessmentResultsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ Get all of the Assessment Results on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllAssessmentResults" method="get" path="/ims/oneroster/gradebook/v1p2/assessmentResults/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create an Assessment Result. The responding system must return the set of sou
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createAssessmentResult" method="post" path="/ims/oneroster/gradebook/v1p2/assessmentResults/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -215,6 +216,7 @@ Get a specific Assessment Result on the service provider. If the corresponding r
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAssessmentResult" method="get" path="/ims/oneroster/gradebook/v1p2/assessmentResults/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -300,6 +302,7 @@ To update an existing Assessment Result. The sourcedId for the record to be upda
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateAssessmentResult" method="put" path="/ims/oneroster/gradebook/v1p2/assessmentResults/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -411,6 +414,7 @@ Perform a soft delete on a specific Assessment Result on the service provider. T
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteAssessmentResult" method="delete" path="/ims/oneroster/gradebook/v1p2/assessmentResults/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

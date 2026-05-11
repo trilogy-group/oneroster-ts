@@ -1,5 +1,4 @@
 # CategoriesManagement
-(*categoriesManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ Get all of the Line Item Categories on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllCategories" method="get" path="/ims/oneroster/gradebook/v1p2/categories/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create a new Category. The responding system must return the set of sourcedId
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCategory" method="post" path="/ims/oneroster/gradebook/v1p2/categories/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -201,6 +202,7 @@ Get a specific category on the service provider. If the corresponding record can
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCategory" method="get" path="/ims/oneroster/gradebook/v1p2/categories/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -286,6 +288,7 @@ To update an existing Category. The sourcedId for the record to be updated is su
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateCategory" method="put" path="/ims/oneroster/gradebook/v1p2/categories/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -383,6 +386,7 @@ Perform a soft delete on a specific Category on the service provider. This opera
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteCategory" method="delete" path="/ims/oneroster/gradebook/v1p2/categories/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

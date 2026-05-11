@@ -1,5 +1,4 @@
 # DemographicsManagement
-(*demographicsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ To get all Demographic records on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllDemographics" method="get" path="/ims/oneroster/rostering/v1p2/demographics/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create a new Demographic record. The responding system must return the set of
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="postDemographics" method="post" path="/ims/oneroster/rostering/v1p2/demographics/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -191,6 +192,7 @@ Get a specific Demographic record on the service provider. If the corresponding 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getDemographics" method="get" path="/ims/oneroster/rostering/v1p2/demographics/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -276,6 +278,7 @@ To update an existing Demographic record. The sourcedId for the record to be upd
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="putDemographics" method="put" path="/ims/oneroster/rostering/v1p2/demographics/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -361,6 +364,7 @@ Perform a soft delete on a specific Demographic record on the service provider. 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteDemographics" method="delete" path="/ims/oneroster/rostering/v1p2/demographics/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

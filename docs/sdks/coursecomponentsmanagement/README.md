@@ -1,5 +1,4 @@
 # CourseComponentsManagement
-(*courseComponentsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ Used when creating a new course component or module
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCourseComponent" method="post" path="/ims/oneroster/rostering/v1p2/courses/components" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -120,6 +120,7 @@ To get all Course Components on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllCourseComponents" method="get" path="/ims/oneroster/rostering/v1p2/courses/components" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -211,6 +212,7 @@ Get a specific Course Component on the service provider. If the corresponding re
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCourseComponent" method="get" path="/ims/oneroster/rostering/v1p2/courses/components/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -296,6 +298,7 @@ To update an existing Course Component. The sourcedId for the record to be updat
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="putCourseComponent" method="put" path="/ims/oneroster/rostering/v1p2/courses/components/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -403,6 +406,7 @@ Perform a soft delete on a specific Course Component on the service provider. Th
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteCourseComponent" method="delete" path="/ims/oneroster/rostering/v1p2/courses/components/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

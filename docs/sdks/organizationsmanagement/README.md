@@ -1,5 +1,4 @@
 # OrganizationsManagement
-(*organizationsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ To get all Organizations on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllOrgs" method="get" path="/ims/oneroster/rostering/v1p2/orgs/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create a new Organization. The responding system must return the set of sourc
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createOrg" method="post" path="/ims/oneroster/rostering/v1p2/orgs/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -191,6 +192,7 @@ Get a specific Organization on the service provider. If the corresponding record
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getOrg" method="get" path="/ims/oneroster/rostering/v1p2/orgs/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -276,6 +278,7 @@ To update an existing Organization. The sourcedId for the record to be updated i
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateOrg" method="put" path="/ims/oneroster/rostering/v1p2/orgs/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -361,6 +364,7 @@ Perform a soft delete on a specific Organization on the service provider. The op
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteOrg" method="delete" path="/ims/oneroster/rostering/v1p2/orgs/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

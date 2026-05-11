@@ -5,11 +5,13 @@
 ```typescript
 import { UpdateUserOnboardingInProgress } from "@superbuilders/oneroster/models/operations";
 
-let value: UpdateUserOnboardingInProgress = {};
+let value: UpdateUserOnboardingInProgress = {
+  state: "in_progress",
+};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `state`            | *string*           | :heavy_check_mark: | N/A                |
+| `state`            | *"in_progress"*    | :heavy_check_mark: | N/A                |

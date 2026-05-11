@@ -1,5 +1,4 @@
 # ClassesManagement
-(*classesManagement*)
 
 ## Overview
 
@@ -35,6 +34,7 @@ To create a set of results for a specific academic session and specific class. T
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="postResultsForAcademicSessionForClass" method="post" path="/ims/oneroster/gradebook/v1p2/classes/{classSourcedId}/academicSessions/{academicSessionSourcedId}/results" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -152,6 +152,7 @@ Get the set of results on the service provider for a specific lineItem and for a
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResultsForLineItemForClass" method="get" path="/ims/oneroster/gradebook/v1p2/classes/{classSourcedId}/lineItems/{lineItemSourcedId}/results" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -247,6 +248,7 @@ Get the set of results on the service provider for a specific student and for a 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResultsForStudentForClass" method="get" path="/ims/oneroster/gradebook/v1p2/classes/{classSourcedId}/students/{studentSourcedId}/results" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -342,6 +344,7 @@ Get the set of categories on the service provider for a specific class. If the c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCategoriesForClass" method="get" path="/ims/oneroster/gradebook/v1p2/classes/{sourcedId}/categories" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -435,6 +438,7 @@ Get the set of lineItems on the service provider for a specific class. If the co
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLineItemsForClass" method="get" path="/ims/oneroster/gradebook/v1p2/classes/{sourcedId}/lineItems" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -528,6 +532,7 @@ Get the set of results on the service provider for a specific class. If the corr
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResultsForClass" method="get" path="/ims/oneroster/gradebook/v1p2/classes/{sourcedId}/results" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -621,6 +626,7 @@ Get the set of scoreScales on the service provider for a specific class. If the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getScoreScalesForClass" method="get" path="/ims/oneroster/gradebook/v1p2/classes/{sourcedId}/scoreScales" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -714,6 +720,7 @@ To get all Classes on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllClasses" method="get" path="/ims/oneroster/rostering/v1p2/classes/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -805,6 +812,7 @@ To create a new Class. The responding system must return the set of sourcedIds t
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createClass" method="post" path="/ims/oneroster/rostering/v1p2/classes/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -886,6 +894,7 @@ Get a specific Class on the service provider. If the corresponding record cannot
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClass" method="get" path="/ims/oneroster/rostering/v1p2/classes/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -971,6 +980,7 @@ To update an existing Class. The sourcedId for the record to be updated is suppl
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateClass" method="put" path="/ims/oneroster/rostering/v1p2/classes/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1056,6 +1066,7 @@ Perform a soft delete on a specific Class on the service provider. This operatio
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteClass" method="delete" path="/ims/oneroster/rostering/v1p2/classes/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1141,6 +1152,7 @@ To get all Classes for a School on the service provider. If the specified school
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1234,6 +1246,7 @@ To get the set of Classes a User is enrolled in.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForUser" method="get" path="/ims/oneroster/rostering/v1p2/users/{userSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1327,6 +1340,7 @@ To get the set of Classes related to a specific Term. If the specified term cann
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForTerm" method="get" path="/ims/oneroster/rostering/v1p2/terms/{termSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1420,6 +1434,7 @@ To get all teachers assigned to a specific Class. If the corresponding record ca
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeachersForClass" method="get" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1513,6 +1528,7 @@ Enrolls a teacher to a specific Class. The responding system must return the set
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addTeacherToClass" method="post" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1616,6 +1632,7 @@ To get the set of Classes a Teacher is enrolled in. If the specified teacher can
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForTeacher" method="get" path="/ims/oneroster/rostering/v1p2/teachers/{teacherSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1709,6 +1726,7 @@ To get all students enrolled in a specific Class. If the corresponding record ca
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudentsForClass" method="get" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1802,6 +1820,7 @@ Enrolls a student in a specific Class. The responding system must return the set
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addStudentToClass" method="post" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1905,6 +1924,7 @@ To get the set of Classes related to a specific Student. If the specified studen
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForStudent" method="get" path="/ims/oneroster/rostering/v1p2/students/{studentSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

@@ -7,6 +7,9 @@ import { CreateResultForLineItemRequest } from "@superbuilders/oneroster/models/
 
 let value: CreateResultForLineItemRequest = {
   sourcedId: "<id>",
+  requestBody: {
+    results: [],
+  },
 };
 ```
 

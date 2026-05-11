@@ -1,5 +1,4 @@
 # ResourcesManagement
-(*resourcesManagement*)
 
 ## Overview
 
@@ -23,6 +22,7 @@ To get a collection of resources that exist on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllResources" method="get" path="/ims/oneroster/resources/v1p2/resources/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -114,6 +114,7 @@ To create a new resource. The responding system must return the set of sourcedId
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createResource" method="post" path="/ims/oneroster/resources/v1p2/resources/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -205,6 +206,7 @@ To get a specific resource by sourcedId. If the corresponding record cannot be l
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResource" method="get" path="/ims/oneroster/resources/v1p2/resources/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -290,6 +292,7 @@ To update an existing resource. The sourcedId for the record to be updated is su
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateResource" method="put" path="/ims/oneroster/resources/v1p2/resources/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -377,6 +380,7 @@ Perform a soft delete on a specific resource. This operation changes the status 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteResource" method="delete" path="/ims/oneroster/resources/v1p2/resources/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -462,6 +466,7 @@ To get the collection of resources available to a specific class. If the corresp
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResourcesForClass" method="get" path="/ims/oneroster/resources/v1p2/resources/classes/{classSourcedId}/resources" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -555,6 +560,7 @@ To get the collection of resources assigned to a specific course. If the corresp
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResourcesForCourse" method="get" path="/ims/oneroster/resources/v1p2/resources/courses/{courseSourcedId}/resources" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -648,6 +654,7 @@ Export a resource to Common Cartridge (.imscc) format for import into LMS system
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="exportResourceToCommonCartridge" method="post" path="/ims/oneroster/resources/v1p2/resources/export/{sourceId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -732,6 +739,7 @@ To get the collection of resources available to a specific user. If the correspo
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResourcesForUser" method="get" path="/ims/oneroster/resources/v1p2/resources/users/{userSourcedId}/resources" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

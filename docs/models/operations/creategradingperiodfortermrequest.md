@@ -7,6 +7,22 @@ import { CreateGradingPeriodForTermRequest } from "@superbuilders/oneroster/mode
 
 let value: CreateGradingPeriodForTermRequest = {
   termSourcedId: "<id>",
+  requestBody: {
+    academicSession: {
+      sourcedId: "<id>",
+      status: "active",
+      title: "<value>",
+      startDate: "<value>",
+      endDate: "<value>",
+      type: "gradingPeriod",
+      schoolYear: "<value>",
+      org: {
+        sourcedId: "<id>",
+      },
+      tenantId: "<id>",
+      clientAppId: "<id>",
+    },
+  },
 };
 ```
 

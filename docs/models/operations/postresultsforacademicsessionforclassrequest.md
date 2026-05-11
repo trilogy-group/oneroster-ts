@@ -8,6 +8,9 @@ import { PostResultsForAcademicSessionForClassRequest } from "@superbuilders/one
 let value: PostResultsForAcademicSessionForClassRequest = {
   classSourcedId: "<id>",
   academicSessionSourcedId: "<id>",
+  requestBody: {
+    results: [],
+  },
 };
 ```
 

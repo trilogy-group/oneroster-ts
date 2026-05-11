@@ -18,7 +18,7 @@ let value: GetResultsForStudentForClassResponseBody = {
         sourcedId: "<id>",
       },
       scoreStatus: "not submitted",
-      scoreDate: new Date("2025-10-02T01:25:57.991Z"),
+      scoreDate: new Date("2026-10-02T01:25:57.991Z"),
     },
   ],
   totalCount: 3776.56,

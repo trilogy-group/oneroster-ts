@@ -11,8 +11,8 @@ let value: GetAllLineItemsResponseBody = {
   lineItems: [
     {
       title: "<value>",
-      assignDate: new Date("2025-10-07T19:05:28.488Z"),
-      dueDate: new Date("2023-08-10T23:32:56.493Z"),
+      assignDate: new Date("2026-10-07T19:05:28.488Z"),
+      dueDate: new Date("2024-08-09T23:32:56.493Z"),
       class: {
         sourcedId: "<id>",
       },

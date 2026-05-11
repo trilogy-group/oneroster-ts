@@ -14,7 +14,7 @@ let value: UpdateAssessmentResultRequestBody = {
     student: {
       sourcedId: "<id>",
     },
-    scoreDate: new Date("2025-05-27T04:24:47.054Z"),
+    scoreDate: new Date("2026-05-27T04:24:47.054Z"),
     scoreStatus: "fully graded",
   },
 };

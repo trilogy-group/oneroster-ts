@@ -1,5 +1,4 @@
 # LineItemsManagement
-(*lineItemsManagement*)
 
 ## Overview
 
@@ -22,6 +21,7 @@ Get all of the Line Items on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllLineItems" method="get" path="/ims/oneroster/gradebook/v1p2/lineItems/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -113,6 +113,7 @@ To create a new Line Item. The responding system must return the set of sourcedI
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createLineItem" method="post" path="/ims/oneroster/gradebook/v1p2/lineItems/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -224,6 +225,7 @@ Get a specific Line Item on the service provider. If the corresponding record ca
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLineItem" method="get" path="/ims/oneroster/gradebook/v1p2/lineItems/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -309,6 +311,7 @@ To update an existing Line Item. The sourcedId for the record to be updated is s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateLineItem" method="put" path="/ims/oneroster/gradebook/v1p2/lineItems/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -426,6 +429,7 @@ Perform a soft delete on a specific Line Item on the service provider. This oper
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteLineItem" method="delete" path="/ims/oneroster/gradebook/v1p2/lineItems/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -511,6 +515,7 @@ To create a new result for a specific Line Item. The responding system must retu
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createResultForLineItem" method="post" path="/ims/oneroster/gradebook/v1p2/lineItems/{sourcedId}/results" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -602,6 +607,7 @@ Get the set of lineItems on the service provider for a specific school. If the c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLineItemsForSchool" method="get" path="/ims/oneroster/gradebook/v1p2/schools/{sourcedId}/lineItems" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -695,6 +701,7 @@ To create a set of lineItems for a specific school. The responding system must r
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createLineItemsForSchool" method="post" path="/ims/oneroster/gradebook/v1p2/schools/{sourcedId}/lineItems" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

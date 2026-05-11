@@ -15,7 +15,7 @@ let value: CreateResultRequest = {
       sourcedId: "<id>",
     },
     scoreStatus: "exempt",
-    scoreDate: new Date("2025-12-18T02:39:54.603Z"),
+    scoreDate: new Date("2026-12-18T02:39:54.603Z"),
   },
 };
 ```

@@ -17,7 +17,7 @@ let value: GetAllAssessmentResultsResponseBody = {
       student: {
         sourcedId: "<id>",
       },
-      scoreDate: new Date("2025-08-27T19:19:54.088Z"),
+      scoreDate: new Date("2026-08-27T19:19:54.088Z"),
       scoreStatus: "exempt",
     },
   ],

@@ -1,5 +1,4 @@
 # StudentsManagement
-(*studentsManagement*)
 
 ## Overview
 
@@ -21,6 +20,7 @@ To get all students enrolled in a specific Class. If the corresponding record ca
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudentsForClass" method="get" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -114,6 +114,7 @@ Enrolls a student in a specific Class. The responding system must return the set
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addStudentToClass" method="post" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -217,6 +218,7 @@ To get all Students for a Class in a School on the service provider. If the spec
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudentsForClassInSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes/{classSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -312,6 +314,7 @@ To get all Students for a School on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudentsForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -405,6 +408,7 @@ To get all Students on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllStudents" method="get" path="/ims/oneroster/rostering/v1p2/students/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -496,6 +500,7 @@ To get a specific Student on the service provider. If the corresponding record c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudent" method="get" path="/ims/oneroster/rostering/v1p2/students/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -581,6 +586,7 @@ To get the set of Classes related to a specific Student. If the specified studen
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForStudent" method="get" path="/ims/oneroster/rostering/v1p2/students/{studentSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

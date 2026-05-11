@@ -11,6 +11,7 @@ let value: CreateGradingPeriodAcademicSession = {
   title: "<value>",
   startDate: "<value>",
   endDate: "<value>",
+  type: "gradingPeriod",
   schoolYear: "<value>",
   org: {
     sourcedId: "<id>",
@@ -29,7 +30,7 @@ let value: CreateGradingPeriodAcademicSession = {
 | `title`                                                                                       | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `startDate`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `endDate`                                                                                     | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `type`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `type`                                                                                        | *"gradingPeriod"*                                                                             | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `parent`                                                                                      | [operations.CreateGradingPeriodParent](../../models/operations/creategradingperiodparent.md)  | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `schoolYear`                                                                                  | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `org`                                                                                         | [operations.CreateGradingPeriodOrg](../../models/operations/creategradingperiodorg.md)        | :heavy_check_mark:                                                                            | N/A                                                                                           |

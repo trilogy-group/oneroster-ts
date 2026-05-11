@@ -7,7 +7,10 @@ import { BadRequestResponseImsxCodeMinor } from "@superbuilders/oneroster/models
 
 let value: BadRequestResponseImsxCodeMinor = {
   imsxCodeMinorField: [
-    {},
+    {
+      imsxCodeMinorFieldName: "TargetEndSystem",
+      imsxCodeMinorFieldValue: "invaliddata",
+    },
   ],
 };
 ```

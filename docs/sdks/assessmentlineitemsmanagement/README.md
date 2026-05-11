@@ -1,5 +1,4 @@
 # AssessmentLineItemsManagement
-(*assessmentLineItemsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ Get all of the Assessment Line Items on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllAssessmentLineItems" method="get" path="/ims/oneroster/gradebook/v1p2/assessmentLineItems/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create an Assessment Line Item. The responding system must return the set of 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createAssessmentLineItem" method="post" path="/ims/oneroster/gradebook/v1p2/assessmentLineItems/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -201,6 +202,7 @@ Get a specific Assessment Line Item on the service provider. If the correspondin
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAssessmentLineItem" method="get" path="/ims/oneroster/gradebook/v1p2/assessmentLineItems/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -286,6 +288,7 @@ To update an existing Assessment Line Item. The sourcedId for the record to be u
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateAssessmentLineItem" method="put" path="/ims/oneroster/gradebook/v1p2/assessmentLineItems/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -383,6 +386,7 @@ Perform a soft delete on a specific Assessment Line Item on the service provider
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteAssessmentLineItem" method="delete" path="/ims/oneroster/gradebook/v1p2/assessmentLineItems/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

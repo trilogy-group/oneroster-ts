@@ -7,6 +7,19 @@ import { UpdateAssessmentResultRequest } from "@superbuilders/oneroster/models/o
 
 let value: UpdateAssessmentResultRequest = {
   sourcedId: "<id>",
+  requestBody: {
+    assessmentResult: {
+      status: "tobedeleted",
+      assessmentLineItem: {
+        sourcedId: "<id>",
+      },
+      student: {
+        sourcedId: "<id>",
+      },
+      scoreDate: new Date("2026-05-27T04:24:47.054Z"),
+      scoreStatus: "fully graded",
+    },
+  },
 };
 ```
 

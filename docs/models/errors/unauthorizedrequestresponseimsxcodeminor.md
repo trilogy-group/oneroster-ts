@@ -7,7 +7,10 @@ import { UnauthorizedRequestResponseImsxCodeMinor } from "@superbuilders/onerost
 
 let value: UnauthorizedRequestResponseImsxCodeMinor = {
   imsxCodeMinorField: [
-    {},
+    {
+      imsxCodeMinorFieldName: "TargetEndSystem",
+      imsxCodeMinorFieldValue: "unauthorisedrequest",
+    },
   ],
 };
 ```
