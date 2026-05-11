@@ -5,7 +5,16 @@
 ```typescript
 import { GetGradingPeriodsForTermResponse } from "@superbuilders/oneroster/models/operations";
 
-let value: GetGradingPeriodsForTermResponse = {};
+let value: GetGradingPeriodsForTermResponse = {
+  result: {
+    gradingPeriods: [],
+    totalCount: 8301.82,
+    pageCount: 2254.23,
+    pageNumber: 7718.93,
+    offset: 5338.08,
+    limit: 5644.42,
+  },
+};
 ```
 
 ## Fields

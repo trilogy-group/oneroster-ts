@@ -1,5 +1,4 @@
 # TermsManagement
-(*termsManagement*)
 
 ## Overview
 
@@ -20,6 +19,7 @@ To get all Terms for a School on the service provider. If the specified school c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTermsForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/terms" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -113,6 +113,7 @@ To get all Terms on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllTerms" method="get" path="/ims/oneroster/rostering/v1p2/terms/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -204,6 +205,7 @@ To get a specific Term on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTerm" method="get" path="/ims/oneroster/rostering/v1p2/terms/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -289,6 +291,7 @@ To get the set of Classes related to a specific Term. If the specified term cann
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForTerm" method="get" path="/ims/oneroster/rostering/v1p2/terms/{termSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -382,6 +385,7 @@ To get the set of Grading Periods related to a specific Term. If the specified T
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGradingPeriodsForTerm" method="get" path="/ims/oneroster/rostering/v1p2/terms/{termSourcedId}/gradingPeriods" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -475,6 +479,7 @@ To create a new Grading Period for a Term. A Grading Period is a type of Academi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createGradingPeriodForTerm" method="post" path="/ims/oneroster/rostering/v1p2/terms/{termSourcedId}/gradingPeriods" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -495,6 +500,7 @@ async function run() {
         title: "<value>",
         startDate: "<value>",
         endDate: "<value>",
+        type: "gradingPeriod",
         schoolYear: "<value>",
         org: {
           sourcedId: "<id>",
@@ -538,6 +544,7 @@ async function run() {
         title: "<value>",
         startDate: "<value>",
         endDate: "<value>",
+        type: "gradingPeriod",
         schoolYear: "<value>",
         org: {
           sourcedId: "<id>",

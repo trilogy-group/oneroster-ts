@@ -5,11 +5,13 @@
 ```typescript
 import { UpdateUserOnboardingNotStarted } from "@superbuilders/oneroster/models/operations";
 
-let value: UpdateUserOnboardingNotStarted = {};
+let value: UpdateUserOnboardingNotStarted = {
+  state: "not_started",
+};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `state`            | *string*           | :heavy_check_mark: | N/A                |
+| `state`            | *"not_started"*    | :heavy_check_mark: | N/A                |

@@ -7,6 +7,12 @@ import { UpdateCategoryRequest } from "@superbuilders/oneroster/models/operation
 
 let value: UpdateCategoryRequest = {
   sourcedId: "<id>",
+  requestBody: {
+    category: {
+      status: "active",
+      title: "<value>",
+    },
+  },
 };
 ```
 

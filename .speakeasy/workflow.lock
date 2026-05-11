@@ -1,9 +1,9 @@
-speakeasyVersion: 1.571.1
+speakeasyVersion: 1.762.0
 sources:
     OneRoster API:
         sourceNamespace: one-roster-api
-        sourceRevisionDigest: sha256:38716d18193014dc2601a59b86e8572e6a0fa66bdbc9cea7a182dd6b0227b581
-        sourceBlobDigest: sha256:ff92a549d005a212e4d721511b7aca26775db39c1dc90524d4ad0df83ebb380c
+        sourceRevisionDigest: sha256:c0b5894f0566d3bbb5fe947ae922cf9e54de280088608d838b8bf36e37d79b5d
+        sourceBlobDigest: sha256:3d3d4e897cf406c3a28fd9a195c9b33243b915b35ff9f749dad25824b1f8e1ff
         tags:
             - latest
             - 1.0.0
@@ -11,10 +11,10 @@ targets:
     one-roster:
         source: OneRoster API
         sourceNamespace: one-roster-api
-        sourceRevisionDigest: sha256:38716d18193014dc2601a59b86e8572e6a0fa66bdbc9cea7a182dd6b0227b581
-        sourceBlobDigest: sha256:ff92a549d005a212e4d721511b7aca26775db39c1dc90524d4ad0df83ebb380c
+        sourceRevisionDigest: sha256:c0b5894f0566d3bbb5fe947ae922cf9e54de280088608d838b8bf36e37d79b5d
+        sourceBlobDigest: sha256:3d3d4e897cf406c3a28fd9a195c9b33243b915b35ff9f749dad25824b1f8e1ff
         codeSamplesNamespace: one-roster-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:6cd20c5ec7a402497b03834edd308bafe11a0a19de30d45d384ecb2bc7756e57
+        codeSamplesRevisionDigest: sha256:baf976b4750078f1c9f63176fc5656d5eecb5ef1a545323dd442092881c68b70
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

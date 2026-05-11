@@ -7,6 +7,7 @@ import { CreateSchoolOrg } from "@superbuilders/oneroster/models/operations";
 
 let value: CreateSchoolOrg = {
   name: "<value>",
+  type: "school",
 };
 ```
 
@@ -18,6 +19,6 @@ let value: CreateSchoolOrg = {
 | `status`                                                                       | [operations.CreateSchoolStatus](../../models/operations/createschoolstatus.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
 | `metadata`                                                                     | Record<string, *any*>                                                          | :heavy_minus_sign:                                                             | N/A                                                                            |
 | `name`                                                                         | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            |
-| `type`                                                                         | *string*                                                                       | :heavy_check_mark:                                                             | N/A                                                                            |
+| `type`                                                                         | *"school"*                                                                     | :heavy_check_mark:                                                             | N/A                                                                            |
 | `identifier`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
 | `parent`                                                                       | [operations.CreateSchoolParent](../../models/operations/createschoolparent.md) | :heavy_minus_sign:                                                             | N/A                                                                            |

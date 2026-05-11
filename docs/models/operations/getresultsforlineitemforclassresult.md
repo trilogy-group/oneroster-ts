@@ -16,7 +16,7 @@ let value: GetResultsForLineItemForClassResult = {
     sourcedId: "<id>",
   },
   scoreStatus: "partially graded",
-  scoreDate: new Date("2025-01-27T22:02:39.111Z"),
+  scoreDate: new Date("2026-01-27T22:02:39.111Z"),
 };
 ```
 

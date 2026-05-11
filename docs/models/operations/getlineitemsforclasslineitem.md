@@ -9,8 +9,8 @@ import { GetLineItemsForClassLineItem } from "@superbuilders/oneroster/models/op
 
 let value: GetLineItemsForClassLineItem = {
   title: "<value>",
-  assignDate: new Date("2023-06-06T04:25:55.194Z"),
-  dueDate: new Date("2024-05-20T02:20:59.692Z"),
+  assignDate: new Date("2024-06-05T04:25:55.194Z"),
+  dueDate: new Date("2025-05-20T02:20:59.692Z"),
   class: {
     sourcedId: "<id>",
   },

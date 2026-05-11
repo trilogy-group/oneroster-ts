@@ -16,7 +16,7 @@ let value: GetResultsForClassResult = {
     sourcedId: "<id>",
   },
   scoreStatus: "fully graded",
-  scoreDate: new Date("2025-12-15T06:22:24.919Z"),
+  scoreDate: new Date("2026-12-15T06:22:24.919Z"),
 };
 ```
 

@@ -1,5 +1,4 @@
 # AcademicSessionsManagement
-(*academicSessionsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ To get all Academic Sessions on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllAcademicSessions" method="get" path="/ims/oneroster/rostering/v1p2/academicSessions/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create a new academic session. The responding system must return the set of s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="postAcademicSession" method="post" path="/ims/oneroster/rostering/v1p2/academicSessions/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -191,6 +192,7 @@ Get a specific Academic Session on the service provider. If the corresponding re
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAcademicSession" method="get" path="/ims/oneroster/rostering/v1p2/academicSessions/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -276,6 +278,7 @@ To update an existing Academic Session. The sourcedId for the record to be updat
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="putAcademicSession" method="put" path="/ims/oneroster/rostering/v1p2/academicSessions/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -361,6 +364,7 @@ Perform a soft delete on a specific Academic Session on the service provider. Th
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteAcademicSession" method="delete" path="/ims/oneroster/rostering/v1p2/academicSessions/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

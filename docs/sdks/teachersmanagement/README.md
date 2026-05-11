@@ -1,5 +1,4 @@
 # TeachersManagement
-(*teachersManagement*)
 
 ## Overview
 
@@ -21,6 +20,7 @@ To get all teachers assigned to a specific Class. If the corresponding record ca
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeachersForClass" method="get" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -114,6 +114,7 @@ Enrolls a teacher to a specific Class. The responding system must return the set
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addTeacherToClass" method="post" path="/ims/oneroster/rostering/v1p2/classes/{classSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -217,6 +218,7 @@ To get all Teachers for a Class in a School on the service provider. If the spec
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeachersForClassInSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes/{classSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -312,6 +314,7 @@ To get all Teachers for a School on the service provider. If the specified schoo
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeachersForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -405,6 +408,7 @@ To get all Teachers on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllTeachers" method="get" path="/ims/oneroster/rostering/v1p2/teachers/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -496,6 +500,7 @@ To get a specific Teacher on the service provider. If the corresponding record c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeacher" method="get" path="/ims/oneroster/rostering/v1p2/teachers/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -581,6 +586,7 @@ To get the set of Classes a Teacher is enrolled in. If the specified teacher can
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForTeacher" method="get" path="/ims/oneroster/rostering/v1p2/teachers/{teacherSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

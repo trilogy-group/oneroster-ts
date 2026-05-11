@@ -5,7 +5,16 @@
 ```typescript
 import { GetAllClassesResponse } from "@superbuilders/oneroster/models/operations";
 
-let value: GetAllClassesResponse = {};
+let value: GetAllClassesResponse = {
+  result: {
+    classes: [],
+    totalCount: 5286.03,
+    pageCount: 9783.34,
+    pageNumber: 8489.15,
+    offset: 8163.24,
+    limit: 2812.8,
+  },
+};
 ```
 
 ## Fields

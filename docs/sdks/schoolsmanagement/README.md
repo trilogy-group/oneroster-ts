@@ -1,5 +1,4 @@
 # SchoolsManagement
-(*schoolsManagement*)
 
 ## Overview
 
@@ -31,6 +30,7 @@ Get the set of scoreScales on the service provider for a specific school. If the
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getScoreScalesForSchool" method="get" path="/ims/oneroster/gradebook/v1p2/schools/{sourcedId}/scoreScales" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -124,6 +124,7 @@ To get all Schools on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllSchools" method="get" path="/ims/oneroster/rostering/v1p2/schools/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -215,6 +216,7 @@ To create a new School. The responding system must return the set of sourcedIds 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createSchool" method="post" path="/ims/oneroster/rostering/v1p2/schools/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -296,6 +298,7 @@ Get a specific School on the service provider. If the corresponding record canno
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -379,6 +382,7 @@ To update an existing School. The sourcedId for the record to be updated is supp
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateSchool" method="put" path="/ims/oneroster/rostering/v1p2/schools/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -464,6 +468,7 @@ Perform a soft delete on a specific School on the service provider. The operatio
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteSchool" method="delete" path="/ims/oneroster/rostering/v1p2/schools/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -549,6 +554,7 @@ Get the set of lineItems on the service provider for a specific school. If the c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLineItemsForSchool" method="get" path="/ims/oneroster/gradebook/v1p2/schools/{sourcedId}/lineItems" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -642,6 +648,7 @@ To create a set of lineItems for a specific school. The responding system must r
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createLineItemsForSchool" method="post" path="/ims/oneroster/gradebook/v1p2/schools/{sourcedId}/lineItems" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -763,6 +770,7 @@ To get all Classes for a School on the service provider. If the specified school
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassesForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -856,6 +864,7 @@ To get all Terms for a School on the service provider. If the specified school c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTermsForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/terms" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -949,6 +958,7 @@ To get all Teachers for a Class in a School on the service provider. If the spec
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeachersForClassInSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes/{classSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1044,6 +1054,7 @@ To get all Teachers for a School on the service provider. If the specified schoo
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTeachersForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/teachers" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1137,6 +1148,7 @@ To get all Students for a Class in a School on the service provider. If the spec
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudentsForClassInSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes/{classSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1232,6 +1244,7 @@ To get all Students for a School on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStudentsForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/students" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1325,6 +1338,7 @@ To get all Enrollments for a Class in a School on the service provider. If the s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEnrollmentsForClassInSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/classes/{classSourcedId}/enrollments" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1420,6 +1434,7 @@ To get all Enrollments for a School on the service provider. If the specified sc
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEnrollmentsForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/enrollments" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -1513,6 +1528,7 @@ To get all Courses for a School on the service provider. If the specified school
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCoursesForSchool" method="get" path="/ims/oneroster/rostering/v1p2/schools/{schoolSourcedId}/courses" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

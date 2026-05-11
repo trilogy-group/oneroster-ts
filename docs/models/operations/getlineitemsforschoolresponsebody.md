@@ -11,8 +11,8 @@ let value: GetLineItemsForSchoolResponseBody = {
   lineItems: [
     {
       title: "<value>",
-      assignDate: new Date("2024-07-05T05:24:44.301Z"),
-      dueDate: new Date("2024-06-03T08:42:01.042Z"),
+      assignDate: new Date("2025-07-05T05:24:44.301Z"),
+      dueDate: new Date("2025-06-03T08:42:01.042Z"),
       class: {
         sourcedId: "<id>",
       },

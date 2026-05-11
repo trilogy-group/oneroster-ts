@@ -18,7 +18,7 @@ let value: GetResultsForClassResponseBody = {
         sourcedId: "<id>",
       },
       scoreStatus: "fully graded",
-      scoreDate: new Date("2024-03-06T09:46:38.738Z"),
+      scoreDate: new Date("2025-03-06T09:46:38.738Z"),
     },
   ],
   totalCount: 3022.78,

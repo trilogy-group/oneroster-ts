@@ -1,5 +1,4 @@
 # ResultsManagement
-(*resultsManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ Get all of the results on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllResults" method="get" path="/ims/oneroster/gradebook/v1p2/results/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -110,6 +110,7 @@ To create a new result. The request body must include a `result` object with the
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createResult" method="post" path="/ims/oneroster/gradebook/v1p2/results/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -215,6 +216,7 @@ Get a specific result on the service provider. If the corresponding record canno
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResult" method="get" path="/ims/oneroster/gradebook/v1p2/results/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -300,6 +302,7 @@ To update an existing result. The sourcedId for the record to be updated is supp
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateResult" method="put" path="/ims/oneroster/gradebook/v1p2/results/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -411,6 +414,7 @@ Perform a soft delete on a specific Result on the service provider. This operati
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteResult" method="delete" path="/ims/oneroster/gradebook/v1p2/results/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

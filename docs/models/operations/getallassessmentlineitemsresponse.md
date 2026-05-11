@@ -5,7 +5,21 @@
 ```typescript
 import { GetAllAssessmentLineItemsResponse } from "@superbuilders/oneroster/models/operations";
 
-let value: GetAllAssessmentLineItemsResponse = {};
+let value: GetAllAssessmentLineItemsResponse = {
+  result: {
+    assessmentLineItems: [
+      {
+        status: "active",
+        title: "<value>",
+      },
+    ],
+    totalCount: 9587.28,
+    pageCount: 3726.03,
+    pageNumber: 7471.46,
+    offset: 9886.04,
+    limit: 9858.75,
+  },
+};
 ```
 
 ## Fields

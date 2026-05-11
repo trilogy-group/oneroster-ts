@@ -16,7 +16,7 @@ let value: GetResultsForStudentForClassResult = {
     sourcedId: "<id>",
   },
   scoreStatus: "exempt",
-  scoreDate: new Date("2023-12-21T09:30:16.369Z"),
+  scoreDate: new Date("2024-12-20T09:30:16.369Z"),
 };
 ```
 

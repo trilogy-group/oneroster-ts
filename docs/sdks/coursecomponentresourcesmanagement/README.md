@@ -1,5 +1,4 @@
 # CourseComponentResourcesManagement
-(*courseComponentResourcesManagement*)
 
 ## Overview
 
@@ -19,6 +18,7 @@ To create a new Component Resource. The responding system must return the set of
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createComponentResource" method="post" path="/ims/oneroster/rostering/v1p2/courses/component-resources" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -100,6 +100,7 @@ To get all Component Resources on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllComponentResources" method="get" path="/ims/oneroster/rostering/v1p2/courses/component-resources" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -191,6 +192,7 @@ Get a specific Component Resource on the service provider. If the corresponding 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getComponentResource" method="get" path="/ims/oneroster/rostering/v1p2/courses/component-resources/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -276,6 +278,7 @@ To update an existing Component Resource. The sourcedId for the record to be upd
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="putComponentResource" method="put" path="/ims/oneroster/rostering/v1p2/courses/component-resources/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -361,6 +364,7 @@ Perform a soft delete on a specific Component Resource on the service provider. 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteComponentResource" method="delete" path="/ims/oneroster/rostering/v1p2/courses/component-resources/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 

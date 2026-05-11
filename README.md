@@ -136,10 +136,7 @@ bun add @superbuilders/oneroster
 ### Yarn
 
 ```bash
-yarn add @superbuilders/oneroster zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @superbuilders/oneroster
 ```
 
 > [!NOTE]
@@ -278,9 +275,9 @@ run();
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         | Environment Variable                                                          |
-| ----------------------------- | ------ | ------------------------------ | ----------------------------------------------------------------------------- |
-| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow | `ONEROSTER_CLIENT_ID`<br/>`ONEROSTER_CLIENT_SECRET`<br/>`ONEROSTER_TOKEN_URL` |
+| Name                                         | Type   | Scheme                         | Environment Variable                                                          |
+| -------------------------------------------- | ------ | ------------------------------ | ----------------------------------------------------------------------------- |
+| `clientID`<br/>`clientSecret`<br/>`tokenURL` | oauth2 | OAuth2 Client Credentials Flow | `ONEROSTER_CLIENT_ID`<br/>`ONEROSTER_CLIENT_SECRET`<br/>`ONEROSTER_TOKEN_URL` |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
@@ -315,7 +312,7 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [academicSessionsManagement](docs/sdks/academicsessionsmanagement/README.md)
+### [AcademicSessionsManagement](docs/sdks/academicsessionsmanagement/README.md)
 
 * [getAllAcademicSessions](docs/sdks/academicsessionsmanagement/README.md#getallacademicsessions) - Get all Academic Sessions
 * [postAcademicSession](docs/sdks/academicsessionsmanagement/README.md#postacademicsession) - Create an Academic Session
@@ -323,7 +320,7 @@ run();
 * [putAcademicSession](docs/sdks/academicsessionsmanagement/README.md#putacademicsession) - Update an Academic Session
 * [deleteAcademicSession](docs/sdks/academicsessionsmanagement/README.md#deleteacademicsession) - Delete an Academic Session
 
-### [assessmentLineItemsManagement](docs/sdks/assessmentlineitemsmanagement/README.md)
+### [AssessmentLineItemsManagement](docs/sdks/assessmentlineitemsmanagement/README.md)
 
 * [getAllAssessmentLineItems](docs/sdks/assessmentlineitemsmanagement/README.md#getallassessmentlineitems) - Get all Assessment Line Items
 * [createAssessmentLineItem](docs/sdks/assessmentlineitemsmanagement/README.md#createassessmentlineitem) - Create an Assessment Line Item
@@ -331,7 +328,7 @@ run();
 * [updateAssessmentLineItem](docs/sdks/assessmentlineitemsmanagement/README.md#updateassessmentlineitem) - Update an Assessment Line Item
 * [deleteAssessmentLineItem](docs/sdks/assessmentlineitemsmanagement/README.md#deleteassessmentlineitem) - Delete an Assessment Line Item
 
-### [assessmentResultsManagement](docs/sdks/assessmentresultsmanagement/README.md)
+### [AssessmentResultsManagement](docs/sdks/assessmentresultsmanagement/README.md)
 
 * [getAllAssessmentResults](docs/sdks/assessmentresultsmanagement/README.md#getallassessmentresults) - Get all Assessment Results
 * [createAssessmentResult](docs/sdks/assessmentresultsmanagement/README.md#createassessmentresult) - Create an Assessment Result
@@ -339,7 +336,7 @@ run();
 * [updateAssessmentResult](docs/sdks/assessmentresultsmanagement/README.md#updateassessmentresult) - Update an Assessment Result
 * [deleteAssessmentResult](docs/sdks/assessmentresultsmanagement/README.md#deleteassessmentresult) - Delete an Assessment Result
 
-### [categoriesManagement](docs/sdks/categoriesmanagement/README.md)
+### [CategoriesManagement](docs/sdks/categoriesmanagement/README.md)
 
 * [getAllCategories](docs/sdks/categoriesmanagement/README.md#getallcategories) - Get all Categories
 * [createCategory](docs/sdks/categoriesmanagement/README.md#createcategory) - Create a Category
@@ -347,7 +344,7 @@ run();
 * [updateCategory](docs/sdks/categoriesmanagement/README.md#updatecategory) - Update a Category
 * [deleteCategory](docs/sdks/categoriesmanagement/README.md#deletecategory) - Delete a Category
 
-### [classesManagement](docs/sdks/classesmanagement/README.md)
+### [ClassesManagement](docs/sdks/classesmanagement/README.md)
 
 * [postResultsForAcademicSessionForClass](docs/sdks/classesmanagement/README.md#postresultsforacademicsessionforclass) - Create Results for an Academic Session for a Class
 * [getResultsForLineItemForClass](docs/sdks/classesmanagement/README.md#getresultsforlineitemforclass) - Get Results for a Line Item for a Class
@@ -371,7 +368,7 @@ run();
 * [addStudentToClass](docs/sdks/classesmanagement/README.md#addstudenttoclass) - Add a student to a Class
 * [getClassesForStudent](docs/sdks/classesmanagement/README.md#getclassesforstudent) - Get Classes for a Student
 
-### [courseComponentResourcesManagement](docs/sdks/coursecomponentresourcesmanagement/README.md)
+### [CourseComponentResourcesManagement](docs/sdks/coursecomponentresourcesmanagement/README.md)
 
 * [createComponentResource](docs/sdks/coursecomponentresourcesmanagement/README.md#createcomponentresource) - Create Component Resource
 * [getAllComponentResources](docs/sdks/coursecomponentresourcesmanagement/README.md#getallcomponentresources) - Get all Component Resources
@@ -379,7 +376,7 @@ run();
 * [putComponentResource](docs/sdks/coursecomponentresourcesmanagement/README.md#putcomponentresource) - Update a Component Resource
 * [deleteComponentResource](docs/sdks/coursecomponentresourcesmanagement/README.md#deletecomponentresource) - Delete a Component Resource
 
-### [courseComponentsManagement](docs/sdks/coursecomponentsmanagement/README.md)
+### [CourseComponentsManagement](docs/sdks/coursecomponentsmanagement/README.md)
 
 * [createCourseComponent](docs/sdks/coursecomponentsmanagement/README.md#createcoursecomponent) - Create Course Component
 * [getAllCourseComponents](docs/sdks/coursecomponentsmanagement/README.md#getallcoursecomponents) - Get all Course Components
@@ -387,7 +384,7 @@ run();
 * [putCourseComponent](docs/sdks/coursecomponentsmanagement/README.md#putcoursecomponent) - Update a Course Component
 * [deleteCourseComponent](docs/sdks/coursecomponentsmanagement/README.md#deletecoursecomponent) - Delete a Course Component
 
-### [coursesManagement](docs/sdks/coursesmanagement/README.md)
+### [CoursesManagement](docs/sdks/coursesmanagement/README.md)
 
 * [getAllCourses](docs/sdks/coursesmanagement/README.md#getallcourses) - Get All Courses
 * [createCourse](docs/sdks/coursesmanagement/README.md#createcourse) - Create a Course
@@ -407,7 +404,7 @@ run();
 * [deleteCourseComponent](docs/sdks/coursesmanagement/README.md#deletecoursecomponent) - Delete a Course Component
 * [getCoursesForSchool](docs/sdks/coursesmanagement/README.md#getcoursesforschool) - Get all Courses for a School
 
-### [demographicsManagement](docs/sdks/demographicsmanagement/README.md)
+### [DemographicsManagement](docs/sdks/demographicsmanagement/README.md)
 
 * [getAllDemographics](docs/sdks/demographicsmanagement/README.md#getalldemographics) - Get all Demographic records
 * [postDemographics](docs/sdks/demographicsmanagement/README.md#postdemographics) - Create a new Demographic record
@@ -415,7 +412,7 @@ run();
 * [putDemographics](docs/sdks/demographicsmanagement/README.md#putdemographics) - Update a Demographic record
 * [deleteDemographics](docs/sdks/demographicsmanagement/README.md#deletedemographics) - Delete a Demographic record
 
-### [enrollmentsManagement](docs/sdks/enrollmentsmanagement/README.md)
+### [EnrollmentsManagement](docs/sdks/enrollmentsmanagement/README.md)
 
 * [getAllEnrollments](docs/sdks/enrollmentsmanagement/README.md#getallenrollments) - Get all Enrollments
 * [createEnrollment](docs/sdks/enrollmentsmanagement/README.md#createenrollment) - Create a new Enrollment
@@ -425,7 +422,7 @@ run();
 * [getEnrollmentsForClassInSchool](docs/sdks/enrollmentsmanagement/README.md#getenrollmentsforclassinschool) - Get Enrollments for a specific Class in a School
 * [getEnrollmentsForSchool](docs/sdks/enrollmentsmanagement/README.md#getenrollmentsforschool) - Get all Enrollments for a School
 
-### [gradingPeriodsManagement](docs/sdks/gradingperiodsmanagement/README.md)
+### [GradingPeriodsManagement](docs/sdks/gradingperiodsmanagement/README.md)
 
 * [getAllGradingPeriods](docs/sdks/gradingperiodsmanagement/README.md#getallgradingperiods) - Get all Grading Periods
 * [createGradingPeriod](docs/sdks/gradingperiodsmanagement/README.md#creategradingperiod) - Create a new Grading Period
@@ -435,7 +432,7 @@ run();
 * [getGradingPeriodsForTerm](docs/sdks/gradingperiodsmanagement/README.md#getgradingperiodsforterm) - Get Grading Periods for a Term
 * [createGradingPeriodForTerm](docs/sdks/gradingperiodsmanagement/README.md#creategradingperiodforterm) - Create a new Grading Period for a Term
 
-### [lineItemsManagement](docs/sdks/lineitemsmanagement/README.md)
+### [LineItemsManagement](docs/sdks/lineitemsmanagement/README.md)
 
 * [getAllLineItems](docs/sdks/lineitemsmanagement/README.md#getalllineitems) - Get all Line Items
 * [createLineItem](docs/sdks/lineitemsmanagement/README.md#createlineitem) - Create a Line Item
@@ -446,8 +443,7 @@ run();
 * [getLineItemsForSchool](docs/sdks/lineitemsmanagement/README.md#getlineitemsforschool) - Get Line Items for a School
 * [createLineItemsForSchool](docs/sdks/lineitemsmanagement/README.md#createlineitemsforschool) - Create Line Items for a School
 
-
-### [organizationsManagement](docs/sdks/organizationsmanagement/README.md)
+### [OrganizationsManagement](docs/sdks/organizationsmanagement/README.md)
 
 * [getAllOrgs](docs/sdks/organizationsmanagement/README.md#getallorgs) - Get all Organizations
 * [createOrg](docs/sdks/organizationsmanagement/README.md#createorg) - Create an Organization
@@ -455,7 +451,7 @@ run();
 * [updateOrg](docs/sdks/organizationsmanagement/README.md#updateorg) - Update an Organization
 * [deleteOrg](docs/sdks/organizationsmanagement/README.md#deleteorg) - Delete an Organization
 
-### [resourcesManagement](docs/sdks/resourcesmanagement/README.md)
+### [ResourcesManagement](docs/sdks/resourcesmanagement/README.md)
 
 * [getAllResources](docs/sdks/resourcesmanagement/README.md#getallresources) - Get all Resources
 * [createResource](docs/sdks/resourcesmanagement/README.md#createresource) - Create a new Resource
@@ -467,7 +463,7 @@ run();
 * [exportResourceToCommonCartridge](docs/sdks/resourcesmanagement/README.md#exportresourcetocommoncartridge) - Export Resource to Common Cartridge
 * [getResourcesForUser](docs/sdks/resourcesmanagement/README.md#getresourcesforuser) - Get resources for a user
 
-### [resultsManagement](docs/sdks/resultsmanagement/README.md)
+### [ResultsManagement](docs/sdks/resultsmanagement/README.md)
 
 * [getAllResults](docs/sdks/resultsmanagement/README.md#getallresults) - Get all Results
 * [createResult](docs/sdks/resultsmanagement/README.md#createresult) - Create a Result
@@ -475,7 +471,7 @@ run();
 * [updateResult](docs/sdks/resultsmanagement/README.md#updateresult) - Update a Result
 * [deleteResult](docs/sdks/resultsmanagement/README.md#deleteresult) - Delete a Result
 
-### [schoolsManagement](docs/sdks/schoolsmanagement/README.md)
+### [SchoolsManagement](docs/sdks/schoolsmanagement/README.md)
 
 * [getScoreScalesForSchool](docs/sdks/schoolsmanagement/README.md#getscorescalesforschool) - Get Score Scales for a School
 * [getAllSchools](docs/sdks/schoolsmanagement/README.md#getallschools) - Get all Schools
@@ -495,7 +491,7 @@ run();
 * [getEnrollmentsForSchool](docs/sdks/schoolsmanagement/README.md#getenrollmentsforschool) - Get all Enrollments for a School
 * [getCoursesForSchool](docs/sdks/schoolsmanagement/README.md#getcoursesforschool) - Get all Courses for a School
 
-### [scoreScalesManagement](docs/sdks/scorescalesmanagement/README.md)
+### [ScoreScalesManagement](docs/sdks/scorescalesmanagement/README.md)
 
 * [getAllScoreScales](docs/sdks/scorescalesmanagement/README.md#getallscorescales) - Get all Score Scales
 * [createScoreScale](docs/sdks/scorescalesmanagement/README.md#createscorescale) - Create a Score Scale
@@ -504,7 +500,7 @@ run();
 * [deleteScoreScale](docs/sdks/scorescalesmanagement/README.md#deletescorescale) - Delete a Score Scale
 * [getScoreScalesForSchool](docs/sdks/scorescalesmanagement/README.md#getscorescalesforschool) - Get Score Scales for a School
 
-### [studentsManagement](docs/sdks/studentsmanagement/README.md)
+### [StudentsManagement](docs/sdks/studentsmanagement/README.md)
 
 * [getStudentsForClass](docs/sdks/studentsmanagement/README.md#getstudentsforclass) - Get students for a Class
 * [addStudentToClass](docs/sdks/studentsmanagement/README.md#addstudenttoclass) - Add a student to a Class
@@ -514,7 +510,7 @@ run();
 * [getStudent](docs/sdks/studentsmanagement/README.md#getstudent) - Get a specific Student
 * [getClassesForStudent](docs/sdks/studentsmanagement/README.md#getclassesforstudent) - Get Classes for a Student
 
-### [teachersManagement](docs/sdks/teachersmanagement/README.md)
+### [TeachersManagement](docs/sdks/teachersmanagement/README.md)
 
 * [getTeachersForClass](docs/sdks/teachersmanagement/README.md#getteachersforclass) - Get teachers for a Class
 * [addTeacherToClass](docs/sdks/teachersmanagement/README.md#addteachertoclass) - Add a teacher to a Class
@@ -524,7 +520,7 @@ run();
 * [getTeacher](docs/sdks/teachersmanagement/README.md#getteacher) - Get a specific Teacher
 * [getClassesForTeacher](docs/sdks/teachersmanagement/README.md#getclassesforteacher) - Get Classes for a Teacher
 
-### [termsManagement](docs/sdks/termsmanagement/README.md)
+### [TermsManagement](docs/sdks/termsmanagement/README.md)
 
 * [getTermsForSchool](docs/sdks/termsmanagement/README.md#gettermsforschool) - Get all Terms for a School
 * [getAllTerms](docs/sdks/termsmanagement/README.md#getallterms) - Get all Terms
@@ -533,7 +529,7 @@ run();
 * [getGradingPeriodsForTerm](docs/sdks/termsmanagement/README.md#getgradingperiodsforterm) - Get Grading Periods for a Term
 * [createGradingPeriodForTerm](docs/sdks/termsmanagement/README.md#creategradingperiodforterm) - Create a new Grading Period for a Term
 
-### [usersManagement](docs/sdks/usersmanagement/README.md)
+### [UsersManagement](docs/sdks/usersmanagement/README.md)
 
 * [getAllUsers](docs/sdks/usersmanagement/README.md#getallusers) - Get all Users
 * [createUser](docs/sdks/usersmanagement/README.md#createuser) - Create a new User
@@ -909,10 +905,10 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`OneRosterError`](./src/models/errors/onerostererror.ts): The base class for HTTP error responses.
-  * [`NotFoundResponseError`](docs/models/errors/notfoundresponseerror.md): *
-  * [`UnprocessableEntityResponseError`](docs/models/errors/unprocessableentityresponseerror.md): Status code `422`. *
-  * [`TooManyRequestsResponseError`](docs/models/errors/toomanyrequestsresponseerror.md): Too Many Requests. Status code `429`. *
-  * [`InternalServerErrorResponse`](docs/models/errors/internalservererrorresponse.md): Status code `500`. *
+  * [`NotFoundResponseError`](./src/models/errors/notfoundresponseerror.ts): *
+  * [`UnprocessableEntityResponseError`](./src/models/errors/unprocessableentityresponseerror.ts): Status code `422`. *
+  * [`TooManyRequestsResponseError`](./src/models/errors/toomanyrequestsresponseerror.ts): Too Many Requests. Status code `429`. *
+  * [`InternalServerErrorResponse`](./src/models/errors/internalservererrorresponse.ts): Status code `500`. *
 
 <details><summary>Less common errors (9)</summary>
 
@@ -927,9 +923,9 @@ run();
 
 
 **Inherit from [`OneRosterError`](./src/models/errors/onerostererror.ts)**:
-* [`BadRequestResponseError`](docs/models/errors/badrequestresponseerror.md): Status code `400`. Applicable to 131 of 164 methods.*
-* [`UnauthorizedRequestResponseError`](docs/models/errors/unauthorizedrequestresponseerror.md): Status code `401`. Applicable to 131 of 164 methods.*
-* [`ForbiddenResponseError`](docs/models/errors/forbiddenresponseerror.md): Status code `403`. Applicable to 131 of 164 methods.*
+* [`BadRequestResponseError`](./src/models/errors/badrequestresponseerror.ts): Status code `400`. Applicable to 131 of 164 methods.*
+* [`UnauthorizedRequestResponseError`](./src/models/errors/unauthorizedrequestresponseerror.ts): Status code `401`. Applicable to 131 of 164 methods.*
+* [`ForbiddenResponseError`](./src/models/errors/forbiddenresponseerror.ts): Status code `403`. Applicable to 131 of 164 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -983,19 +979,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "@superbuilders/oneroster/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
@@ -1015,7 +1015,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new OneRoster({ httpClient });
+const sdk = new OneRoster({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

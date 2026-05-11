@@ -11,6 +11,7 @@ let value: UpdateGradingPeriodAcademicSession = {
   title: "<value>",
   startDate: "<value>",
   endDate: "<value>",
+  type: "gradingPeriod",
   schoolYear: "<value>",
   org: {
     sourcedId: "<id>",
@@ -29,7 +30,7 @@ let value: UpdateGradingPeriodAcademicSession = {
 | `title`                                                                                       | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `startDate`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `endDate`                                                                                     | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `type`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `type`                                                                                        | *"gradingPeriod"*                                                                             | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `parent`                                                                                      | [operations.UpdateGradingPeriodParent](../../models/operations/updategradingperiodparent.md)  | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `schoolYear`                                                                                  | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `org`                                                                                         | [operations.UpdateGradingPeriodOrg](../../models/operations/updategradingperiodorg.md)        | :heavy_check_mark:                                                                            | N/A                                                                                           |

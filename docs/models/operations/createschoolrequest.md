@@ -8,6 +8,7 @@ import { CreateSchoolRequest } from "@superbuilders/oneroster/models/operations"
 let value: CreateSchoolRequest = {
   org: {
     name: "<value>",
+    type: "school",
   },
 };
 ```

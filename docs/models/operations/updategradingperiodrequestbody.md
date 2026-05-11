@@ -12,6 +12,7 @@ let value: UpdateGradingPeriodRequestBody = {
     title: "<value>",
     startDate: "<value>",
     endDate: "<value>",
+    type: "gradingPeriod",
     schoolYear: "<value>",
     org: {
       sourcedId: "<id>",

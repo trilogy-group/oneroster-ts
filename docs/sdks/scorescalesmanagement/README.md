@@ -1,5 +1,4 @@
 # ScoreScalesManagement
-(*scoreScalesManagement*)
 
 ## Overview
 
@@ -20,6 +19,7 @@ Get all of the ScoreScales on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAllScoreScales" method="get" path="/ims/oneroster/gradebook/v1p2/scoreScales/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -111,6 +111,7 @@ To create a new scoreScale. The responding system must return the set of sourced
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createScoreScale" method="post" path="/ims/oneroster/gradebook/v1p2/scoreScales/" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -222,6 +223,7 @@ Get a specific scoreScale on the service provider.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getScoreScale" method="get" path="/ims/oneroster/gradebook/v1p2/scoreScales/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -307,6 +309,7 @@ To update an existing scoreScale. The sourcedId for the record to be updated is 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateScoreScale" method="put" path="/ims/oneroster/gradebook/v1p2/scoreScales/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -424,6 +427,7 @@ Perform a soft delete on a specific ScoreScale on the service provider. This ope
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteScoreScale" method="delete" path="/ims/oneroster/gradebook/v1p2/scoreScales/{sourcedId}" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
@@ -509,6 +513,7 @@ Get the set of scoreScales on the service provider for a specific school. If the
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getScoreScalesForSchool" method="get" path="/ims/oneroster/gradebook/v1p2/schools/{sourcedId}/scoreScales" -->
 ```typescript
 import { OneRoster } from "@superbuilders/oneroster";
 
